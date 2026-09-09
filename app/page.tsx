@@ -1,6 +1,7 @@
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LocationModal from "@/components/LocationModal";
 import Navbar from "@/components/Navbar";
+import Testimonial from "@/components/Testimonial";
 
 export default function Home() {
   return (
@@ -46,6 +47,7 @@ export default function Home() {
         </div>
       </section>
       <JobTypeCategories />
+      <Testimonial />
       <LocationModal />
     </main>
   );
