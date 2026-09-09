@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,7 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} antialiased`}>
-      <body className="min-h-screen bg-white font-sans">{children}</body>
+      <body className="min-h-screen bg-white font-sans">
+        {children}
+        <Script
+          src="https://pl31257988.profitableratecpmnetwork.com/5c/62/2c/5c622cb8483fed2af9a1f48dd97164a9.js"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
