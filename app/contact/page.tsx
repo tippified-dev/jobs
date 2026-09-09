@@ -1,3 +1,5 @@
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import Link from "next/link";
 import {
   FiArrowLeft,
@@ -85,6 +87,7 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
+      <Banner320x50 />
 
       {/* Main */}
       <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
@@ -149,6 +152,8 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
+
+          <NativeBannerAd />
 
           {/* Right content */}
           <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-9 lg:p-10">

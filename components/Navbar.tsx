@@ -24,8 +24,8 @@ const navigationLinks = [
     href: "/data-entry",
   },
   {
-    label: "Side Jobs",
-    href: "/side-jobs",
+    label: "Terms",
+    href: "/terms",
   },
   {
     label: "About",
