@@ -1,3 +1,4 @@
+import Popunder from "@/components/ads/Popunder";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Script from "next/script";
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} antialiased`}>
       <body className="min-h-screen bg-white font-sans">
+        <Popunder />
         {children}
         <Script
           src="https://pl31257988.profitableratecpmnetwork.com/5c/62/2c/5c622cb8483fed2af9a1f48dd97164a9.js"

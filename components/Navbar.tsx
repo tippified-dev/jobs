@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 
@@ -29,10 +30,23 @@ const navigationLinks = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handlePostJob = () => {
+    // Close mobile menu first
+    setIsMenuOpen(false);
+
+    // Give the Adsterra popunder script a moment
+    // to respond to the user's click.
+    setTimeout(() => {
+      router.push("/post-a-job");
+    }, 150);
   };
 
   return (
@@ -71,7 +85,8 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue-700"
+            onClick={handlePostJob}
+            className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
           >
             Post a Job
           </button>
@@ -203,10 +218,7 @@ export default function Navbar() {
                     >
                       <span>{link.label}</span>
 
-                      <FiArrowUpRight
-                        size={17}
-                        className="text-slate-300 transition-transform duration-200 group-hover:translate-x-0.5"
-                      />
+                      <FiArrowUpRight size={17} className="text-slate-300" />
                     </Link>
                   </motion.div>
                 ))}
@@ -241,7 +253,8 @@ export default function Navbar() {
 
                 <button
                   type="button"
-                  className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue-700"
+                  onClick={handlePostJob}
+                  className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
                 >
                   Post a Job
                 </button>
