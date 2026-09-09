@@ -1,5 +1,7 @@
 "use client";
 
+import Banner468x60 from "@/components/ads/Banner468X60";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -82,6 +84,8 @@ export default function PostAJobPage() {
               opportunities.
             </p>
 
+            <Banner468x60 />
+
             {/* Benefits */}
             <div className="mt-10 space-y-5">
               {benefits.map((benefit, index) => {
@@ -128,6 +132,7 @@ export default function PostAJobPage() {
             }}
             className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl sm:p-8"
           >
+            <NativeBannerAd />
             <div>
               <h2 className="text-2xl font-bold tracking-tight text-slate-950">
                 Post a job
@@ -152,7 +157,7 @@ export default function PostAJobPage() {
                   id="job-title"
                   type="text"
                   placeholder="e.g. Customer Support Specialist"
-                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
                 />
               </div>
 
@@ -169,7 +174,7 @@ export default function PostAJobPage() {
                   id="company"
                   type="text"
                   placeholder="Your company name"
-                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
                 />
               </div>
 
@@ -186,7 +191,7 @@ export default function PostAJobPage() {
                   id="location"
                   type="text"
                   placeholder="e.g. Remote, Lagos, Nigeria"
-                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-base text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
                 />
               </div>
 
@@ -202,7 +207,7 @@ export default function PostAJobPage() {
                 <select
                   id="job-type"
                   defaultValue=""
-                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
+                  className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-base text-slate-700 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
                 >
                   <option value="" disabled>
                     Select job type
@@ -233,13 +238,15 @@ export default function PostAJobPage() {
               </div>
 
               {/* Submit */}
-              <button
-                type="submit"
+              <a
+                href="https://www.profitableratecpmnetwork.com/mp5q19er1?key=52613312a9be66cab84c510c3b43502a"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
               >
                 <FiBriefcase size={17} />
                 Continue to Post Job
-              </button>
+              </a>
 
               <p className="text-center text-xs leading-5 text-slate-400">
                 Job posting functionality will be connected to the Jobs4all
