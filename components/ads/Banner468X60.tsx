@@ -12,11 +12,10 @@ export default function Banner468x60() {
 
     loaded.current = true;
 
-    // 1. atOptions
+    // Ad configuration
     const configScript = document.createElement("script");
 
     configScript.type = "text/javascript";
-
     configScript.innerHTML = `
       atOptions = {
         'key' : '39e4f7e1d4c2dcbd7f665b7d72b428d8',
@@ -29,7 +28,7 @@ export default function Banner468x60() {
 
     containerRef.current.appendChild(configScript);
 
-    // 2. invoke script
+    // Ad invoke script
     const invokeScript = document.createElement("script");
 
     invokeScript.type = "text/javascript";
@@ -41,16 +40,11 @@ export default function Banner468x60() {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        width: "468px",
-        height: "60px",
-        maxWidth: "100%",
-        display: "flex",
-        justifyContent: "center",
-        margin: "0 auto",
-      }}
-    />
+    <div className="my-6 flex w-full justify-center overflow-hidden">
+      <div
+        ref={containerRef}
+        className="flex h-15 w-full max-w-117 justify-center overflow-hidden"
+      />
+    </div>
   );
 }

@@ -9,6 +9,7 @@ import {
   FiMapPin,
   FiX,
 } from "react-icons/fi";
+import Banner468x60 from "./ads/Banner468X60";
 
 type LocationData = {
   country_name?: string;
@@ -281,6 +282,7 @@ export default function LocationModal() {
                     <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
                   )}
                 </div>
+                <Banner468x60 />
 
                 <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                   {isLoadingLocation
