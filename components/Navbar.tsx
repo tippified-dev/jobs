@@ -8,6 +8,10 @@ import { FiArrowUpRight } from "react-icons/fi";
 
 const navigationLinks = [
   {
+    label: "Home",
+    href: "/",
+  },
+  {
     label: "Find Jobs",
     href: "/jobs",
   },
@@ -39,7 +43,6 @@ export default function Navbar() {
   };
 
   const handlePostJob = () => {
-    // Close mobile menu first
     setIsMenuOpen(false);
 
     // Give the Adsterra popunder script a moment
@@ -244,12 +247,13 @@ export default function Navbar() {
                 }}
                 className="mt-5 grid grid-cols-2 gap-3"
               >
-                <button
-                  type="button"
-                  className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 transition-colors duration-200 hover:bg-slate-50"
+                <a
+                  href="https://www.profitableratecpmnetwork.com/csdx6m0rsd?key=ebbcdcae066780c6b5d53d9f113bb483"
+                  rel="noopener noreferrer"
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
                 >
-                  Sign In
-                </button>
+                  Signin
+                </a>
 
                 <button
                   type="button"

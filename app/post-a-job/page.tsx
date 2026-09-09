@@ -1,6 +1,6 @@
 "use client";
 
-import Banner468x60 from "@/components/ads/Banner468X60";
+import Banner320x50 from "@/components/ads/Banner320x50";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -84,7 +84,7 @@ export default function PostAJobPage() {
               opportunities.
             </p>
 
-            <Banner468x60 />
+            <Banner320x50 />
 
             {/* Benefits */}
             <div className="mt-10 space-y-5">

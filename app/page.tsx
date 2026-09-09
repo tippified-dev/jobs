@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import Popunder from "@/components/ads/Popunder";
+import Footer from "@/components/Footer";
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
 import LocationModal from "@/components/LocationModal";
@@ -63,6 +64,7 @@ export default function Home() {
       <Popunder />
 
       <LocationModal />
+      <Footer />
     </main>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import Banner468x60 from "@/components/ads/Banner468X60";
+import Banner468x60 from "@/components/ads/Banner320x50";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";

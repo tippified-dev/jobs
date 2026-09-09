@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function Banner468x60() {
+export default function Banner320x50() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const loaded = useRef(false);
 
@@ -16,12 +16,13 @@ export default function Banner468x60() {
     const configScript = document.createElement("script");
 
     configScript.type = "text/javascript";
+
     configScript.innerHTML = `
       atOptions = {
-        'key' : '39e4f7e1d4c2dcbd7f665b7d72b428d8',
+        'key' : 'c1697ecb3ca8208913632a2427d1b46f',
         'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
+        'height' : 50,
+        'width' : 320,
         'params' : {}
       };
     `;
@@ -33,7 +34,7 @@ export default function Banner468x60() {
 
     invokeScript.type = "text/javascript";
     invokeScript.src =
-      "https://www.highrevenueformat.com/39e4f7e1d4c2dcbd7f665b7d72b428d8/invoke.js";
+      "https://www.highrevenueformat.com/c1697ecb3ca8208913632a2427d1b46f/invoke.js";
     invokeScript.async = true;
 
     containerRef.current.appendChild(invokeScript);
@@ -43,7 +44,7 @@ export default function Banner468x60() {
     <div className="my-6 flex w-full justify-center overflow-hidden">
       <div
         ref={containerRef}
-        className="flex h-15 w-full max-w-117 justify-center overflow-hidden"
+        className="flex h-12.5 w-full max-w-[320px] justify-center overflow-hidden"
       />
     </div>
   );

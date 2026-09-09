@@ -21,7 +21,7 @@ import {
   FiTrendingUp,
   FiUsers,
 } from "react-icons/fi";
-import Banner468x60 from "./ads/Banner468X60";
+import Banner468x60 from "./ads/Banner320x50";
 
 type JobCategory = {
   title: string;
