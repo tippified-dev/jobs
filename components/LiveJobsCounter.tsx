@@ -32,7 +32,7 @@ export default function LiveJobsCounter() {
 
   return (
     <section
-      className="bg-white px-5 py-5 sm:px-6 sm:py-6"
+      className="sticky top-20 z-40 border-b border-slate-200/80 bg-white/95 px-3 py-2 backdrop-blur-md sm:px-5 sm:py-2.5"
       aria-label="Job activity"
     >
       <div className="mx-auto max-w-7xl">
