@@ -1,4 +1,5 @@
 import JobTypeCategories from "@/components/JobTypeCategories";
+import LiveJobsCounter from "@/components/LiveJobsCounter";
 import LocationModal from "@/components/LocationModal";
 import Navbar from "@/components/Navbar";
 import Testimonial from "@/components/Testimonial";
@@ -23,6 +24,8 @@ export default function Home() {
             Discover online jobs, remote opportunities, data entry positions,
             side jobs and flexible work opportunities.
           </p>
+
+          <LiveJobsCounter />
 
           {/* Search */}
           <div className="mt-10 rounded-2xl border border-slate-200 bg-white p-3 shadow-lg">
