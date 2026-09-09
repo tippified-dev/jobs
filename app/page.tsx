@@ -60,9 +60,9 @@ export default function Home() {
 
       <Testimonial />
       <About />
+      <Popunder />
 
       <LocationModal />
-      <Popunder />
     </main>
   );
 }

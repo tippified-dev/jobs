@@ -21,6 +21,7 @@ import {
   FiTrendingUp,
   FiUsers,
 } from "react-icons/fi";
+import Banner468x60 from "./ads/Banner468X60";
 
 type JobCategory = {
   title: string;
@@ -457,6 +458,7 @@ export default function JobTypeCategories() {
                         {job.description}
                       </p>
                     </div>
+                    <Banner468x60 />
 
                     <div className="mt-auto pt-4">
                       <div className="flex items-center justify-between border-t border-slate-100 pt-3">
