@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import {
   FiArrowUpRight,
   FiBriefcase,
@@ -26,7 +26,7 @@ type JobCategory = {
   title: string;
   description: string;
   jobs: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   slug: string;
 };
 
@@ -329,7 +329,7 @@ export default function JobTypeCategories() {
   return (
     <section
       id="job-categories"
-      className="border-y border-slate-100 bg-white py-16 sm:py-20 lg:py-24"
+      className="border-y border-slate-100 bg-white py-8 sm:py-10 lg:py-12"
       aria-labelledby="job-categories-heading"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -343,12 +343,12 @@ export default function JobTypeCategories() {
 
           <h2
             id="job-categories-heading"
-            className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl"
           >
             Find the right job for your skills
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
             Explore remote and online jobs across different industries. Whether
             you have professional skills or are looking for flexible work you
             can start with, find opportunities that match what you can do.
@@ -357,23 +357,17 @@ export default function JobTypeCategories() {
 
         {/* Job type switcher */}
 
-        <div className="mx-auto mt-8 flex w-full max-w-md rounded-2xl border border-slate-200 bg-slate-50 p-1.5">
+        <div className="mx-auto mt-6 flex w-full max-w-md rounded-2xl border border-slate-200 bg-slate-50 p-1.5">
           <button
             type="button"
             onClick={() => setActiveType("skilled")}
             className={`relative flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition ${
               activeType === "skilled"
-                ? "bg-slate-950 text-white shadow-sm"
+                ? "bg-blue-600 text-white shadow-sm"
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >
             Skilled Jobs
-            {activeType === "skilled" && (
-              <motion.span
-                layoutId="job-type-indicator"
-                className="absolute inset-0 z-0 rounded-xl"
-              />
-            )}
           </button>
 
           <button
@@ -381,7 +375,7 @@ export default function JobTypeCategories() {
             onClick={() => setActiveType("unskilled")}
             className={`flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition ${
               activeType === "unskilled"
-                ? "bg-slate-950 text-white shadow-sm"
+                ? "bg-blue-600 text-white shadow-sm"
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >
@@ -398,9 +392,9 @@ export default function JobTypeCategories() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="mt-10"
+            className="mt-7"
           >
-            <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div className="mb-4 flex flex-col gap-1.5 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h3 className="text-xl font-bold text-slate-950 sm:text-2xl">
                   {activeType === "skilled"
@@ -443,8 +437,6 @@ export default function JobTypeCategories() {
                     href={`/jobs/${job.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-200/50"
                   >
-                    {/* Icon */}
-
                     <div className="flex items-start justify-between">
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
                         {job.icon}
@@ -456,9 +448,7 @@ export default function JobTypeCategories() {
                       />
                     </div>
 
-                    {/* Content */}
-
-                    <div className="mt-5">
+                    <div className="mt-4">
                       <h4 className="text-sm font-bold text-slate-900 group-hover:text-blue-600">
                         {job.title}
                       </h4>
@@ -468,10 +458,8 @@ export default function JobTypeCategories() {
                       </p>
                     </div>
 
-                    {/* Jobs */}
-
-                    <div className="mt-auto pt-5">
-                      <div className="flex items-center justify-between border-t border-slate-100 pt-4">
+                    <div className="mt-auto pt-4">
+                      <div className="flex items-center justify-between border-t border-slate-100 pt-3">
                         <span className="text-xs font-semibold text-blue-600">
                           {job.jobs} jobs
                         </span>
@@ -490,7 +478,7 @@ export default function JobTypeCategories() {
 
         {/* Bottom CTA */}
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-7 flex justify-center">
           <Link
             href="/jobs"
             className="group inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
