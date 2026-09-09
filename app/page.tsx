@@ -7,7 +7,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Navbar />
 
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-5 lg:px-8">
         <div className="max-w-3xl">
           <p className="mb-5 text-sm font-semibold uppercase tracking-wider text-blue-600">
             Find work. Build your future.
