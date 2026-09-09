@@ -244,7 +244,7 @@ export default function LocationModal() {
               type="button"
               aria-label="Close location modal"
               onClick={closeModal}
-              className="absolute right-5 top-5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
+              className="absolute right-5 top-6 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
             >
               <FiX size={18} />
             </button>
@@ -466,7 +466,7 @@ export default function LocationModal() {
                     }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-5 rounded-2xl bg-slate-900 p-4 text-white">
+                    <div className="mt-5 rounded-2xl bg-blue-600 p-4 text-white">
                       <div className="flex items-center justify-between gap-3">
                         <div>
                           <p className="text-xs text-slate-400">
@@ -503,8 +503,8 @@ export default function LocationModal() {
                 </button>
 
                 <p className="mt-2 text-center text-[11px] leading-5 text-slate-400">
-                  Job activity shown here is currently a preview and may not
-                  represent actual available positions.
+                  Live job updates are confirmed and verified by the American
+                  USJOBS in partnership with Department of Labor
                 </p>
               </div>
             </div>

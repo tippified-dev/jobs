@@ -1,3 +1,4 @@
+import JobTypeCategories from "@/components/JobTypeCategories";
 import LocationModal from "@/components/LocationModal";
 import Navbar from "@/components/Navbar";
 
@@ -28,13 +29,13 @@ export default function Home() {
               <input
                 type="text"
                 placeholder="Job title, keyword or skill"
-                className="h-12 flex-1 rounded-xl bg-slate-50 px-4 text-sm outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-blue-100"
+                className="h-12 flex-1 rounded-xl bg-slate-50 px-4 text-base outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-blue-100"
               />
 
               <input
                 type="text"
                 placeholder="Location or Remote"
-                className="h-12 flex-1 rounded-xl bg-slate-50 px-4 text-sm outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-blue-100"
+                className="h-12 flex-1 rounded-xl bg-slate-50 px-4 text-base outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-blue-100"
               />
 
               <button className="h-12 rounded-xl bg-blue-600 px-7 text-sm font-semibold text-white transition hover:bg-blue-700">
@@ -44,6 +45,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <JobTypeCategories />
       <LocationModal />
     </main>
   );
