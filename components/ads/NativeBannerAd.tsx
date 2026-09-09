@@ -8,11 +8,11 @@ export default function NativeBannerAd() {
       <Script
         async
         data-cfasync="false"
-        src="https://pl31195635.profitableratecpmnetwork.com/33be41b816262329cd71a4b5d25e9025/invoke.js"
+        src="https://pl31257987.profitableratecpmnetwork.com/c08b27f15ab5ced7eb1d92b725d1851e/invoke.js"
         strategy="afterInteractive"
       />
 
-      <div id="container-33be41b816262329cd71a4b5d25e9025" />
+      <div id="container-c08b27f15ab5ced7eb1d92b725d1851e" />
     </div>
   );
 }

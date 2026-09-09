@@ -1,8 +1,9 @@
 import About from "@/components/About";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
+import Popunder from "@/components/ads/Popunder";
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
 import LocationModal from "@/components/LocationModal";
-
 import Navbar from "@/components/Navbar";
 import Testimonial from "@/components/Testimonial";
 
@@ -53,6 +54,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <NativeBannerAd />
 
       <JobTypeCategories />
 
@@ -60,6 +62,7 @@ export default function Home() {
       <About />
 
       <LocationModal />
+      <Popunder />
     </main>
   );
 }
