@@ -1,3 +1,4 @@
+import About from "@/components/About";
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
 import LocationModal from "@/components/LocationModal";
@@ -55,6 +56,7 @@ export default function Home() {
       <JobTypeCategories />
 
       <Testimonial />
+      <About />
 
       <LocationModal />
     </main>

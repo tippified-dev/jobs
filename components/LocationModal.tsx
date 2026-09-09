@@ -244,7 +244,7 @@ export default function LocationModal() {
               type="button"
               aria-label="Close location modal"
               onClick={closeModal}
-              className="absolute right-5 top-6 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
+              className="absolute right-5 top-7 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-900"
             >
               <FiX size={18} />
             </button>

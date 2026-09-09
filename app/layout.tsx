@@ -8,7 +8,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Remote Job Guru | Find Your Next Opportunity",
+  title:
+    "Remote Job Guru | Find Your Next Opportunity | Africa's No 1 remote job finder",
   description:
     "Discover online jobs, remote jobs, data entry jobs, side jobs and flexible work opportunities.",
 };
