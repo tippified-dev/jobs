@@ -2,6 +2,7 @@ import About from "@/components/About";
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
 import LocationModal from "@/components/LocationModal";
+import NativeBannerAd from "@/components/NativeBannerAd";
 import Navbar from "@/components/Navbar";
 import Testimonial from "@/components/Testimonial";
 
@@ -52,6 +53,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <NativeBannerAd />
 
       <JobTypeCategories />
 
