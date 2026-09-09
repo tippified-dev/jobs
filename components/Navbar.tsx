@@ -31,6 +31,14 @@ const navigationLinks = [
     label: "About",
     href: "/about",
   },
+  {
+    label: "Privacy Policy",
+    href: "/privacy",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
 ];
 
 export default function Navbar() {
