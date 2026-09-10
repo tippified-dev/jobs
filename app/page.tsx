@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import AdNotice from "@/components/AdNotice";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import Popunder from "@/components/ads/Popunder";
 import Footer from "@/components/Footer";
@@ -55,6 +56,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <AdNotice />
       <NativeBannerAd />
 
       <JobTypeCategories />
