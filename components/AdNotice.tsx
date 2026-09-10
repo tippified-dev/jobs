@@ -5,7 +5,7 @@ import { FiInfo } from "react-icons/fi";
 
 export default function AdNotice() {
   return (
-    <section className="px-4 py-2 sm:px-6">
+    <section className="px-4 py-3 sm:px-6">
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
