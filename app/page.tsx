@@ -7,6 +7,7 @@ import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
 import LocationModal from "@/components/LocationModal";
 import Navbar from "@/components/Navbar";
+import QuickActions from "@/components/QuickActions";
 import Testimonial from "@/components/Testimonial";
 
 export default function Home() {
@@ -58,6 +59,7 @@ export default function Home() {
       </section>
       <AdNotice />
       <NativeBannerAd />
+      <QuickActions />
 
       <JobTypeCategories />
 

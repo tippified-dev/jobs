@@ -21,7 +21,7 @@ export default function QuickActions() {
   ];
 
   return (
-    <section className="px-4 py-5 sm:px-6">
+    <section className="px-4 py-3 sm:px-6">
       <div className="mx-auto grid max-w-4xl gap-3 sm:grid-cols-2">
         {actions.map((action, index) => {
           const Icon = action.icon;
