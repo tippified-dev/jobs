@@ -2,6 +2,7 @@ import About from "@/components/About";
 import AdNotice from "@/components/AdNotice";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import Popunder from "@/components/ads/Popunder";
+import CurrentArtisanJobs from "@/components/CurrentArtisanJobs";
 import Footer from "@/components/Footer";
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
@@ -19,7 +20,7 @@ export default function Home() {
       <LiveJobsCounter />
 
       {/* Hero */}
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
+      <section className="mx-auto max-w-7xl px-6 py-5 lg:px-8 lg:py-16">
         <div className="max-w-3xl">
           <p className="mb-5 text-sm font-semibold uppercase tracking-wider text-blue-600">
             Find work. Build your future.
@@ -57,6 +58,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <CurrentArtisanJobs />
       <AdNotice />
       <NativeBannerAd />
       <QuickActions />
