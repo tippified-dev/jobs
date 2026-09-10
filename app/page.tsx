@@ -4,6 +4,7 @@ import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import Popunder from "@/components/ads/Popunder";
 import CurrentArtisanJobs from "@/components/CurrentArtisanJobs";
 import Footer from "@/components/Footer";
+import JobAlert from "@/components/JobAlert";
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
 import LocationModal from "@/components/LocationModal";
@@ -70,6 +71,7 @@ export default function Home() {
       <Popunder />
 
       <LocationModal />
+      <JobAlert />
       <Footer />
     </main>
   );

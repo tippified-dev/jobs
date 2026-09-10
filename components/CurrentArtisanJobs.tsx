@@ -531,7 +531,7 @@ export default function CurrentArtisanJobs() {
         >
           <FiMapPin size={12} />
 
-          <span>Showing opportunities relevant to your selected region.</span>
+          <span>Showing opportunities relevant to your location.</span>
         </motion.div>
       </div>
     </section>

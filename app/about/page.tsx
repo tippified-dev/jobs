@@ -102,10 +102,10 @@ export default function AboutUs() {
               transition={{ duration: 0.6, delay: 0.16 }}
               className="mt-6 text-lg leading-8 text-slate-600"
             >
-              Job4all is a Nigerian job discovery platform built to make finding
-              genuine online, remote and flexible work opportunities easier. We
-              bring opportunities from across Nigeria and around the world into
-              one simple place where job seekers can discover their next
+              Job4all is a job discovery platform built to make finding genuine
+              online, remote and flexible work opportunities easier. We bring
+              opportunities from across Africa and around the world into one
+              simple place where job seekers can discover their next
               opportunity.
             </motion.p>
           </div>

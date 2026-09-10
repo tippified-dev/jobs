@@ -25,7 +25,7 @@ export default function LiveJobsCounter() {
       setTimeout(() => {
         setIsUpdating(false);
       }, 700);
-    }, 2000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
