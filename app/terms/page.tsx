@@ -51,7 +51,7 @@ export default function TermsPage() {
 
             <div>
               <span className="block text-lg font-black tracking-tight text-slate-950">
-                Jobs4all
+                Job <span className="text-blue-600">4all</span>
               </span>
               <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400 sm:block">
                 Find. Apply. Grow.

@@ -82,7 +82,7 @@ export default function PrivacyPage() {
             href="/"
             className="text-2xl font-bold tracking-tight text-slate-950"
           >
-            Jobs<span className="text-blue-600">4all</span>
+            Job<span className="text-blue-600">4all</span>
           </Link>
 
           <Link

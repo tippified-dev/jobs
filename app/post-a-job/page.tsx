@@ -43,7 +43,7 @@ export default function PostAJobPage() {
             href="/"
             className="text-2xl font-bold tracking-tight text-slate-900"
           >
-            Jobs<span className="text-blue-600">4all</span>
+            Job<span className="text-blue-600">4all</span>
           </Link>
 
           <Link
@@ -233,7 +233,7 @@ export default function PostAJobPage() {
                   id="description"
                   rows={6}
                   placeholder="Describe the role, responsibilities and requirements..."
-                  className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
+                  className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-50"
                 />
               </div>
 
