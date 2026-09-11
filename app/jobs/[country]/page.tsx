@@ -1,4 +1,6 @@
 "use client";
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { AnimatePresence, motion } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -26,6 +28,8 @@ export default function CountryJobsPage() {
   const router = useRouter();
   const country = params.country as string;
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  // Stores a DOM reference for every job card.
+  const jobRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [data, setData] = useState<JobsResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -81,6 +85,17 @@ export default function CountryJobsPage() {
     if (cvAlreadySent || sending) return;
     fileInputRef.current?.click();
   };
+  const scrollToJob = (index: number) => {
+    const jobElement = jobRefs.current[index];
+    if (!jobElement) return;
+    const stickyOffset = 110;
+    const elementTop = jobElement.getBoundingClientRect().top + window.scrollY;
+    const targetPosition = Math.max(elementTop - stickyOffset, 0);
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+  };
   const handleSendCV = async () => {
     if (!selectedFile || !data?.jobs.length || sending || cvAlreadySent) {
       return;
@@ -89,15 +104,20 @@ export default function CountryJobsPage() {
     setSendComplete(false);
     setCompletedJobs([]);
     for (let index = 0; index < data.jobs.length; index++) {
+      // Scroll to the company currently being processed.
+      scrollToJob(index);
+      // Give the user enough time to see the company.
       await new Promise((resolve) => setTimeout(resolve, 900));
       setCompletedJobs((previous) => [...previous, index]);
+      // Allow the check animation to be visible
+      // before moving to the next company.
+      await new Promise((resolve) => setTimeout(resolve, 350));
     }
     setSending(false);
     setSendComplete(true);
-    // Permanently block another submission
-    // for this page session.
+    // Prevent another CV submission.
     setCvAlreadySent(true);
-    // Show success modal.
+    // Show completion modal.
     setShowSuccessModal(true);
   };
   return (
@@ -112,9 +132,21 @@ export default function CountryJobsPage() {
             className="fixed inset-0 z-100 flex items-center justify-center bg-slate-950/30 px-4 backdrop-blur-sm"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              initial={{
+                opacity: 0,
+                scale: 0.9,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.95,
+                y: 10,
+              }}
               transition={{
                 type: "spring",
                 stiffness: 260,
@@ -122,7 +154,6 @@ export default function CountryJobsPage() {
               }}
               className="relative w-full max-w-sm rounded-3xl border border-blue-100 bg-white p-7 text-center shadow-2xl"
             >
-              {/* Close */}
               <button
                 type="button"
                 onClick={() => setShowSuccessModal(false)}
@@ -131,7 +162,6 @@ export default function CountryJobsPage() {
               >
                 <FiX size={17} />
               </button>
-              {/* Success icon */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -154,7 +184,10 @@ export default function CountryJobsPage() {
                 <motion.div
                   initial={{ width: "100%" }}
                   animate={{ width: "0%" }}
-                  transition={{ duration: 4.5, ease: "linear" }}
+                  transition={{
+                    duration: 4.5,
+                    ease: "linear",
+                  }}
                   className="h-full rounded-full bg-blue-600"
                 />
               </div>
@@ -166,7 +199,6 @@ export default function CountryJobsPage() {
       <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex min-w-0 items-center gap-3">
-            {/* Go Back */}
             <button
               type="button"
               onClick={() => router.back()}
@@ -182,6 +214,7 @@ export default function CountryJobsPage() {
               <p className="truncate text-xs text-slate-500">
                 {selectedFile ? selectedFile.name : "Upload your CV to apply"}
               </p>
+              <Banner320x50 />
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
@@ -241,13 +274,23 @@ export default function CountryJobsPage() {
             {countryName}.
           </p>
         </div>
+        <NativeBannerAd />
         {/* Uploaded CV preview */}
         <AnimatePresence>
           {selectedFile && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              initial={{
+                opacity: 0,
+                y: -10,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: -10,
+              }}
               className="mx-auto mt-8 max-w-2xl"
             >
               <div className="flex items-center gap-4 rounded-2xl border border-blue-100 bg-white p-4 shadow-sm">
@@ -262,11 +305,7 @@ export default function CountryJobsPage() {
                     {selectedFile.name}
                   </p>
                 </div>
-                <span
-                  className={`shrink-0 text-xs font-semibold ${
-                    cvAlreadySent ? "text-blue-600" : "text-blue-600"
-                  }`}
-                >
+                <span className="shrink-0 text-xs font-semibold text-blue-600">
                   {cvAlreadySent ? "Submitted" : "Ready"}
                 </span>
               </div>
@@ -277,8 +316,16 @@ export default function CountryJobsPage() {
         <AnimatePresence>
           {sendComplete && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
+              initial={{
+                opacity: 0,
+                scale: 0.96,
+                y: 10,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
               className="mx-auto mt-8 max-w-2xl rounded-2xl border border-blue-100 bg-white p-6 text-center shadow-sm"
             >
               <motion.div
@@ -348,18 +395,21 @@ export default function CountryJobsPage() {
                 {data.total} jobs found
               </span>
             </div>
+
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {data.jobs.map((job, index) => {
                 const isCompleted = completedJobs.includes(index);
                 return (
                   <motion.div
                     key={`${job.company}-${job.position}-${index}`}
+                    ref={(element) => {
+                      jobRefs.current[index] = element;
+                    }}
                     layout
                     className={`relative overflow-hidden rounded-2xl border bg-white p-5 shadow-sm transition ${
                       isCompleted ? "border-blue-300" : "border-slate-200"
                     }`}
                   >
-                    {/* Sending overlay */}
                     <AnimatePresence>
                       {isCompleted && (
                         <motion.div
@@ -368,8 +418,14 @@ export default function CountryJobsPage() {
                           className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-[2px]"
                         >
                           <motion.div
-                            initial={{ scale: 0, rotate: -20 }}
-                            animate={{ scale: 1, rotate: 0 }}
+                            initial={{
+                              scale: 0,
+                              rotate: -20,
+                            }}
+                            animate={{
+                              scale: 1,
+                              rotate: 0,
+                            }}
                             transition={{
                               type: "spring",
                               stiffness: 260,
@@ -400,11 +456,15 @@ export default function CountryJobsPage() {
                     </p>
                     <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-100">
                       <motion.div
-                        initial={{ width: "0%" }}
+                        initial={{
+                          width: "0%",
+                        }}
                         animate={{
                           width: isCompleted ? "100%" : "0%",
                         }}
-                        transition={{ duration: 0.5 }}
+                        transition={{
+                          duration: 0.5,
+                        }}
                         className="h-full rounded-full bg-blue-600"
                       />
                     </div>
