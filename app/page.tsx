@@ -16,6 +16,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
+      <AdNotice />
 
       {/* Sticky job activity bar */}
       <LiveJobsCounter />
@@ -60,7 +61,7 @@ export default function Home() {
         </div>
       </section>
       <CurrentArtisanJobs />
-      <AdNotice />
+
       <NativeBannerAd />
       <QuickActions />
 
