@@ -13,7 +13,7 @@ const navigationLinks = [
   },
   {
     label: "Find Jobs",
-    href: "/jobs",
+    href: "/location",
   },
   {
     label: "Online Jobs",
