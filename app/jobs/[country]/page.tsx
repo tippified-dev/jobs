@@ -1,8 +1,15 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { FiCheck, FiFileText, FiLoader, FiUploadCloud } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiCheck,
+  FiFileText,
+  FiLoader,
+  FiUploadCloud,
+  FiX,
+} from "react-icons/fi";
 type Job = {
   company: string;
   location: string;
@@ -16,6 +23,7 @@ type JobsResponse = {
 };
 export default function CountryJobsPage() {
   const params = useParams();
+  const router = useRouter();
   const country = params.country as string;
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [data, setData] = useState<JobsResponse | null>(null);
@@ -25,6 +33,8 @@ export default function CountryJobsPage() {
   const [sending, setSending] = useState(false);
   const [completedJobs, setCompletedJobs] = useState<number[]>([]);
   const [sendComplete, setSendComplete] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [cvAlreadySent, setCvAlreadySent] = useState(false);
   useEffect(() => {
     if (!country) return;
     const fetchJobs = async () => {
@@ -46,11 +56,19 @@ export default function CountryJobsPage() {
     };
     fetchJobs();
   }, [country]);
+  useEffect(() => {
+    if (!showSuccessModal) return;
+    const timer = setTimeout(() => {
+      setShowSuccessModal(false);
+    }, 4500);
+    return () => clearTimeout(timer);
+  }, [showSuccessModal]);
   const countryName = country
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (cvAlreadySent) return;
     const file = event.target.files?.[0];
     if (!file) return;
     setSelectedFile(file);
@@ -58,10 +76,11 @@ export default function CountryJobsPage() {
     setSendComplete(false);
   };
   const handleUploadClick = () => {
+    if (cvAlreadySent || sending) return;
     fileInputRef.current?.click();
   };
   const handleSendCV = async () => {
-    if (!selectedFile || !data?.jobs.length || sending) {
+    if (!selectedFile || !data?.jobs.length || sending || cvAlreadySent) {
       return;
     }
     setSending(true);
@@ -73,19 +92,95 @@ export default function CountryJobsPage() {
     }
     setSending(false);
     setSendComplete(true);
+    // Permanently block another submission
+    // for this page session.
+    setCvAlreadySent(true);
+    // Show success modal.
+    setShowSuccessModal(true);
   };
   return (
     <main className="min-h-screen bg-slate-50">
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-100 flex items-center justify-center bg-slate-950/30 px-4 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+              }}
+              className="relative w-full max-w-sm rounded-3xl border border-blue-100 bg-white p-7 text-center shadow-2xl"
+            >
+              {/* Close */}
+              <button
+                type="button"
+                onClick={() => setShowSuccessModal(false)}
+                className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                aria-label="Close"
+              >
+                <FiX size={17} />
+              </button>
+              {/* Success icon */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                  delay: 0.1,
+                  type: "spring",
+                  stiffness: 280,
+                  damping: 15,
+                }}
+                className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+              >
+                <FiCheck size={30} />
+              </motion.div>
+              <h2 className="mt-5 text-xl font-bold text-slate-900">CV sent</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-500">
+                Companies will start contacting you immediately via email on
+                your sent document.
+              </p>
+              <div className="mt-5 h-1 overflow-hidden rounded-full bg-slate-100">
+                <motion.div
+                  initial={{ width: "100%" }}
+                  animate={{ width: "0%" }}
+                  transition={{ duration: 4.5, ease: "linear" }}
+                  className="h-full rounded-full bg-blue-600"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Sticky CV action bar */}
       <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-          <div className="min-w-0">
-            <p className="text-sm font-bold text-slate-900">
-              Apply to these jobs
-            </p>
-            <p className="truncate text-xs text-slate-500">
-              {selectedFile ? selectedFile.name : "Upload your CV to apply"}
-            </p>
+          <div className="flex min-w-0 items-center gap-3">
+            {/* Go Back */}
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition hover:border-blue-500 hover:text-blue-600"
+              aria-label="Go back"
+            >
+              <FiArrowLeft size={18} />
+            </button>
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-slate-900">
+                Apply to these jobs
+              </p>
+              <p className="truncate text-xs text-slate-500">
+                {selectedFile ? selectedFile.name : "Upload your CV to apply"}
+              </p>
+            </div>
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <input
@@ -98,25 +193,33 @@ export default function CountryJobsPage() {
             <button
               type="button"
               onClick={handleUploadClick}
-              disabled={sending}
+              disabled={sending || cvAlreadySent}
               className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-blue-500 hover:text-blue-600 disabled:cursor-not-allowed disabled:opacity-50 sm:px-4"
             >
               <FiUploadCloud size={17} />
-              <span className="hidden sm:inline">Upload CV</span>
+              <span className="hidden sm:inline">
+                {cvAlreadySent ? "CV Submitted" : "Upload CV"}
+              </span>
             </button>
             <button
               type="button"
               onClick={handleSendCV}
-              disabled={!selectedFile || sending}
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 sm:px-4"
+              disabled={!selectedFile || sending || cvAlreadySent}
+              className={`inline-flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition sm:px-4 ${
+                cvAlreadySent
+                  ? "cursor-not-allowed bg-slate-400"
+                  : "bg-blue-600 hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+              }`}
             >
-              {sending ? (
+              {cvAlreadySent ? (
+                <FiCheck size={17} />
+              ) : sending ? (
                 <FiLoader className="animate-spin" size={17} />
               ) : (
                 <FiFileText size={17} />
               )}
               <span className="hidden sm:inline">
-                {sending ? "Sending..." : "Send CV"}
+                {cvAlreadySent ? "CV Sent" : sending ? "Sending..." : "Send CV"}
               </span>
             </button>
           </div>
@@ -157,8 +260,12 @@ export default function CountryJobsPage() {
                     {selectedFile.name}
                   </p>
                 </div>
-                <span className="shrink-0 text-xs font-semibold text-blue-600">
-                  Ready
+                <span
+                  className={`shrink-0 text-xs font-semibold ${
+                    cvAlreadySent ? "text-blue-600" : "text-blue-600"
+                  }`}
+                >
+                  {cvAlreadySent ? "Submitted" : "Ready"}
                 </span>
               </div>
             </motion.div>
