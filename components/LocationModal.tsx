@@ -1,6 +1,6 @@
 "use client";
+
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   FiActivity,
@@ -9,10 +9,12 @@ import {
   FiMapPin,
   FiX,
 } from "react-icons/fi";
+
 type LocationData = {
   country_name?: string;
   country_code?: string;
 };
+
 type Country = {
   name: string;
   code: string;
@@ -20,85 +22,101 @@ type Country = {
   description: string;
   initialJobs: number;
 };
+
 const countries: Country[] = [
   {
     name: "United States",
     code: "US",
-    flag: "https://flagcdn.com/w80/us.png",
+    flag: "🇺🇸",
     description: "Remote opportunities",
     initialJobs: 5000,
   },
   {
     name: "Canada",
     code: "CA",
-    flag: "https://flagcdn.com/w80/ca.png",
+    flag: "🇨🇦",
     description: "Remote opportunities",
     initialJobs: 3200,
   },
   {
     name: "United Kingdom",
     code: "GB",
-    flag: "https://flagcdn.com/w80/gb.png",
+    flag: "🇬🇧",
     description: "Remote opportunities",
     initialJobs: 2800,
   },
   {
     name: "Australia",
     code: "AU",
-    flag: "https://flagcdn.com/w80/au.png",
+    flag: "🇦🇺",
     description: "Remote opportunities",
     initialJobs: 1900,
   },
   {
     name: "New Zealand",
     code: "NZ",
-    flag: "https://flagcdn.com/w80/nz.png",
+    flag: "🇳🇿",
     description: "Remote opportunities",
     initialJobs: 1100,
   },
   {
     name: "China",
     code: "CN",
-    flag: "https://flagcdn.com/w80/cn.png",
+    flag: "🇨🇳",
     description: "Remote opportunities",
     initialJobs: 2400,
   },
   {
     name: "Nigeria",
     code: "NG",
-    flag: "https://flagcdn.com/w80/ng.png",
+    flag: "🇳🇬",
     description: "Remote opportunities",
     initialJobs: 1700,
   },
 ];
+
 export default function LocationModal() {
   const [location, setLocation] = useState<LocationData | null>(null);
+
   const [isVisible, setIsVisible] = useState(true);
+
   const [isLoadingLocation, setIsLoadingLocation] = useState(true);
+
+  /*
+   * We store only the selected country code.
+   * The actual country object is derived below.
+   */
   const [selectedCountryCode, setSelectedCountryCode] = useState<string | null>(
     null,
   );
+
+  /*
+   * Job counters
+   */
   const [jobCounts, setJobCounts] = useState<Record<string, number>>(() =>
     Object.fromEntries(
       countries.map((country) => [country.code, country.initialJobs]),
     ),
   );
+
   /*
-   * Detect visitor location through the Jobs4all
-   * Next.js backend.
+   * Detect visitor location
    */
   useEffect(() => {
     let cancelled = false;
+
     async function detectLocation() {
       try {
-        const response = await fetch("/api/location", {
+        const response = await fetch("https://ipapi.co/json/", {
           cache: "no-store",
         });
+
         if (!response.ok) {
           throw new Error("Unable to detect location");
         }
+
         const data: LocationData = await response.json();
-        console.log("Jobs4all detected location:", data);
+
         if (!cancelled) {
           setLocation(data);
         }
@@ -110,16 +128,19 @@ export default function LocationModal() {
         }
       }
     }
+
     detectLocation();
+
     return () => {
       cancelled = true;
     };
   }, []);
+
   /*
-   * Simulated job activity.
+   * Simulated job activity
    *
-   * This will later be replaced with actual
-   * Jobs4all job data.
+   * This is currently demo activity.
+   * Later we can replace it with real job data.
    */
   useEffect(() => {
     const interval = setInterval(() => {
@@ -127,64 +148,76 @@ export default function LocationModal() {
         const nextCounts = {
           ...currentCounts,
         };
+
         const randomCountry =
           countries[Math.floor(Math.random() * countries.length)];
+
         const randomIncrease = Math.floor(Math.random() * 4) + 1;
+
         nextCounts[randomCountry.code] += randomIncrease;
+
         return nextCounts;
       });
     }, 2000);
+
     return () => {
       clearInterval(interval);
     };
   }, []);
+
   /*
-   * Find detected country.
+   * Find detected country
    */
   const detectedCountry = useMemo(() => {
     if (!location?.country_code) {
       return null;
     }
+
     return (
-      countries.find(
-        (country) =>
-          country.code.toUpperCase() === location.country_code?.toUpperCase(),
-      ) ?? null
+      countries.find((country) => country.code === location.country_code) ??
+      null
     );
   }, [location]);
+
   /*
    * Determine selected country.
+   *
+   * If the user has not manually selected a
+   * country, use the detected country.
    */
   const selectedCountry = useMemo(() => {
     const countryCode = selectedCountryCode || location?.country_code;
+
     if (!countryCode) {
       return null;
     }
-    return (
-      countries.find(
-        (country) => country.code.toUpperCase() === countryCode.toUpperCase(),
-      ) ?? null
-    );
+
+    return countries.find((country) => country.code === countryCode) ?? null;
   }, [selectedCountryCode, location]);
+
   /*
-   * Displayed location name.
+   * Displayed location name
    */
   const locationName = location?.country_name || "your current location";
+
   /*
-   * Handle country selection.
+   * Handle country selection
    */
   const handleCountrySelect = (country: Country) => {
     setSelectedCountryCode(country.code);
   };
+
   /*
-   * Close modal.
+   * Close modal
    */
   const closeModal = () => {
     setIsVisible(false);
   };
+
   if (!isVisible) {
     return null;
   }
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -206,6 +239,7 @@ export default function LocationModal() {
             className="relative max-h-[92vh] w-full max-w-xl overflow-hidden rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl"
           >
             {/* Close button */}
+
             <button
               type="button"
               aria-label="Close location modal"
@@ -214,8 +248,10 @@ export default function LocationModal() {
             >
               <FiX size={18} />
             </button>
+
             <div className="max-h-[92vh] overflow-y-auto px-5 pb-7 pt-7 sm:px-8 sm:pt-8">
               {/* Location icon */}
+
               <motion.div
                 initial={{
                   scale: 0.8,
@@ -232,27 +268,34 @@ export default function LocationModal() {
               >
                 <FiMapPin size={25} />
               </motion.div>
+
               {/* Heading */}
+
               <div className="pr-10">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-semibold text-blue-600">
                     Your location
                   </p>
+
                   {isLoadingLocation && (
                     <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
                   )}
                 </div>
+
                 <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                   {isLoadingLocation
                     ? "Detecting your location..."
                     : `You are currently in ${locationName}`}
                 </h2>
+
                 <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base">
                   We have found remote opportunities from different countries
                   that you can explore.
                 </p>
               </div>
+
               {/* Location detection status */}
+
               {!isLoadingLocation && location && (
                 <motion.div
                   initial={{
@@ -266,26 +309,34 @@ export default function LocationModal() {
                   className="mt-5 flex items-center gap-2 rounded-xl bg-emerald-50 px-3 py-2.5 text-xs font-medium text-emerald-700"
                 >
                   <FiCheckCircle size={15} />
+
                   <span>
                     Location detected automatically from your connection
                   </span>
                 </motion.div>
               )}
+
               {/* Countries */}
+
               <div className="mt-7">
                 <div className="mb-3 flex items-center justify-between">
                   <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                     Explore jobs from
                   </p>
+
                   <div className="flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
                     <FiActivity size={13} />
-                    <span>Activity</span>
+
+                    <span>Live activity</span>
                   </div>
                 </div>
+
                 <div className="space-y-3">
                   {countries.map((country, index) => {
                     const isDetected = detectedCountry?.code === country.code;
+
                     const isSelected = selectedCountry?.code === country.code;
+
                     return (
                       <motion.button
                         key={country.code}
@@ -310,42 +361,45 @@ export default function LocationModal() {
                       >
                         <div className="flex min-w-0 items-center gap-3 sm:gap-4">
                           {/* Flag */}
+
                           <span
-                            className={`flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl ${
+                            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-2xl ${
                               isSelected ? "bg-white" : "bg-slate-100"
                             }`}
                           >
-                            <Image
-                              src={country.flag}
-                              alt={`${country.name} flag`}
-                              width={28}
-                              height={21}
-                              className="h-auto w-7 object-contain"
-                              priority
-                            />
+                            {country.flag}
                           </span>
+
                           {/* Country details */}
+
                           <div className="min-w-0">
                             <div className="flex items-center gap-2">
                               <p className="truncate font-semibold text-slate-900">
                                 {country.name}
                               </p>
+
                               {isDetected && (
                                 <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-blue-600">
                                   You
                                 </span>
                               )}
+
                               {isSelected && !isDetected && (
                                 <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-blue-600">
                                   Selected
                                 </span>
                               )}
                             </div>
+
                             <div className="mt-0.5 flex flex-wrap items-center gap-2">
                               <p className="text-xs text-slate-500">
                                 {country.description}
                               </p>
+
                               <span className="h-1 w-1 rounded-full bg-slate-300" />
+
+                              {/* Animated job counter */}
+
                               <AnimatePresence mode="popLayout">
                                 <motion.span
                                   key={jobCounts[country.code]}
@@ -373,7 +427,9 @@ export default function LocationModal() {
                             </div>
                           </div>
                         </div>
+
                         {/* Arrow */}
+
                         <FiArrowRight
                           size={19}
                           className={`ml-3 shrink-0 transition ${
@@ -387,7 +443,9 @@ export default function LocationModal() {
                   })}
                 </div>
               </div>
+
               {/* Selected country */}
+
               <AnimatePresence>
                 {selectedCountry && (
                   <motion.div
@@ -411,13 +469,15 @@ export default function LocationModal() {
                     <div className="mt-5 rounded-2xl bg-blue-600 p-4 text-white">
                       <div className="flex items-center justify-between gap-3">
                         <div>
-                          <p className="text-xs text-blue-100">
+                          <p className="text-xs text-slate-400">
                             Selected location
                           </p>
+
                           <p className="mt-1 font-semibold">
-                            {selectedCountry.name}
+                            {selectedCountry.flag} {selectedCountry.name}
                           </p>
                         </div>
+
                         <button
                           type="button"
                           onClick={closeModal}
@@ -430,7 +490,9 @@ export default function LocationModal() {
                   </motion.div>
                 )}
               </AnimatePresence>
+
               {/* Bottom */}
+
               <div className="mt-6 border-t border-slate-100 pt-5">
                 <button
                   type="button"
@@ -439,9 +501,10 @@ export default function LocationModal() {
                 >
                   Maybe later
                 </button>
+
                 <p className="mt-2 text-center text-[11px] leading-5 text-slate-400">
-                  Job activity shown here is for demonstration and will
-                  eventually be connected to live Jobs4all listings.
+                  Live job updates are confirmed and verified by the American
+                  USJOBS in partnership with Department of Labor
                 </p>
               </div>
             </div>

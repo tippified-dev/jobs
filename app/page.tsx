@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import JobAlert from "@/components/JobAlert";
 import JobTypeCategories from "@/components/JobTypeCategories";
 import LiveJobsCounter from "@/components/LiveJobsCounter";
-import Location from "@/components/Location";
+import LocationModal from "@/components/LocationModal";
 import Navbar from "@/components/Navbar";
 import QuickActions from "@/components/QuickActions";
 import Testimonial from "@/components/Testimonial";
@@ -71,7 +71,7 @@ export default function Home() {
       <About />
       <Popunder />
 
-      <Location />
+      <LocationModal />
       <JobAlert />
       <Footer />
     </main>
