@@ -214,8 +214,8 @@ export default function CountryJobsPage() {
               <p className="truncate text-xs text-slate-500">
                 {selectedFile ? selectedFile.name : "Upload your CV to apply"}
               </p>
-              <Banner320x50 />
             </div>
+            <Banner320x50 />
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <input
