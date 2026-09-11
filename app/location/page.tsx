@@ -19,6 +19,7 @@ type LocationData = {
 type Country = {
   name: string;
   code: string;
+  slug: string;
   flag: string;
   description: string;
   initialJobs: number;
@@ -27,6 +28,7 @@ const countries: Country[] = [
   {
     name: "United States",
     code: "US",
+    slug: "united-states",
     flag: "🇺🇸",
     description: "Remote opportunities",
     initialJobs: 5000,
@@ -34,6 +36,7 @@ const countries: Country[] = [
   {
     name: "Canada",
     code: "CA",
+    slug: "canada",
     flag: "🇨🇦",
     description: "Remote opportunities",
     initialJobs: 3200,
@@ -41,6 +44,7 @@ const countries: Country[] = [
   {
     name: "United Kingdom",
     code: "GB",
+    slug: "united-kingdom",
     flag: "🇬🇧",
     description: "Remote opportunities",
     initialJobs: 2800,
@@ -48,6 +52,7 @@ const countries: Country[] = [
   {
     name: "Australia",
     code: "AU",
+    slug: "australia",
     flag: "🇦🇺",
     description: "Remote opportunities",
     initialJobs: 1900,
@@ -55,6 +60,7 @@ const countries: Country[] = [
   {
     name: "New Zealand",
     code: "NZ",
+    slug: "new-zealand",
     flag: "🇳🇿",
     description: "Remote opportunities",
     initialJobs: 1100,
@@ -62,6 +68,7 @@ const countries: Country[] = [
   {
     name: "China",
     code: "CN",
+    slug: "china",
     flag: "🇨🇳",
     description: "Remote opportunities",
     initialJobs: 2400,
@@ -69,6 +76,7 @@ const countries: Country[] = [
   {
     name: "Nigeria",
     code: "NG",
+    slug: "nigeria",
     flag: "🇳🇬",
     description: "Remote opportunities",
     initialJobs: 1700,
@@ -410,6 +418,14 @@ export default function LocationPage() {
                   </div>
                   <button
                     type="button"
+                    onClick={() => {
+                      if (!selectedCountry) return;
+                      localStorage.setItem(
+                        "jobs4all_location_redirected",
+                        "true",
+                      );
+                      router.push(`/jobs/${selectedCountry.slug}`);
+                    }}
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
                   >
                     Explore jobs
