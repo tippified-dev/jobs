@@ -3,6 +3,8 @@ import Banner320x50 from "@/components/ads/Banner320x50";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+
+import { useRouter } from "next/navigation";
 import {
   FiActivity,
   FiArrowRight,
@@ -138,6 +140,14 @@ export default function LocationPage() {
   /*
    * Find detected country.
    */
+
+  const router = useRouter();
+  const handleMaybeLater = () => {
+    // Remember that the visitor has already seen the location page.
+    localStorage.setItem("jobs4all_location_redirected", "true");
+    router.push("/");
+  };
+
   const detectedCountry = useMemo(() => {
     if (!location?.country_code) {
       return null;
@@ -409,6 +419,22 @@ export default function LocationPage() {
               </div>
             </motion.div>
           )}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.45 }}
+            className="mt-8 flex justify-center"
+          >
+            <motion.button
+              type="button"
+              onClick={handleMaybeLater}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
+            >
+              Maybe later
+            </motion.button>
+          </motion.div>
         </AnimatePresence>
         {/* Disclaimer */}
       </div>
