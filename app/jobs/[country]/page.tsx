@@ -41,7 +41,9 @@ export default function CountryJobsPage() {
       try {
         setLoading(true);
         setError("");
-        const response = await fetch(`/api/jobs/${country}`);
+        const response = await fetch(`/api/jobs/${country}`, {
+          cache: "no-store",
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch jobs");
         }
