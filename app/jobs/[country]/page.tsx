@@ -215,7 +215,6 @@ export default function CountryJobsPage() {
                 {selectedFile ? selectedFile.name : "Upload your CV to apply"}
               </p>
             </div>
-            <Banner320x50 />
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <input
@@ -274,6 +273,7 @@ export default function CountryJobsPage() {
             {countryName}.
           </p>
         </div>
+        <Banner320x50 />
         <NativeBannerAd />
         {/* Uploaded CV preview */}
         <AnimatePresence>
