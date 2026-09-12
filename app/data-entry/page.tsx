@@ -1,4 +1,6 @@
 "use client";
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -214,6 +216,7 @@ export default function DataEntryPage() {
           </div>
         </div>
       </section>
+      <Banner320x50 />
       {/* Sticky CV action bar */}
       <section className="sticky top-0 z-40 border-y border-slate-200/80 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -318,6 +321,7 @@ export default function DataEntryPage() {
           </motion.section>
         )}
       </AnimatePresence>
+      <NativeBannerAd />
       {/* Jobs */}
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-end justify-between gap-4">
