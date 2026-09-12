@@ -447,12 +447,14 @@ export default function CountryJobsPage() {
                           {job.company}
                         </p>
                       </div>
-                      <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600">
-                        remote
-                      </span>
-                      <span className="rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-600">
-                        {job.status}
-                      </span>
+                      <div className="flex gap-2">
+                        <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600">
+                          remote
+                        </span>
+                        <span className="rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-600">
+                          {job.status}
+                        </span>
+                      </div>
                     </div>
                     <p className="mt-4 text-sm text-slate-500">
                       {job.location}
