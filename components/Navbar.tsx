@@ -69,7 +69,7 @@ export default function Navbar() {
           onClick={closeMenu}
           className="relative z-50 text-2xl font-bold tracking-tight text-slate-900"
         >
-          Job<span className="text-blue-600">4all</span>
+          Global<span className="text-blue-600">jobslive</span>
         </Link>
 
         {/* Desktop Navigation */}
