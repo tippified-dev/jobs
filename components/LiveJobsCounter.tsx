@@ -10,7 +10,7 @@ import {
 } from "react-icons/fi";
 
 export default function LiveJobsCounter() {
-  const [jobCount, setJobCount] = useState(50000);
+  const [jobCount, setJobCount] = useState(10000);
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
