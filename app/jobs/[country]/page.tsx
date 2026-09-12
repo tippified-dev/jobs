@@ -448,6 +448,9 @@ export default function CountryJobsPage() {
                         </p>
                       </div>
                       <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600">
+                        remote
+                      </span>
+                      <span className="rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-600">
                         {job.status}
                       </span>
                     </div>

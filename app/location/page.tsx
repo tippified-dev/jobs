@@ -31,7 +31,7 @@ const countries: Country[] = [
     slug: "united-states",
     flag: "🇺🇸",
     description: "Remote opportunities",
-    initialJobs: 5000,
+    initialJobs: 200,
   },
   {
     name: "Canada",
@@ -39,7 +39,7 @@ const countries: Country[] = [
     slug: "canada",
     flag: "🇨🇦",
     description: "Remote opportunities",
-    initialJobs: 3200,
+    initialJobs: 500,
   },
   {
     name: "United Kingdom",
@@ -47,7 +47,7 @@ const countries: Country[] = [
     slug: "united-kingdom",
     flag: "🇬🇧",
     description: "Remote opportunities",
-    initialJobs: 2800,
+    initialJobs: 1000,
   },
   {
     name: "Australia",
@@ -55,7 +55,7 @@ const countries: Country[] = [
     slug: "australia",
     flag: "🇦🇺",
     description: "Remote opportunities",
-    initialJobs: 1900,
+    initialJobs: 900,
   },
   {
     name: "New Zealand",
@@ -63,7 +63,7 @@ const countries: Country[] = [
     slug: "new-zealand",
     flag: "🇳🇿",
     description: "Remote opportunities",
-    initialJobs: 1100,
+    initialJobs: 700,
   },
   {
     name: "China",
@@ -71,7 +71,7 @@ const countries: Country[] = [
     slug: "china",
     flag: "🇨🇳",
     description: "Remote opportunities",
-    initialJobs: 2400,
+    initialJobs: 150,
   },
   {
     name: "Nigeria",
@@ -79,7 +79,7 @@ const countries: Country[] = [
     slug: "nigeria",
     flag: "🇳🇬",
     description: "Remote opportunities",
-    initialJobs: 1700,
+    initialJobs: 1800,
   },
 ];
 export default function LocationPage() {
