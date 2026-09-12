@@ -182,7 +182,7 @@ export default function DataEntryPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-4 pb-8 pt-28 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 pb-8 pt-6 sm:px-6 lg:px-8">
         <button
           onClick={() => router.back()}
           className="mb-6 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:text-slate-900"
@@ -215,7 +215,7 @@ export default function DataEntryPage() {
         </div>
       </section>
       {/* Sticky CV action bar */}
-      <section className="sticky top-20 z-40 border-y border-slate-200/80 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
+      <section className="sticky top-0 z-40 border-y border-slate-200/80 bg-white/95 px-4 py-3 shadow-sm backdrop-blur sm:px-6">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
