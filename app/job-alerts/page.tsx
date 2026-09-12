@@ -1,4 +1,6 @@
 "use client";
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -100,6 +102,7 @@ export default function JobAlert() {
           </div>
         </div>
       </section>
+      <Banner320x50 />
       {/* Main content */}
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[1fr_520px] lg:items-start">
@@ -158,6 +161,7 @@ export default function JobAlert() {
               </div>
             </div>
           </div>
+          <NativeBannerAd />
           {/* Alert form */}
           <div className="overflow-visible rounded-3xl border border-slate-200 bg-white shadow-sm">
             <div className="border-b border-slate-100 px-6 py-5 sm:px-7">

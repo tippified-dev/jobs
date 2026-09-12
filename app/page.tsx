@@ -11,6 +11,7 @@ import LiveJobsCounter from "@/components/LiveJobsCounter";
 import Navbar from "@/components/Navbar";
 import QuickActions from "@/components/QuickActions";
 import Testimonial from "@/components/Testimonial";
+import UserRecognition from "@/components/UserRecognition";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 export default function Home() {
@@ -79,6 +80,7 @@ export default function Home() {
       <About />
       <Popunder />
       <JobAlert />
+      <UserRecognition />
       <Footer />
     </main>
   );
