@@ -9,7 +9,7 @@ export default function SiteLogo() {
       className="inline-flex items-center"
     >
       <Image
-        src="/job_log.PNG"
+        src="/job_logo.PNG"
         alt="Global Jobs Live"
         width={190}
         height={48}
