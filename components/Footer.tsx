@@ -11,6 +11,7 @@ import {
   FiMapPin,
   FiTwitter,
 } from "react-icons/fi";
+import SiteLogo from "./SiteLogo";
 
 const jobLinks = [
   { label: "Find Jobs", href: "/jobs" },
@@ -64,7 +65,7 @@ export default function Footer() {
               href="/"
               className="inline-flex items-center text-2xl font-bold tracking-tight text-slate-950"
             >
-              Jobs<span className="text-blue-600">4all</span>
+              Global<span className="text-blue-600">JobsLive</span>
             </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-slate-500">
@@ -135,9 +136,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.16 }}
           >
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-950">
-              Jobs4all
-            </h3>
+            <SiteLogo />
 
             <ul className="mt-5 space-y-3.5">
               {companyLinks.map((link) => (
@@ -194,7 +193,7 @@ export default function Footer() {
       <div className="border-t border-slate-100">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p className="text-xs text-slate-400">
-            © {new Date().getFullYear()} Jobs4all. All rights reserved.
+            © {new Date().getFullYear()} Global Jobs Live. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-400">

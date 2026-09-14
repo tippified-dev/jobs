@@ -2,9 +2,11 @@
 
 import Banner468x60 from "@/components/ads/Banner320x50";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
-import Navbar from "@/components/Navbar";
+import SiteLogo from "@/components/SiteLogo";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
+  FiArrowLeft,
   FiArrowUpRight,
   FiBriefcase,
   FiCheckCircle,
@@ -58,7 +60,32 @@ const stats = [
 export default function AboutUs() {
   return (
     <>
-      <Navbar />
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
+          <Link
+            href="/"
+            className="group flex items-center gap-2.5"
+            aria-label="Global jobs live home"
+          >
+            <div>
+              <div>
+                <SiteLogo />
+              </div>
+              <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400 sm:block">
+                Find. Apply. Grow.
+              </span>
+            </div>
+          </Link>
+
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+          >
+            <FiArrowLeft size={15} />
+            <span>Back to Jobs</span>
+          </Link>
+        </div>
+      </header>
       <section
         id="about"
         className="relative overflow-hidden border-t border-slate-100 bg-white py-20 sm:py-24 lg:py-28"
