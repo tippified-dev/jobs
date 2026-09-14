@@ -10,7 +10,7 @@ import {
 } from "react-icons/fi";
 
 export default function LiveJobsCounter() {
-  const [jobCount, setJobCount] = useState(10000);
+  const [jobCount, setJobCount] = useState(1000);
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export default function LiveJobsCounter() {
                 </motion.span>
 
                 <span className="text-xs font-medium text-slate-500 sm:text-sm">
-                  remote jobs added
+                  remote jobs added today.
                 </span>
               </div>
             </div>
