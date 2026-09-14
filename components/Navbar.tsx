@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
+import SiteLogo from "./SiteLogo";
 
 const navigationLinks = [
   {
@@ -63,14 +64,9 @@ export default function Navbar() {
   return (
     <header className="relative z-50 border-b border-slate-100 bg-white">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
-        {/* Logo */}
-        <Link
-          href="/"
-          onClick={closeMenu}
-          className="relative z-50 text-2xl font-bold tracking-tight text-slate-900"
-        >
-          Global<span className="text-blue-600">jobslive</span>
-        </Link>
+        <div className="relative z-50">
+          <SiteLogo />
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 md:flex">

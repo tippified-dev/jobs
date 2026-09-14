@@ -43,7 +43,7 @@ export default function TermsPage() {
           <Link
             href="/"
             className="group flex items-center gap-2.5"
-            aria-label="Jobs4all home"
+            aria-label="Global jobs live home"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm transition group-hover:scale-105">
               <FiBriefcase size={19} />
@@ -51,7 +51,7 @@ export default function TermsPage() {
 
             <div>
               <span className="block text-lg font-black tracking-tight text-slate-950">
-                Job <span className="text-blue-600">4all</span>
+                Global <span className="text-blue-600">JobsLive</span>
               </span>
               <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400 sm:block">
                 Find. Apply. Grow.
@@ -163,10 +163,10 @@ export default function TermsPage() {
                 </p>
 
                 <p>
-                  Jobs4all is a remote job search and employment opportunity
-                  discovery platform. We provide a place where job seekers can
-                  discover opportunities and where employers or other
-                  third-party sources may make employment opportunities
+                  Global Jobs Live is a remote job search and employment
+                  opportunity discovery platform. We provide a place where job
+                  seekers can discover opportunities and where employers or
+                  other third-party sources may make employment opportunities
                   available.
                 </p>
               </section>
@@ -188,9 +188,10 @@ export default function TermsPage() {
                 </p>
 
                 <p>
-                  If you use Jobs4all on behalf of an organisation, company, or
-                  other entity, you confirm that you have the authority to
-                  represent that entity and agree to these Terms on its behalf.
+                  If you use Global Jobs Live on behalf of an organisation,
+                  company, or other entity, you confirm that you have the
+                  authority to represent that entity and agree to these Terms on
+                  its behalf.
                 </p>
 
                 <InfoList
@@ -214,8 +215,9 @@ export default function TermsPage() {
                 />
 
                 <p>
-                  Jobs4all may display job opportunities submitted by employers,
-                  recruiters, partners, third-party providers, or other sources.
+                  Global Jobs Live may display job opportunities submitted by
+                  employers, recruiters, partners, third-party providers, or
+                  other sources.
                 </p>
 
                 <p>
@@ -227,9 +229,9 @@ export default function TermsPage() {
 
                 <p>
                   While we may take reasonable steps to maintain the quality of
-                  information displayed on the platform, Jobs4all does not
-                  guarantee that every listing is current, complete, accurate,
-                  available, or suitable for a particular applicant.
+                  information displayed on the platform, Global Jobs Live does
+                  not guarantee that every listing is current, complete,
+                  accurate, available, or suitable for a particular applicant.
                 </p>
 
                 <div className="my-6 rounded-2xl border border-blue-100 bg-blue-50/70 p-5">
@@ -263,10 +265,10 @@ export default function TermsPage() {
                 />
 
                 <p>
-                  Jobs4all is designed to help job seekers discover employment
-                  opportunities. However, using the platform does not guarantee
-                  that you will receive an interview, job offer, employment,
-                  income, or any particular result.
+                  Global Jobs Live is designed to help job seekers discover
+                  employment opportunities. However, using the platform does not
+                  guarantee that you will receive an interview, job offer,
+                  employment, income, or any particular result.
                 </p>
 
                 <p>
@@ -281,7 +283,7 @@ export default function TermsPage() {
                     "Review job descriptions and employer requirements before applying.",
                     "Perform your own due diligence on employers and opportunities.",
                     "Protect your passwords, personal information, and other sensitive credentials.",
-                    "Never send money solely because a person or organisation claims to represent Jobs4all.",
+                    "Never send money solely because a person or organisation claims to represent Global Jobs Live.",
                   ]}
                 />
               </section>
@@ -298,9 +300,9 @@ export default function TermsPage() {
 
                 <p>
                   Employers and recruiters who submit or provide job
-                  opportunities through Jobs4all are responsible for ensuring
-                  that their listings and communications are lawful, accurate,
-                  and not misleading.
+                  opportunities through Global Jobs Live are responsible for
+                  ensuring that their listings and communications are lawful,
+                  accurate, and not misleading.
                 </p>
 
                 <p>Employers must not use Jobs4all to:</p>
@@ -340,15 +342,15 @@ export default function TermsPage() {
                 </p>
 
                 <p>
-                  Once you leave Jobs4all and visit a third-party website, that
-                  website&pos;s own terms, privacy policy, security practices,
-                  and other rules may apply.
+                  Once you leave Global Jobs Live and visit a third-party
+                  website, that website&pos;s own terms, privacy policy,
+                  security practices, and other rules may apply.
                 </p>
 
                 <p>
-                  Jobs4all does not control third-party websites and is not
-                  responsible for their content, availability, security, privacy
-                  practices, employment decisions, or transactions.
+                  Global Jobs Live does not control third-party websites and is
+                  not responsible for their content, availability, security,
+                  privacy practices, employment decisions, or transactions.
                 </p>
               </section>
 
@@ -402,8 +404,8 @@ export default function TermsPage() {
                   You may access and use the platform for its intended purpose,
                   including searching for and applying to employment
                   opportunities. You may not reproduce, modify, distribute,
-                  sell, or create derivative works from Jobs4all content without
-                  appropriate permission.
+                  sell, or create derivative works from Global Jobs Live content
+                  without appropriate permission.
                 </p>
 
                 <p>
@@ -423,14 +425,14 @@ export default function TermsPage() {
                 />
 
                 <p>
-                  Jobs4all may display advertisements, sponsored content,
-                  promotional links, or other commercial material from
+                  Global Jobs Live may display advertisements, sponsored
+                  content, promotional links, or other commercial material from
                   third-party advertising providers.
                 </p>
 
                 <p>
                   The appearance of an advertisement on Jobs4all does not mean
-                  that Jobs4all endorses, guarantees, or recommends the
+                  that Global Jobs Live endorses, guarantees, or recommends the
                   advertised product, service, company, or offer.
                 </p>
 
@@ -452,8 +454,8 @@ export default function TermsPage() {
                 />
 
                 <p>
-                  Jobs4all is provided on an as available and as is basis to the
-                  extent permitted by applicable law.
+                  Global Jobs Live is provided on an as available and as is
+                  basis to the extent permitted by applicable law.
                 </p>
 
                 <p>
@@ -470,9 +472,9 @@ export default function TermsPage() {
                 </p>
 
                 <p>
-                  Jobs4all does not act as an employer, recruitment agency,
-                  employment guarantor, or representative of any employer unless
-                  expressly stated otherwise.
+                  Global Jobs Live does not act as an employer, recruitment
+                  agency, employment guarantor, or representative of any
+                  employer unless expressly stated otherwise.
                 </p>
 
                 <div className="my-6 grid gap-4 sm:grid-cols-3">
@@ -569,7 +571,8 @@ export default function TermsPage() {
 
                 <p>
                   If you have questions, concerns, or feedback about these Terms
-                  & Conditions, you can contact the Jobs4all support team.
+                  & Conditions, you can contact the Global Jobs Live support
+                  team.
                 </p>
 
                 <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
@@ -583,7 +586,7 @@ export default function TermsPage() {
                         href="mailto:support@job4all.com"
                         className="mt-1 block text-lg font-bold text-slate-950 transition hover:text-blue-600"
                       >
-                        support@job4all.com
+                        support@globaljobslive.com
                       </a>
                     </div>
 
