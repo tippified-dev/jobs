@@ -435,7 +435,7 @@ export default function JobTypeCategories() {
                   }}
                 >
                   <Link
-                    href={`/jobs/${job.slug}`}
+                    href={`/category/${job.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-200/50"
                   >
                     <div className="flex items-start justify-between">

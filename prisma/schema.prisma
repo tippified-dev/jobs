@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CategoryType {
+  SKILLED
+  UNSKILLED
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  FREELANCE
+  TEMPORARY
+  INTERNSHIP
+}
+
+enum WorkMode {
+  REMOTE
+  HYBRID
+  ONSITE
+}
+
+enum ExperienceLevel {
+  ENTRY_LEVEL
+  MID_LEVEL
+  SENIOR_LEVEL
+  EXECUTIVE
+  NO_EXPERIENCE
+}
+
+model JobCategory {
+  id               String       @id @default(cuid())
+
+  name             String
+  slug             String       @unique
+
+  shortDescription String
+  description      String
+
+  categoryType     CategoryType
+
+  seoTitle         String?
+  seoDescription   String?
+
+  icon             String?
+
+  isRemote         Boolean      @default(true)
+  isFeatured       Boolean      @default(false)
+  isActive         Boolean      @default(true)
+
+  sortOrder        Int          @default(0)
+
+  jobs             Job[]
+
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  @@index([categoryType])
+  @@index([isActive])
+  @@index([sortOrder])
+}
+
+model Job {
+  id String @id @default(cuid())
+
+  title String
+  slug  String @unique
+
+  description String
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  country     String
+  countryCode String?
+
+  location String?
+
+  categoryId String
+  category   JobCategory @relation(fields: [categoryId], references: [id])
+
+  jobType         JobType
+  workMode        WorkMode
+  experienceLevel ExperienceLevel
+
+  salaryMin      Decimal? @db.Decimal(12, 2)
+  salaryMax      Decimal? @db.Decimal(12, 2)
+  salaryCurrency String?
+
+  applicationUrl String
+
+  isVerified Boolean @default(false)
+  isFeatured Boolean @default(false)
+  isActive   Boolean @default(true)
+
+  publishedAt DateTime @default(now())
+  expiresAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([country])
+  @@index([countryCode])
+  @@index([jobType])
+  @@index([workMode])
+  @@index([experienceLevel])
+  @@index([isVerified])
+  @@index([isActive])
+  @@index([publishedAt])
+}
+
+
+model Company {
+  id String @id @default(cuid())
+
+  name        String
+  slug        String @unique
+  description String?
+
+  website String?
+  logoUrl String?
+
+  country     String?
+  countryCode String?
+
+  isVerified Boolean @default(false)
+  isActive   Boolean @default(true)
+
+  jobs Job[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([country])
+  @@index([countryCode])
+  @@index([isVerified])
+  @@index([isActive])
+}

@@ -1,128 +1,158 @@
 "use client";
+
 import Banner320x50 from "@/components/ads/Banner320x50";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { AnimatePresence, motion } from "framer-motion";
-import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
   FiArrowLeft,
+  FiBriefcase,
   FiCheck,
+  FiChevronRight,
   FiFileText,
   FiLoader,
+  FiMapPin,
   FiUploadCloud,
   FiX,
 } from "react-icons/fi";
-type Job = {
+
+export type CountryJob = {
+  id: string;
+  slug: string;
   company: string;
   location: string;
   position: string;
   status: "active";
 };
-type JobsResponse = {
+
+type CountryJobsClientProps = {
   country: string;
-  total: number;
-  jobs: Job[];
+  jobs: CountryJob[];
 };
-export default function CountryJobsPage() {
-  const params = useParams();
+
+export default function CountryJobsClient({
+  country,
+  jobs,
+}: CountryJobsClientProps) {
   const router = useRouter();
-  const country = params.country as string;
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
   // Stores a DOM reference for every job card.
   const jobRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [data, setData] = useState<JobsResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [sending, setSending] = useState(false);
   const [completedJobs, setCompletedJobs] = useState<number[]>([]);
   const [sendComplete, setSendComplete] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [cvAlreadySent, setCvAlreadySent] = useState(false);
-  useEffect(() => {
-    if (!country) return;
-    const fetchJobs = async () => {
-      try {
-        setLoading(true);
-        setError("");
-        const response = await fetch(`/api/jobs/${country}`, {
-          cache: "no-store",
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch jobs");
-        }
-        const result: JobsResponse = await response.json();
-        setData(result);
-      } catch (err) {
-        console.error(err);
-        setError("Unable to load jobs right now.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchJobs();
-  }, [country]);
+
+  const countryName = country
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  /*
+   * Automatically close the success modal after 4.5 seconds.
+   */
   useEffect(() => {
     if (!showSuccessModal) return;
+
     const timer = setTimeout(() => {
       setShowSuccessModal(false);
     }, 4500);
+
     return () => clearTimeout(timer);
   }, [showSuccessModal]);
-  const countryName = country
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+
+  /*
+   * Handle CV selection.
+   */
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (cvAlreadySent) return;
+    if (cvAlreadySent || sending) return;
+
     const file = event.target.files?.[0];
+
     if (!file) return;
+
     setSelectedFile(file);
     setCompletedJobs([]);
     setSendComplete(false);
   };
+
+  /*
+   * Open the hidden file input.
+   */
   const handleUploadClick = () => {
     if (cvAlreadySent || sending) return;
+
     fileInputRef.current?.click();
   };
+
+  /*
+   * Scroll to a particular job card.
+   */
   const scrollToJob = (index: number) => {
     const jobElement = jobRefs.current[index];
+
     if (!jobElement) return;
+
     const stickyOffset = 110;
+
     const elementTop = jobElement.getBoundingClientRect().top + window.scrollY;
+
     const targetPosition = Math.max(elementTop - stickyOffset, 0);
+
     window.scrollTo({
       top: targetPosition,
       behavior: "smooth",
     });
   };
+
+  /*
+   * Current CV workflow.
+   *
+   * NOTE:
+   * This currently provides the visual application flow only.
+   * Actual CV uploading/submission will be connected to the
+   * backend later.
+   */
   const handleSendCV = async () => {
-    if (!selectedFile || !data?.jobs.length || sending || cvAlreadySent) {
+    if (!selectedFile || !jobs.length || sending || cvAlreadySent) {
       return;
     }
+
     setSending(true);
     setSendComplete(false);
     setCompletedJobs([]);
-    for (let index = 0; index < data.jobs.length; index++) {
-      // Scroll to the company currently being processed.
+
+    for (let index = 0; index < jobs.length; index++) {
       scrollToJob(index);
-      // Give the user enough time to see the company.
+
+      // Allow the user to see the current job.
       await new Promise((resolve) => setTimeout(resolve, 900));
+
       setCompletedJobs((previous) => [...previous, index]);
-      // Allow the check animation to be visible
-      // before moving to the next company.
+
+      // Allow the check animation to be visible.
       await new Promise((resolve) => setTimeout(resolve, 350));
     }
+
     setSending(false);
     setSendComplete(true);
-    // Prevent another CV submission.
     setCvAlreadySent(true);
-    // Show completion modal.
     setShowSuccessModal(true);
   };
+
   return (
     <main className="min-h-screen bg-slate-50">
-      {/* Success Modal */}
+      {/* =====================================================
+          SUCCESS MODAL
+      ====================================================== */}
       <AnimatePresence>
         {showSuccessModal && (
           <motion.div
@@ -162,6 +192,7 @@ export default function CountryJobsPage() {
               >
                 <FiX size={17} />
               </button>
+
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -175,11 +206,13 @@ export default function CountryJobsPage() {
               >
                 <FiCheck size={30} />
               </motion.div>
+
               <h2 className="mt-5 text-xl font-bold text-slate-900">CV sent</h2>
+
               <p className="mt-3 text-sm leading-6 text-slate-500">
-                Companies will start contacting you immediately via email on
-                your sent document.
+                Your CV has been processed for the displayed opportunities.
               </p>
+
               <div className="mt-5 h-1 overflow-hidden rounded-full bg-slate-100">
                 <motion.div
                   initial={{ width: "100%" }}
@@ -195,7 +228,10 @@ export default function CountryJobsPage() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Sticky CV action bar */}
+
+      {/* =====================================================
+          STICKY CV ACTION BAR
+      ====================================================== */}
       <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex min-w-0 items-center gap-3">
@@ -207,15 +243,18 @@ export default function CountryJobsPage() {
             >
               <FiArrowLeft size={18} />
             </button>
+
             <div className="min-w-0">
               <p className="text-sm font-bold text-slate-900">
                 Apply to these jobs
               </p>
+
               <p className="truncate text-xs text-slate-500">
                 {selectedFile ? selectedFile.name : "Upload your CV to apply"}
               </p>
             </div>
           </div>
+
           <div className="flex shrink-0 items-center gap-2">
             <input
               ref={fileInputRef}
@@ -224,6 +263,7 @@ export default function CountryJobsPage() {
               onChange={handleFileChange}
               className="hidden"
             />
+
             <button
               type="button"
               onClick={handleUploadClick}
@@ -231,14 +271,18 @@ export default function CountryJobsPage() {
               className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-blue-500 hover:text-blue-600 disabled:cursor-not-allowed disabled:opacity-50 sm:px-4"
             >
               <FiUploadCloud size={17} />
+
               <span className="hidden sm:inline">
                 {cvAlreadySent ? "CV Submitted" : "Upload CV"}
               </span>
             </button>
+
             <button
               type="button"
               onClick={handleSendCV}
-              disabled={!selectedFile || sending || cvAlreadySent}
+              disabled={
+                !selectedFile || !jobs.length || sending || cvAlreadySent
+              }
               className={`inline-flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold text-white shadow-sm transition sm:px-4 ${
                 cvAlreadySent
                   ? "cursor-not-allowed bg-slate-400"
@@ -252,6 +296,7 @@ export default function CountryJobsPage() {
               ) : (
                 <FiFileText size={17} />
               )}
+
               <span className="hidden sm:inline">
                 {cvAlreadySent ? "CV Sent" : sending ? "Sending..." : "Send CV"}
               </span>
@@ -259,23 +304,39 @@ export default function CountryJobsPage() {
           </div>
         </div>
       </div>
+
+      {/* =====================================================
+          PAGE CONTENT
+      ====================================================== */}
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">
-            Jobs4all
+            Global Jobs Live
           </p>
+
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Jobs in {countryName}
           </h1>
+
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
             Explore available job opportunities from companies hiring in{" "}
             {countryName}.
           </p>
         </div>
-        <Banner320x50 />
-        <NativeBannerAd />
-        {/* Uploaded CV preview */}
+
+        {/* Ads */}
+        <div className="mt-8">
+          <Banner320x50 />
+        </div>
+
+        <div className="mt-5">
+          <NativeBannerAd />
+        </div>
+
+        {/* ===================================================
+            SELECTED CV
+        ==================================================== */}
         <AnimatePresence>
           {selectedFile && (
             <motion.div
@@ -297,14 +358,17 @@ export default function CountryJobsPage() {
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <FiFileText size={21} />
                 </div>
+
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-semibold text-slate-900">
                     CV selected
                   </p>
+
                   <p className="mt-0.5 truncate text-xs text-slate-500">
                     {selectedFile.name}
                   </p>
                 </div>
+
                 <span className="shrink-0 text-xs font-semibold text-blue-600">
                   {cvAlreadySent ? "Submitted" : "Ready"}
                 </span>
@@ -312,7 +376,10 @@ export default function CountryJobsPage() {
             </motion.div>
           )}
         </AnimatePresence>
-        {/* Completed message */}
+
+        {/* ===================================================
+            COMPLETED MESSAGE
+        ==================================================== */}
         <AnimatePresence>
           {sendComplete && (
             <motion.div
@@ -340,82 +407,90 @@ export default function CountryJobsPage() {
               >
                 <FiCheck size={28} />
               </motion.div>
+
               <h2 className="mt-4 text-lg font-bold text-slate-900">
-                CV sent to all companies
+                CV processed
               </h2>
+
               <p className="mt-2 text-sm text-slate-500">
                 Your CV has been processed for all displayed job listings.
               </p>
             </motion.div>
           )}
         </AnimatePresence>
-        {/* Loading skeleton */}
-        {loading && (
-          <div className="mt-10">
-            <div className="mb-5 flex items-center justify-between">
-              <div className="h-6 w-32 animate-pulse rounded-lg bg-slate-200" />
-              <div className="h-4 w-20 animate-pulse rounded-lg bg-slate-200" />
-            </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {Array.from({ length: 6 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="h-5 w-3/4 animate-pulse rounded bg-slate-200" />
-                      <div className="mt-3 h-4 w-1/2 animate-pulse rounded bg-slate-200" />
-                    </div>
-                    <div className="h-6 w-14 animate-pulse rounded-full bg-slate-200" />
-                  </div>
-                  <div className="mt-5 h-4 w-1/3 animate-pulse rounded bg-slate-200" />
-                  <div className="mt-5 h-2 w-full overflow-hidden rounded-full bg-slate-100">
-                    <div className="h-full w-1/2 animate-pulse rounded-full bg-slate-200" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {/* Error */}
-        {!loading && error && (
-          <div className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-            <p className="text-sm font-medium text-slate-600">{error}</p>
-          </div>
-        )}
-        {/* Jobs */}
-        {!loading && !error && data && (
-          <div className="mt-10">
-            <div className="mb-5 flex items-center justify-between">
+
+        {/* ===================================================
+            JOBS
+        ==================================================== */}
+        <section className="mt-10">
+          <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
               <h2 className="text-lg font-bold text-slate-900">
                 Available Jobs
               </h2>
-              <span className="text-sm text-slate-500">
-                {data.total} jobs found
-              </span>
+
+              <p className="mt-1 text-sm text-slate-500">
+                Browse verified opportunities in {countryName}.
+              </p>
             </div>
 
+            <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1.5 text-sm font-semibold text-blue-600">
+              <FiBriefcase size={14} />
+              {jobs.length} {jobs.length === 1 ? "job" : "jobs"}
+            </span>
+          </div>
+
+          {jobs.length === 0 ? (
+            <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm sm:p-12">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                <FiBriefcase size={25} />
+              </div>
+
+              <h3 className="mt-5 text-lg font-bold text-slate-900">
+                No jobs available yet
+              </h3>
+
+              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
+                We are currently adding verified opportunities in {countryName}.
+                Please check back soon for new listings.
+              </p>
+
+              <Link
+                href="/"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+              >
+                Explore Global Jobs
+                <FiChevronRight size={16} />
+              </Link>
+            </div>
+          ) : (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {data.jobs.map((job, index) => {
+              {jobs.map((job, index) => {
                 const isCompleted = completedJobs.includes(index);
+
                 return (
                   <motion.div
-                    key={`${job.company}-${job.position}-${index}`}
+                    key={job.id}
                     ref={(element) => {
                       jobRefs.current[index] = element;
                     }}
                     layout
+                    whileHover={{
+                      y: -3,
+                    }}
                     className={`relative overflow-hidden rounded-2xl border bg-white p-5 shadow-sm transition ${
-                      isCompleted ? "border-blue-300" : "border-slate-200"
+                      isCompleted
+                        ? "border-blue-300"
+                        : "border-slate-200 hover:border-blue-200 hover:shadow-md"
                     }`}
                   >
+                    {/* Completed overlay */}
                     <AnimatePresence>
                       {isCompleted && (
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          className="absolute inset-0 flex items-center justify-center bg-white/90 backdrop-blur-[2px]"
+                          className="absolute inset-0 z-10 flex items-center justify-center bg-white/90 backdrop-blur-[2px]"
                         >
                           <motion.div
                             initial={{
@@ -438,47 +513,74 @@ export default function CountryJobsPage() {
                         </motion.div>
                       )}
                     </AnimatePresence>
+
+                    {/* Job header */}
                     <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-bold text-slate-900">
+                      <div className="min-w-0">
+                        <Link
+                          href={`/jobs/${job.slug}`}
+                          className="font-bold leading-6 text-slate-900 transition hover:text-blue-600"
+                        >
                           {job.position}
-                        </h3>
+                        </Link>
+
                         <p className="mt-1 text-sm font-medium text-blue-600">
                           {job.company}
                         </p>
                       </div>
-                      <div className="flex gap-2">
-                        <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600">
-                          remote
-                        </span>
-                        <span className="rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-600">
-                          {job.status}
-                        </span>
-                      </div>
+
+                      <span className="shrink-0 rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold capitalize text-green-600">
+                        {job.status}
+                      </span>
                     </div>
-                    <p className="mt-4 text-sm text-slate-500">
-                      {job.location}
-                    </p>
-                    <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                      <motion.div
-                        initial={{
-                          width: "0%",
-                        }}
-                        animate={{
-                          width: isCompleted ? "100%" : "0%",
-                        }}
-                        transition={{
-                          duration: 0.5,
-                        }}
-                        className="h-full rounded-full bg-blue-600"
-                      />
+
+                    {/* Location */}
+                    <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+                      <FiMapPin size={15} className="shrink-0" />
+
+                      <span className="truncate">{job.location}</span>
+                    </div>
+
+                    {/* Work mode */}
+                    <div className="mt-4">
+                      <span className="inline-flex rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-600">
+                        Remote
+                      </span>
+                    </div>
+
+                    {/* View job */}
+                    <Link
+                      href={`/jobs/${job.slug}`}
+                      className="mt-5 flex items-center justify-between rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
+                    >
+                      <span>View job details</span>
+
+                      <FiChevronRight size={17} />
+                    </Link>
+
+                    {/* Application progress */}
+                    <div className="mt-5">
+                      <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
+                        <motion.div
+                          initial={{
+                            width: "0%",
+                          }}
+                          animate={{
+                            width: isCompleted ? "100%" : "0%",
+                          }}
+                          transition={{
+                            duration: 0.5,
+                          }}
+                          className="h-full rounded-full bg-blue-600"
+                        />
+                      </div>
                     </div>
                   </motion.div>
                 );
               })}
             </div>
-          </div>
-        )}
+          )}
+        </section>
       </div>
     </main>
   );
