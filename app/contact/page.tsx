@@ -1,5 +1,6 @@
 import Banner320x50 from "@/components/ads/Banner320x50";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
+import SiteLogo from "@/components/SiteLogo";
 import Link from "next/link";
 import {
   FiArrowLeft,
@@ -41,21 +42,29 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-slate-50">
       {/* Header */}
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="text-2xl font-bold tracking-tight text-slate-950"
+            className="group flex items-center gap-2.5"
+            aria-label="Global jobs live home"
           >
-            Job<span className="text-blue-600">4all</span>
+            <div>
+              <div>
+                <SiteLogo />
+              </div>
+              <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400 sm:block">
+                Find. Apply. Grow.
+              </span>
+            </div>
           </Link>
 
           <Link
             href="/"
-            className="flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-blue-600"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
           >
-            <FiArrowLeft size={16} />
-            Back to Jobs
+            <FiArrowLeft size={15} />
+            <span>Back to Jobs</span>
           </Link>
         </div>
       </header>
