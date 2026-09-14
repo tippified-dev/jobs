@@ -18,7 +18,7 @@ const supportAreas = [
     icon: FiBriefcase,
     title: "Job Listings",
     description:
-      "Questions about a job listing, application or an opportunity you found on Jobs4all.",
+      "Questions about a job listing, application or an opportunity you found on Global Jobs Live.",
   },
   {
     icon: FiUsersIcon,
@@ -91,8 +91,8 @@ export default function ContactPage() {
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
             Have a question, need help with something, or want to report an
-            issue? Reach out to the Jobs4all support team and we&apos;ll be
-            happy to help.
+            issue? Reach out to the Global Jobs Live support team and we&apos;ll
+            be happy to help.
           </p>
         </div>
       </section>
@@ -132,7 +132,7 @@ export default function ContactPage() {
                   </p>
 
                   <p className="mt-1 truncate text-sm font-bold sm:text-base">
-                    support@job4all.com
+                    support@globaljobslive.com
                   </p>
                 </div>
 
@@ -153,8 +153,8 @@ export default function ContactPage() {
                   <h3 className="font-bold text-slate-950">Support by email</h3>
 
                   <p className="mt-2 text-sm leading-6 text-slate-500">
-                    Email is currently the best way to reach the Jobs4all
-                    support team. Response times may vary depending on the
+                    Email is currently the best way to reach the global jobs
+                    live support team. Response times may vary depending on the
                     nature and volume of requests.
                   </p>
                 </div>
@@ -176,8 +176,8 @@ export default function ContactPage() {
 
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-500">
               Whether you&apos;re searching for work, posting an opportunity or
-              simply have a question about Jobs4all, our support team is here to
-              help.
+              simply have a question about global jobs live, our support team is
+              here to help.
             </p>
 
             <div className="mt-9 space-y-4">
@@ -219,7 +219,7 @@ export default function ContactPage() {
                   <FiMail size={19} />
 
                   <span className="text-sm font-bold">
-                    Email Jobs4all Support
+                    Email global jobs live Support
                   </span>
                 </div>
 
