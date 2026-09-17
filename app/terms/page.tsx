@@ -2,6 +2,7 @@
 
 import Banner320x50 from "@/components/ads/Banner320x50";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
+import SiteLogo from "@/components/SiteLogo";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -45,14 +46,12 @@ export default function TermsPage() {
             className="group flex items-center gap-2.5"
             aria-label="Global jobs live home"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm transition group-hover:scale-105">
-              <FiBriefcase size={19} />
-            </div>
+            
 
             <div>
-              <span className="block text-lg font-black tracking-tight text-slate-950">
-                Global <span className="text-blue-600">JobsLive</span>
-              </span>
+              <div>
+                <SiteLogo/>
+              </div>
               <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400 sm:block">
                 Find. Apply. Grow.
               </span>

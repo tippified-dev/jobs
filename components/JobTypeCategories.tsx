@@ -414,6 +414,7 @@ export default function JobTypeCategories() {
                 {jobs.length} job categories
               </span>
             </div>
+            <Banner468x60 />
 
             {/* Job cards */}
 
@@ -458,7 +459,7 @@ export default function JobTypeCategories() {
                         {job.description}
                       </p>
                     </div>
-                    <Banner468x60 />
+                    
 
                     <div className="mt-auto pt-4">
                       <div className="flex items-center justify-between border-t border-slate-100 pt-3">
