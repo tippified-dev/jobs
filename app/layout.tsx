@@ -1,14 +1,8 @@
 import Popunder from "@/components/ads/Popunder";
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+
 import Script from "next/script";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://globaljobslive.com"),
@@ -108,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} antialiased`}>
+    <html lang="en" className=" antialiased">
       <body className="min-h-screen bg-white font-sans">
         <Popunder />
 
