@@ -48,24 +48,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     where: {
       slug,
     },
+    include: {
+      jobs: {
+        where: {
+          isActive: true,
+        },
+        include: {
+          company: true,
+        },
+        orderBy: {
+          publishedAt: "desc",
+        },
+      },
+    },
   });
 
   if (!category) {
     notFound();
   }
-
-  const jobs = await prisma.job.findMany({
-    where: {
-      categoryId: category.id,
-      isActive: true,
-    },
-    include: {
-      company: true,
-    },
-    orderBy: {
-      publishedAt: "desc",
-    },
-  });
 
   const categoryName = category.name || formatCategoryName(slug);
 
@@ -90,14 +90,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </p>
 
           <p className="mt-4 text-sm font-medium text-slate-500">
-            {jobs.length} available job
-            {jobs.length === 1 ? "" : "s"}
+            {category.jobs.length} available job
+            {category.jobs.length === 1 ? "" : "s"}
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8">
-        {jobs.length === 0 ? (
+        {category.jobs.length === 0 ? (
           <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center">
             <h2 className="text-xl font-bold text-slate-900">
               No jobs available yet
@@ -116,7 +116,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
         ) : (
           <div className="grid gap-4">
-            {jobs.map((job) => (
+            {category.jobs.map((job) => (
               <Link
                 key={job.id}
                 href={`/jobs/${job.slug}`}
