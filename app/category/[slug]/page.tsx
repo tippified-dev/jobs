@@ -51,7 +51,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       jobs: {
         where: {
           isActive: true,
-          isVerified: true,
         },
         include: {
           company: true,
