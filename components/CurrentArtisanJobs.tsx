@@ -1,538 +1,113 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import {
-  FiArrowUpRight,
-  FiBriefcase,
-  FiChevronDown,
-  FiClock,
-  FiMapPin,
-  FiRefreshCw,
-} from "react-icons/fi";
+import { FiArrowRight, FiBriefcase, FiMapPin, FiUsers } from "react-icons/fi";
 
-type Job = {
-  id: number;
-  title: string;
+type ArtisanCategory = {
+  id: string;
+  name: string;
   slug: string;
-  count: number;
-  step: number;
+  country: string;
+  description: string | null;
+  opportunityCount: number;
 };
 
-const initialJobs: Job[] = [
-  {
-    id: 1,
-    title: "Solar Panel Installation",
-    slug: "solar-panel-installation",
-    count: 1842,
-    step: 7,
-  },
-  {
-    id: 2,
-    title: "POP Installation",
-    slug: "pop-installation",
-    count: 963,
-    step: 4,
-  },
-  {
-    id: 3,
-    title: "Social Media Manager",
-    slug: "social-media-manager",
-    count: 1276,
-    step: 6,
-  },
-  {
-    id: 4,
-    title: "Makeup Artist",
-    slug: "makeup-artist",
-    count: 1200,
-    step: 5,
-  },
-  {
-    id: 5,
-    title: "Hair Stylist",
-    slug: "hair-stylist",
-    count: 1487,
-    step: 8,
-  },
-  {
-    id: 6,
-    title: "Designer",
-    slug: "designer",
-    count: 892,
-    step: 4,
-  },
-  {
-    id: 7,
-    title: "Plumber",
-    slug: "plumber",
-    count: 731,
-    step: 3,
-  },
-  {
-    id: 8,
-    title: "Painter",
-    slug: "painter",
-    count: 618,
-    step: 5,
-  },
-  {
-    id: 9,
-    title: "Electrician",
-    slug: "electrician",
-    count: 1048,
-    step: 6,
-  },
-  {
-    id: 10,
-    title: "Tiler",
-    slug: "tiler",
-    count: 574,
-    step: 3,
-  },
-  {
-    id: 11,
-    title: "Cobbler",
-    slug: "cobbler",
-    count: 341,
-    step: 2,
-  },
-  {
-    id: 12,
-    title: "Barber",
-    slug: "barber",
-    count: 1109,
-    step: 7,
-  },
-  {
-    id: 13,
-    title: "CCTV Installation",
-    slug: "cctv-installation",
-    count: 684,
-    step: 4,
-  },
-  {
-    id: 14,
-    title: "DSTV Installation",
-    slug: "dstv-installation",
-    count: 529,
-    step: 3,
-  },
-  {
-    id: 15,
-    title: "Welder",
-    slug: "welder",
-    count: 463,
-    step: 4,
-  },
-  {
-    id: 16,
-    title: "Mechanic",
-    slug: "mechanic",
-    count: 836,
-    step: 6,
-  },
-  {
-    id: 17,
-    title: "Vulcaniser",
-    slug: "vulcaniser",
-    count: 397,
-    step: 3,
-  },
-  {
-    id: 18,
-    title: "Bricklayer",
-    slug: "bricklayer",
-    count: 285,
-    step: 2,
-  },
-  {
-    id: 19,
-    title: "Carpenter",
-    slug: "carpenter",
-    count: 512,
-    step: 4,
-  },
-  {
-    id: 20,
-    title: "Sales Representative",
-    slug: "sales-representative",
-    count: 1456,
-    step: 8,
-  },
-  {
-    id: 21,
-    title: "Cashier",
-    slug: "cashier",
-    count: 932,
-    step: 5,
-  },
-  {
-    id: 22,
-    title: "Nail Technician",
-    slug: "nail-technician",
-    count: 617,
-    step: 4,
-  },
-  {
-    id: 23,
-    title: "Eye Lash Specialist",
-    slug: "eye-lash-specialist",
-    count: 438,
-    step: 3,
-  },
-  {
-    id: 24,
-    title: "Phone Repairer",
-    slug: "phone-repairer",
-    count: 789,
-    step: 6,
-  },
-  {
-    id: 25,
-    title: "Washerman",
-    slug: "washerman",
-    count: 356,
-    step: 2,
-  },
-  {
-    id: 26,
-    title: "Babysitter",
-    slug: "babysitter",
-    count: 574,
-    step: 4,
-  },
-  {
-    id: 27,
-    title: "Nanny",
-    slug: "nanny",
-    count: 689,
-    step: 5,
-  },
-  {
-    id: 28,
-    title: "Chef",
-    slug: "chef",
-    count: 813,
-    step: 6,
-  },
-  {
-    id: 29,
-    title: "Waiter",
-    slug: "waiter",
-    count: 1042,
-    step: 7,
-  },
-  {
-    id: 30,
-    title: "Gym Instructor",
-    slug: "gym-instructor",
-    count: 463,
-    step: 3,
-  },
-];
-
-function formatNumber(value: number) {
-  return new Intl.NumberFormat("en-NG").format(value);
+interface CurrentArtisanJobsProps {
+  categories: ArtisanCategory[];
+  location?: string;
 }
 
-function formatDate(date: Date) {
-  return new Intl.DateTimeFormat("en-NG", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(date);
-}
-
-function formatTime(date: Date) {
-  return new Intl.DateTimeFormat("en-NG", {
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-  }).format(date);
-}
-
-export default function CurrentArtisanJobs() {
-  const [currentTime, setCurrentTime] = useState<Date | null>(null);
-  const [jobs, setJobs] = useState<Job[]>(initialJobs);
-  const [expanded, setExpanded] = useState(false);
-
-  // Nigeria is the initial target market.
-  // We will connect this to the real location system later.
-  const location = "Nigeria";
-
-  /*
-   * Live clock
-   */
-  useEffect(() => {
-    const updateClock = () => {
-      setCurrentTime(new Date());
-    };
-
-    updateClock();
-
-    const clock = window.setInterval(updateClock, 1000);
-
-    return () => window.clearInterval(clock);
-  }, []);
-
-  /*
-   * Simulated job activity.
-   *
-   * Every job has its own increment value, making the counters
-   * behave differently rather than all increasing by the same amount.
-   *
-   * This can later be replaced by a real API request.
-   */
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setJobs((currentJobs) =>
-        currentJobs.map((job) => ({
-          ...job,
-          count: job.count + job.step,
-        })),
-      );
-    }, 20_000);
-
-    return () => window.clearInterval(interval);
-  }, []);
-
-  const visibleJobs = useMemo(
-    () => (expanded ? jobs : jobs.slice(0, 4)),
-    [expanded, jobs],
-  );
-
+export default function CurrentArtisanJobs({
+  categories,
+  location = "Nigeria",
+}: CurrentArtisanJobsProps) {
   return (
-    <section className="relative overflow-hidden bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-50/70 blur-3xl" />
-
-      <div className="relative mx-auto max-w-5xl">
+    <section className="w-full bg-white py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Date / Time */}
-          <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500">
-            <div className="flex items-center gap-1.5">
-              <FiClock className="text-blue-600" size={14} />
-
-              <span>
-                {currentTime
-                  ? `${formatDate(currentTime)} · ${formatTime(currentTime)}`
-                  : "Loading current time..."}
-              </span>
-            </div>
-
-            <span className="hidden text-slate-300 sm:block">•</span>
-
-            <div className="flex items-center gap-1.5">
-              <FiMapPin className="text-blue-600" size={14} />
-              <span>{location}</span>
-            </div>
+        <div className="mb-8">
+          <div className="mb-3 flex items-center gap-2 text-sm font-medium text-blue-600">
+            <FiMapPin className="text-base" />
+            <span>{location}</span>
           </div>
 
-          {/* Heading */}
-          <div className="mt-5 max-w-2xl">
-            <div className="flex items-center gap-2">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-blue-600" />
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+            Current artisan opportunities
+          </h2>
 
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
-                Local opportunities
-              </span>
-            </div>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-600 sm:text-base">
+            Explore local opportunities and service-based work available in your
+            location.
+          </p>
+        </div>
 
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
-              Current artisan jobs based on your location
-            </h2>
+        {/* Categories */}
+        {categories.length === 0 ? (
+          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8 text-center">
+            <FiBriefcase className="mx-auto mb-3 text-3xl text-gray-400" />
 
-            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500 sm:text-base">
-              Explore work opportunities across skilled trades, services,
-              hospitality, creative work and everyday jobs.
+            <h3 className="text-lg font-semibold text-gray-900">
+              No artisan opportunities available
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-500">
+              We are currently adding opportunities for this location.
             </p>
           </div>
-        </motion.div>
-
-        {/* Jobs panel */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.08 }}
-          className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_-30px_rgba(15,23,42,0.25)]"
-        >
-          {/* Panel header */}
-          <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-4 py-4 sm:px-6">
-            <div>
-              <p className="text-sm font-bold text-slate-900">
-                Opportunities near you
-              </p>
-
-              <p className="mt-0.5 text-xs text-slate-500">
-                Updated automatically
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5">
-              <motion.span
-                animate={{ rotate: 360 }}
+        ) : (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {categories.map((category, index) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear",
+                  duration: 0.35,
+                  delay: Math.min(index * 0.03, 0.3),
                 }}
-                className="text-blue-600"
               >
-                <FiRefreshCw size={12} />
-              </motion.span>
-
-              <span className="text-[11px] font-semibold text-slate-500">
-                Live activity
-              </span>
-            </div>
-          </div>
-
-          {/* Jobs */}
-          <div className="divide-y divide-slate-100">
-            <AnimatePresence initial={false} mode="popLayout">
-              {visibleJobs.map((job, index) => (
-                <motion.div
-                  key={job.id}
-                  layout
-                  initial={{
-                    opacity: 0,
-                    height: 0,
-                    y: -8,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    height: "auto",
-                    y: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    height: 0,
-                    y: -8,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                    delay: expanded && index > 3 ? 0.025 * (index - 3) : 0,
-                  }}
+                <Link
+                  href={`/artisan/${category.slug}`}
+                  className="group block h-full"
                 >
-                  <Link
-                    href={`/jobs/${job.slug}`}
-                    className="group flex items-center gap-3 px-4 py-4 transition-colors hover:bg-blue-50/40 sm:px-6"
-                  >
-                    {/* Number */}
-                    <span className="hidden w-6 shrink-0 text-xs font-semibold text-slate-300 sm:block">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    {/* Job icon */}
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500 transition-all duration-300 group-hover:bg-blue-600 group-hover:text-white">
-                      <FiBriefcase size={16} />
+                  <div className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
+                    {/* Icon */}
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                      <FiBriefcase className="text-xl" />
                     </div>
 
-                    {/* Job title */}
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-semibold text-slate-800 transition-colors group-hover:text-blue-700 sm:text-[15px]">
-                        {job.title}
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="text-base font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
+                        {category.name}
+                      </h3>
+
+                      <p className="mt-2 line-clamp-2 text-sm leading-5 text-gray-500">
+                        {category.description ||
+                          `Find ${category.name.toLowerCase()} opportunities in ${location}.`}
                       </p>
+                    </div>
 
-                      <div className="mt-1 flex items-center gap-1.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    {/* Bottom */}
+                    <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+                        <FiUsers className="text-sm" />
 
-                        <span className="text-[10px] font-medium text-slate-400">
-                          Opportunities available
-                        </span>
+                        <span>{category.opportunityCount} opportunities</span>
                       </div>
+
+                      <span className="flex items-center gap-1 text-sm font-semibold text-blue-600">
+                        Explore
+                        <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+                      </span>
                     </div>
-
-                    {/* Counter */}
-                    <div className="shrink-0 text-right">
-                      <motion.p
-                        key={job.count}
-                        initial={{
-                          opacity: 0.45,
-                          y: -2,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{ duration: 0.25 }}
-                        className="text-sm font-black tabular-nums text-slate-950 sm:text-[15px]"
-                      >
-                        {formatNumber(job.count)}
-                      </motion.p>
-
-                      <p className="text-[10px] font-medium text-slate-400">
-                        jobs
-                      </p>
-                    </div>
-
-                    {/* Arrow */}
-                    <motion.span
-                      whileHover={{
-                        x: 3,
-                        y: -2,
-                      }}
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition-all group-hover:border-blue-200 group-hover:bg-blue-50 group-hover:text-blue-600"
-                    >
-                      <FiArrowUpRight size={14} />
-                    </motion.span>
-                  </Link>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Expand / collapse */}
-          <div className="border-t border-slate-100 bg-slate-50/50 p-3 sm:p-4">
-            <button
-              type="button"
-              onClick={() => setExpanded((value) => !value)}
-              aria-expanded={expanded}
-              className="group flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 shadow-sm transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
-            >
-              <span>
-                {expanded ? "Show fewer jobs" : "Explore all job types"}
-              </span>
-
-              <motion.span
-                animate={{
-                  rotate: expanded ? 180 : 0,
-                }}
-                transition={{ duration: 0.25 }}
-                className="text-blue-600"
-              >
-                <FiChevronDown size={17} />
-              </motion.span>
-            </button>
-          </div>
-        </motion.div>
-
-        {/* Bottom note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-            delay: 0.2,
-          }}
-          className="mt-4 flex items-center justify-center gap-1.5 text-center text-[10px] text-slate-400 sm:text-xs"
-        >
-          <FiMapPin size={12} />
-
-          <span>Showing opportunities relevant to your location.</span>
-        </motion.div>
+        )}
       </div>
     </section>
   );

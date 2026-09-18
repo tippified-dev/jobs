@@ -1,7 +1,8 @@
 import About from "@/components/About";
 import AdNotice from "@/components/AdNotice";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
-import CurrentArtisanJobs from "@/components/CurrentArtisanJobs";
+
+import CurrentArtisanJobsServer from "@/components/CurrentArtisanJobsServer";
 import Footer from "@/components/Footer";
 import JobAlert from "@/components/JobAlert";
 import JobTypeCategories from "@/components/JobTypeCategories";
@@ -70,7 +71,7 @@ export default function Home() {
       <LiveJobsCounter />
 
       {/* Current Opportunities */}
-      <CurrentArtisanJobs />
+      <CurrentArtisanJobsServer />
 
       {/* Advertisement */}
       <NativeBannerAd />

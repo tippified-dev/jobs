@@ -142,3 +142,45 @@ model Company {
   @@index([isVerified])
   @@index([isActive])
 }
+
+model ArtisanCategory {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  country     String
+  description String?
+  isActive    Boolean @default(true)
+  sortOrder   Int     @default(0)
+
+  opportunities ArtisanOpportunity[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([country])
+  @@index([isActive])
+}
+
+model ArtisanOpportunity {
+  id             String  @id @default(cuid())
+  title          String
+  slug           String  @unique
+  companyName    String
+  description    String
+  country        String
+  location       String?
+  jobType        String?
+  salary         String?
+  applicationUrl String?
+
+  categoryId String
+  category   ArtisanCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([country])
+  @@index([isActive])
+}
