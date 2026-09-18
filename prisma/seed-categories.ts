@@ -621,7 +621,7 @@ async function main() {
         categoryType: category.categoryType,
         seoTitle: category.seoTitle,
         seoDescription: category.seoDescription,
-        icon: category.icon,
+        
         isRemote: category.isRemote,
         isFeatured: category.isFeatured ?? false,
         isActive: true,
@@ -635,7 +635,7 @@ async function main() {
         categoryType: category.categoryType,
         seoTitle: category.seoTitle,
         seoDescription: category.seoDescription,
-        icon: category.icon,
+        
         isRemote: category.isRemote,
         isFeatured: category.isFeatured ?? false,
         isActive: true,

@@ -1,5 +1,3 @@
-"use client";
-
 import About from "@/components/About";
 import AdNotice from "@/components/AdNotice";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";

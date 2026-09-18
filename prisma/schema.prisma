@@ -50,8 +50,6 @@ model JobCategory {
   seoTitle       String?
   seoDescription String?
 
-  icon String?
-
   isRemote   Boolean @default(true)
   isFeatured Boolean @default(false)
   isActive   Boolean @default(true)

@@ -19,6 +19,7 @@ export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
+  console.log("CATEGORY SLUG:", slug);
 
   const category = await prisma.jobCategory.findUnique({
     where: { slug },
@@ -50,7 +51,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       jobs: {
         where: {
           isActive: true,
-          isVerified: false,
+          isVerified: true,
         },
         include: {
           company: true,
