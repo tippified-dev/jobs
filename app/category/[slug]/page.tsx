@@ -15,28 +15,24 @@ function formatCategoryName(slug: string) {
     .join(" ");
 }
 
+/*
+ * TEMPORARY DIAGNOSTIC:
+ * Do not query Prisma inside generateMetadata.
+ *
+ * This lets us determine whether the production 500
+ * is being caused by the metadata Prisma query.
+ */
 export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
-
-  const category = await prisma.jobCategory.findUnique({
-    where: { slug },
-  });
-
-  if (!category) {
-    return {
-      title: "Job Category | Global Jobs Live",
-    };
-  }
+  const categoryName = formatCategoryName(slug);
 
   return {
-    title: `${category.name} Jobs | Global Jobs Live`,
-    description:
-      category.seoDescription ||
-      `Find ${category.name} jobs, remote opportunities and career opportunities on Global Jobs Live.`,
+    title: `${categoryName} Jobs | Global Jobs Live`,
+    description: `Find ${categoryName} jobs, remote opportunities and career opportunities on Global Jobs Live.`,
     alternates: {
-      canonical: `/category/${category.slug}`,
+      canonical: `/category/${slug}`,
     },
   };
 }
