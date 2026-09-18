@@ -19,7 +19,6 @@ export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
-  console.log("CATEGORY SLUG:", slug);
 
   const category = await prisma.jobCategory.findUnique({
     where: { slug },
@@ -49,39 +48,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     where: {
       slug,
     },
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-      description: true,
-      shortDescription: true,
-      categoryType: true,
-      jobs: {
-        where: {
-          isActive: true,
-        },
-        select: {
-          id: true,
-          slug: true,
-          title: true,
-          country: true,
-          location: true,
-          workMode: true,
-          company: {
-            select: {
-              name: true,
-            },
-          },
-        },
-        orderBy: {
-          publishedAt: "desc",
-        },
-      },
-    },
   });
+
   if (!category) {
     notFound();
   }
+
+  const jobs = await prisma.job.findMany({
+    where: {
+      categoryId: category.id,
+      isActive: true,
+    },
+    include: {
+      company: true,
+    },
+    orderBy: {
+      publishedAt: "desc",
+    },
+  });
 
   const categoryName = category.name || formatCategoryName(slug);
 
@@ -106,14 +90,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </p>
 
           <p className="mt-4 text-sm font-medium text-slate-500">
-            {category.jobs.length} available job
-            {category.jobs.length === 1 ? "" : "s"}
+            {jobs.length} available job
+            {jobs.length === 1 ? "" : "s"}
           </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-6 lg:px-8">
-        {category.jobs.length === 0 ? (
+        {jobs.length === 0 ? (
           <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center">
             <h2 className="text-xl font-bold text-slate-900">
               No jobs available yet
@@ -132,7 +116,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
         ) : (
           <div className="grid gap-4">
-            {category.jobs.map((job) => (
+            {jobs.map((job) => (
               <Link
                 key={job.id}
                 href={`/jobs/${job.slug}`}
