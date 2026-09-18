@@ -188,7 +188,7 @@ const jobs: JobSeed[] = [
     description:
       "Assist customers through digital communication channels, answer questions, resolve issues and provide helpful service.",
     companySlug: "amazon",
-    categorySlug: "customer-service",
+    categorySlug: "customer-support",
     country: "United States",
     countryCode: "US",
     location: "United States",

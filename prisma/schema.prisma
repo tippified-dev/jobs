@@ -37,31 +37,31 @@ enum ExperienceLevel {
 }
 
 model JobCategory {
-  id               String       @id @default(cuid())
+  id String @id @default(cuid())
 
-  name             String
-  slug             String       @unique
+  name String
+  slug String @unique
 
   shortDescription String
   description      String
 
-  categoryType     CategoryType
+  categoryType CategoryType
 
-  seoTitle         String?
-  seoDescription   String?
+  seoTitle       String?
+  seoDescription String?
 
-  icon             String?
+  icon String?
 
-  isRemote         Boolean      @default(true)
-  isFeatured       Boolean      @default(false)
-  isActive         Boolean      @default(true)
+  isRemote   Boolean @default(true)
+  isFeatured Boolean @default(false)
+  isActive   Boolean @default(true)
 
-  sortOrder        Int          @default(0)
+  sortOrder Int @default(0)
 
-  jobs             Job[]
+  jobs Job[]
 
-  createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([categoryType])
   @@index([isActive])
@@ -101,7 +101,7 @@ model Job {
   isFeatured Boolean @default(false)
   isActive   Boolean @default(true)
 
-  publishedAt DateTime @default(now())
+  publishedAt DateTime  @default(now())
   expiresAt   DateTime?
 
   createdAt DateTime @default(now())
@@ -118,12 +118,11 @@ model Job {
   @@index([publishedAt])
 }
 
-
 model Company {
   id String @id @default(cuid())
 
   name        String
-  slug        String @unique
+  slug        String  @unique
   description String?
 
   website String?
