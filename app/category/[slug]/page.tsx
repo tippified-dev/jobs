@@ -46,14 +46,32 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
 
   const category = await prisma.jobCategory.findUnique({
-    where: { slug },
-    include: {
+    where: {
+      slug,
+    },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      description: true,
+      shortDescription: true,
+      categoryType: true,
       jobs: {
         where: {
           isActive: true,
         },
-        include: {
-          company: true,
+        select: {
+          id: true,
+          slug: true,
+          title: true,
+          country: true,
+          location: true,
+          workMode: true,
+          company: {
+            select: {
+              name: true,
+            },
+          },
         },
         orderBy: {
           publishedAt: "desc",
@@ -61,7 +79,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       },
     },
   });
-
   if (!category) {
     notFound();
   }
