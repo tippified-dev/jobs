@@ -535,61 +535,405 @@ export const jobCategories: JobCategory[] = [
     ],
   },
 ];
+const companyNamesByCountry: Record<string, string[]> = {
+  "United States": [
+    "Redwood Digital",
+    "Maple Street Services",
+    "Oak & Stone Group",
+    "Harbor Ridge Solutions",
+    "Pinecrest Consulting",
+    "Westlake Business Services",
+    "Clearwater Technology",
+    "Summit Ridge Partners",
+    "Northfield Systems",
+    "Cedar Hill Services",
+    "Blue River Solutions",
+    "Granite Peak Group",
+    "Lakeside Professional Services",
+    "Brighton Works",
+    "Evergreen Business Group",
+    "Brookside Technologies",
+    "Silver Lake Partners",
+    "Westbridge Solutions",
+    "Fairmont Services",
+    "Crown Point Consulting",
+    "Riverside Operations",
+    "Hillcrest Digital",
+    "Stonebrook Group",
+    "Green Valley Services",
+  ],
 
-/* =========================================================
-   COMPANY NAME POOLS
-   These are seed/demo names. Replace with verified employers
-   when adding real vacancies.
-========================================================= */
+  "United Kingdom": [
+    "Ashford & Co",
+    "Bromley Services",
+    "Westbury Solutions",
+    "Hawthorne Business Services",
+    "Kingsley Group",
+    "Redcliffe Consulting",
+    "Oakwell Digital",
+    "Harrington Partners",
+    "Fairbourne Services",
+    "Northgate Solutions",
+    "Wellington Business Group",
+    "Langford Systems",
+    "Whitmore Services",
+    "Blackthorn Consulting",
+    "Cavendish Digital",
+    "Ridgeway Partners",
+    "Mayfair Business Services",
+    "Westminster Solutions",
+    "Greenford Group",
+    "Highbury Services",
+    "Belmont Consulting",
+    "Cranford Digital",
+    "Richmond Operations",
+    "Bexley Solutions",
+  ],
 
-const companyPrefixes = [
-  "Northstar",
-  "Brightpath",
-  "Crestline",
-  "Bluefield",
-  "Silveroak",
-  "Evermark",
-  "Primebridge",
-  "Westpoint",
-  "Greenfield",
-  "Oakridge",
-  "Summit",
-  "Clearview",
-  "Redstone",
-  "Grandline",
-  "Stonebridge",
-  "Riverside",
-  "Nexfield",
-  "Harborview",
-  "Eastgate",
-  "Skyline",
-  "Pioneer",
-  "Brookfield",
-  "Cedarpoint",
-  "Lighthouse",
-  "Fairview",
-  "Goldencrest",
-  "Urbanpoint",
-  "Meadowridge",
-  "Bluecrest",
-  "Highland",
-];
+  Canada: [
+    "Maple Ridge Services",
+    "North Shore Solutions",
+    "Cedar & Lake Group",
+    "Granite North Consulting",
+    "Westmount Business Services",
+    "Redwood Professional Group",
+    "Kingston Digital",
+    "Prairie Oak Solutions",
+    "Lakeshore Partners",
+    "Evergreen Systems",
+    "Pine Valley Services",
+    "Clearbrook Consulting",
+    "Riverview Business Group",
+    "Cedar Grove Technologies",
+    "Northern Crest Solutions",
+    "Westfield Services",
+    "Oakland Professional Group",
+    "Harbour Point Consulting",
+    "Silver Birch Systems",
+    "Bluewater Partners",
+    "Grandview Digital",
+    "Rockland Services",
+    "Meadowbrook Group",
+    "Eastwood Solutions",
+  ],
 
-const companySuffixes = [
-  "Solutions",
-  "Services",
-  "Group",
-  "Technologies",
-  "Systems",
-  "Enterprises",
-  "Industries",
-  "Partners",
-  "Consulting",
-  "Digital",
-  "Global",
-  "International",
-];
+  Australia: [
+    "Southern Cross Services",
+    "Harbour Street Group",
+    "Coastal Ridge Solutions",
+    "Blue Gum Consulting",
+    "Redfern Business Services",
+    "Wattle & Co",
+    "Pacific Edge Solutions",
+    "Ironbark Group",
+    "Lighthouse Business Services",
+    "Westhaven Consulting",
+    "Cedar Point Digital",
+    "Sandstone Partners",
+    "Brightwater Services",
+    "Oakridge Business Group",
+    "Coral Coast Solutions",
+    "Riverstone Consulting",
+    "Banksia Professional Services",
+    "North Harbour Group",
+    "Greenfield Digital",
+    "Summit Coast Solutions",
+    "Glenwood Services",
+    "Southern Vale Partners",
+    "Kingsford Consulting",
+    "Bluewater Business Group",
+  ],
 
+  Germany: [
+    "Rheinblick Solutions",
+    "Westfalen Digital",
+    "Hanseatic Business Services",
+    "Bergmann Consulting",
+    "Nordstern Systems",
+    "Alpenblick Group",
+    "Rheinland Partners",
+    "Mainzer Services",
+    "Waldorf Business Solutions",
+    "Eichenberg Consulting",
+    "Hoffmann Digital",
+    "Kronberg Systems",
+    "Falkenstein Services",
+    "Neustadt Business Group",
+    "Bremen Technology Services",
+    "Sonnenfeld Consulting",
+    "Lindenberg Solutions",
+    "Frankfurt Business Partners",
+    "Heidelberg Digital",
+    "Rosenberg Services",
+    "Westmark Consulting",
+    "Keller & Partner",
+    "Düsseldorf Business Solutions",
+    "Bergtal Systems",
+  ],
+
+  France: [
+    "Maison Rivière",
+    "Bellecour Conseil",
+    "Montparnasse Services",
+    "Lumière Digital",
+    "Rive Gauche Solutions",
+    "Atelier Laurent",
+    "Clairmont Conseil",
+    "Beaumont Services",
+    "Vallon Business Group",
+    "Montrose Digital",
+    "Saint Martin Solutions",
+    "Rochefort Consulting",
+    "Bellevue Services",
+    "Provence Business Partners",
+    "Marceau Digital",
+    "Champs Conseil",
+    "Lyonnais Solutions",
+    "Bordeaux Services",
+    "Côte Business Group",
+    "Nouvelle France Consulting",
+    "Rivoli Digital",
+    "Montpellier Partners",
+    "Versailles Business Services",
+    "Auberge Solutions",
+  ],
+
+  Nigeria: [
+    "Oakfield Services",
+    "Cedar Point Nigeria",
+    "Mainland Business Solutions",
+    "Atlantic Crest Services",
+    "Westbridge Nigeria",
+    "Lagos Business Partners",
+    "Greenview Consulting",
+    "Prime Coast Services",
+    "Riverside Nigeria",
+    "Crownfield Solutions",
+    "Heritage Business Group",
+    "Bluegate Services",
+    "Parkview Consulting",
+    "Northstar Nigeria",
+    "Summit Edge Solutions",
+    "Clearline Business Services",
+    "Hilltop Partners",
+    "Metrocrest Digital",
+    "Golden Bridge Services",
+    "Eastpoint Consulting",
+    "Urban Crest Group",
+    "Kingsway Solutions",
+    "Lighthouse Nigeria",
+    "Broadview Services",
+  ],
+
+  "South Africa": [
+    "Cape Ridge Services",
+    "Highveld Business Solutions",
+    "Tableview Consulting",
+    "Umhlanga Digital",
+    "Golden Mile Services",
+    "Karoo Business Group",
+    "Southern Crest Solutions",
+    "Cape Point Partners",
+    "Bluewater Consulting",
+    "Randburg Services",
+    "Rosebank Business Solutions",
+    "Highland Digital",
+    "Durban Coast Group",
+    "Vaal Professional Services",
+    "Sandton Consulting",
+    "Garden Route Solutions",
+    "Morningside Business Group",
+    "Atlantic View Services",
+    "West Coast Digital",
+    "Pretoria Business Partners",
+    "Oaklands Consulting",
+    "Cape Valley Solutions",
+    "Midlands Services",
+    "Riverside South Africa",
+  ],
+
+  China: [
+    "Shanghai Horizon Services",
+    "Beijing Northbridge Solutions",
+    "Pearl River Business Group",
+    "Shenzhen Brightway Technology",
+    "Jade Coast Services",
+    "Eastern Gate Consulting",
+    "Golden River Solutions",
+    "Harbor City Digital",
+    "Sino Crest Business Services",
+    "Panda Ridge Consulting",
+    "Eastlake Technology Group",
+    "Blue Harbor Solutions",
+    "Dragon Bridge Services",
+    "Silk Road Business Partners",
+    "Pacific Horizon Digital",
+    "Jiangnan Consulting",
+    "Grand River Systems",
+    "Oriental Crest Services",
+    "Shanghai Westfield Group",
+    "Beijing Summit Solutions",
+    "Pearl Coast Consulting",
+    "Guangzhou Business Services",
+    "Shenzhen Lakeside Digital",
+    "Eastern Horizon Partners",
+  ],
+
+  India: [
+    "Banyan Tree Solutions",
+    "Crescent Business Services",
+    "Blue Lotus Technologies",
+    "Indus Bridge Consulting",
+    "Silverline Digital",
+    "Westfield Business Group",
+    "Cedar Valley Solutions",
+    "Pioneer Business Services",
+    "Urban Edge Consulting",
+    "Greenpark Technologies",
+    "Lakeview Digital",
+    "Ridgeway Solutions",
+    "Bengaluru Business Partners",
+    "Mumbai Crest Services",
+    "Horizon India Group",
+    "Oakwood Consulting",
+    "Sunrise Business Solutions",
+    "Vertex Professional Services",
+    "Riverstone Digital",
+    "Eastgate Technologies",
+    "Metroline Consulting",
+    "Crown Valley Services",
+    "Blue Horizon Group",
+    "Parkside Business Solutions",
+  ],
+
+  Japan: [
+    "Hikari Solutions",
+    "Sakura Business Services",
+    "Mori Digital",
+    "Aozora Consulting",
+    "Kawasaki Business Group",
+    "Harbor East Solutions",
+    "Nakamura Services",
+    "Fuji Crest Consulting",
+    "Asahi Technology",
+    "Kiyomi Business Partners",
+    "Tokyo Bridge Solutions",
+    "Midori Digital Services",
+    "Yamato Business Group",
+    "Sora Consulting",
+    "Shinagawa Services",
+    "Kita Systems",
+    "Takara Solutions",
+    "Hinode Business Services",
+    "Osaka Crest Group",
+    "Akira Digital",
+    "Mizuho Consulting",
+    "Kansai Business Partners",
+    "Rin Technology Services",
+    "Hoshi Solutions",
+  ],
+
+  Indonesia: [
+    "Nusantara Business Services",
+    "Jakarta Crest Solutions",
+    "Garuda Digital",
+    "Bali Horizon Group",
+    "Merapi Consulting",
+    "Cendana Business Services",
+    "Java Coast Solutions",
+    "Archipelago Partners",
+    "Surya Digital",
+    "Bandung Business Group",
+    "Matahari Services",
+    "Rimba Consulting",
+    "Santara Solutions",
+    "Pacific Nusantara Group",
+    "Kencana Business Services",
+    "Lestari Digital",
+    "Jaya Consulting",
+    "Citra Business Partners",
+    "Borneo Solutions",
+    "Jakarta Harbour Services",
+    "Indo Crest Group",
+    "Samudra Consulting",
+    "Daya Digital",
+    "Nusa Business Solutions",
+  ],
+
+  "New Zealand": [
+    "Southern Alps Services",
+    "Harbour View Solutions",
+    "Kauri Business Group",
+    "Tasman Consulting",
+    "Silver Fern Digital",
+    "Rimu Services",
+    "Pacific Edge Partners",
+    "Aoraki Solutions",
+    "Coastal Business Services",
+    "Wellington Crest Group",
+    "Kiwi Valley Consulting",
+    "Pohutukawa Digital",
+    "Otago Business Solutions",
+    "Northland Services",
+    "Alpine Ridge Partners",
+    "Waitaki Consulting",
+    "Harbour Bridge Digital",
+    "Canterbury Business Group",
+    "Tui Solutions",
+    "Southern Coast Services",
+    "Manuka Consulting",
+    "Westland Digital",
+    "Koru Business Partners",
+    "Lakeside New Zealand",
+  ],
+
+  Singapore: [
+    "Marina Business Services",
+    "Orchard Crest Solutions",
+    "Lion City Digital",
+    "Raffles Consulting",
+    "Harbourfront Business Group",
+    "East Coast Solutions",
+    "Sentosa Services",
+    "Tanjong Partners",
+    "Merlion Digital",
+    "Civic Centre Consulting",
+    "Straits Business Solutions",
+    "Jalan Besar Services",
+    "Clarke Quay Group",
+    "Riverside Singapore",
+    "Orchard Business Partners",
+    "Marina Crest Digital",
+    "Bukit Solutions",
+    "Central Business Services",
+    "Harbour View Consulting",
+    "Eastgate Singapore",
+    "Novena Business Group",
+    "Tiong Bahru Solutions",
+    "West Coast Digital",
+    "Crescent Singapore",
+  ],
+};
+
+function createCompany(
+  companyIndex: number,
+  country: JobCountry
+): JobCompany {
+  const names =
+    companyNamesByCountry[country.name] ?? [
+      "Independent Business Services",
+    ];
+
+  const name =
+    names[companyIndex % names.length];
+
+  return {
+    id: `company-${country.slug}-${slugify(name)}`,
+    name,
+    slug: slugify(name),
+    country: country.name,
+  };
+}
 /* =========================================================
    TITLE POOLS
 ========================================================= */
@@ -1097,42 +1441,9 @@ function deterministicCode(
   return value.toString(36);
 }
 
-function createCompanyName(
-  companyIndex: number,
-  categoryIndex: number
-) {
-  const prefix =
-    companyPrefixes[
-      (companyIndex + categoryIndex * 3) %
-        companyPrefixes.length
-    ];
 
-  const suffix =
-    companySuffixes[
-      (companyIndex * 2 + categoryIndex) %
-        companySuffixes.length
-    ];
 
-  return `${prefix} ${suffix}`;
-}
 
-function createCompany(
-  companyIndex: number,
-  categoryIndex: number,
-  country: string
-): JobCompany {
-  const name = createCompanyName(
-    companyIndex,
-    categoryIndex
-  );
-
-  return {
-    id: `company-${slugify(name)}-${country.toLowerCase().replace(/\s+/g, "-")}`,
-    name,
-    slug: slugify(name),
-    country,
-  };
-}
 
 function getJobType(
   index: number,
@@ -1334,11 +1645,8 @@ function createJobs(): Job[] {
           );
 
           const company = createCompany(
-            categoryIndex * 10 +
-              countryIndex +
-              i,
-            categoryIndex,
-            country.name
+            categoryIndex * 2 + i,
+             country
           );
 
           const baseSlug =  `${slugify(title)}-${country.slug}`  ;
