@@ -1,3 +1,4 @@
+import BackToJobs from "@/components/BackToJobs";
 import JobApplication from "@/components/JobApplication";
 import { getJobBySlug, jobs, type Job } from "@/lib/job-data";
 import type { Metadata } from "next";
@@ -374,15 +375,7 @@ export default async function JobPage({ params }: PageProps) {
       {/* Header */}
       <section className="border-b bg-white">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <Link
-              href="/jobs"
-              className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-blue-600"
-            >
-              <span aria-hidden="true">←</span>
-              Back to Jobs
-            </Link>
-          </div>
+          <BackToJobs />
 
           <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
             <div>
