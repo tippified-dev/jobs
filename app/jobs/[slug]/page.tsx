@@ -1,8 +1,8 @@
+import JobApplication from "@/components/JobApplication";
+import { getJobBySlug, jobs, type Job } from "@/lib/job-data";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-import { getJobBySlug, jobs, type Job } from "@/lib/job-data";
 
 type PageProps = {
   params: Promise<{
@@ -374,27 +374,13 @@ export default async function JobPage({ params }: PageProps) {
       {/* Header */}
       <section className="border-b bg-white">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="mb-6 flex flex-wrap items-center gap-2 text-sm text-slate-500">
-            <Link href="/jobs" className="hover:text-blue-600">
-              Jobs
-            </Link>
-
-            <span>/</span>
-
+          <div className="mb-6">
             <Link
-              href={`/category/${job.categorySlug}`}
-              className="hover:text-blue-600"
+              href="/jobs"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-blue-600"
             >
-              {job.category}
-            </Link>
-
-            <span>/</span>
-
-            <Link
-              href={`/country/${countrySlug}`}
-              className="hover:text-blue-600"
-            >
-              {job.country}
+              <span aria-hidden="true">←</span>
+              Back to Jobs
             </Link>
           </div>
 
@@ -437,22 +423,8 @@ export default async function JobPage({ params }: PageProps) {
               <p className="text-sm font-medium text-slate-500">Salary</p>
 
               <p className="mt-2 text-xl font-bold text-slate-900">{salary}</p>
-
-              {job.applicationUrl ? (
-                <a
-                  href={job.applicationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
-                >
-                  Apply for this job
-                </a>
-              ) : (
-                <span className="mt-6 flex w-full cursor-not-allowed items-center justify-center rounded-xl bg-slate-200 px-5 py-3 text-sm font-semibold text-slate-500">
-                  Application unavailable
-                </span>
-              )}
             </div>
+            <JobApplication />
           </div>
         </div>
       </section>
