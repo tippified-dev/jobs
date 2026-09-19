@@ -1441,6 +1441,32 @@ function deterministicCode(
   return value.toString(36);
 }
 
+const publishedAgeDays = [
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+];
+
+function getPublishedDate(index: number) {
+  const daysAgo =
+    publishedAgeDays[index % publishedAgeDays.length];
+
+  return new Date(
+    Date.now() -
+      daysAgo *
+        24 *
+        60 *
+        60 *
+        1000
+  );
+}
+
 
 
 
@@ -1667,14 +1693,8 @@ function createJobs(): Job[] {
               workMode
             );
 
-          const publishedDate = new Date(
-            Date.now() -
-              globalIndex *
-                24 *
-                60 *
-                60 *
-                1000
-          );
+          const publishedDate = getPublishedDate(globalIndex)
+            
 
           jobs.push({
             id: `job-${code}-${country.code.toLowerCase()}-${category.slug}`,
