@@ -1,4 +1,5 @@
-import { prisma } from "@/lib/prisma";
+import { artisanCategories, getArtisanCategory } from "@/lib/artisan-data";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -14,44 +15,39 @@ type Props = {
   }>;
 };
 
+export function generateStaticParams() {
+  return artisanCategories.map((category) => ({
+    slug: category.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
 
-  const category = await prisma.artisanCategory.findUnique({
-    where: {
-      slug,
-    },
-    select: {
-      name: true,
-      description: true,
-      country: true,
-    },
-  });
+  const category = getArtisanCategory(slug);
 
   if (!category) {
     return {
       title: "Artisan Jobs & Opportunities | Global Jobs Live",
       description:
-        "Find artisan jobs, local opportunities and service-based work on Global Jobs Live.",
+        "Find artisan jobs and local opportunities on Global Jobs Live.",
     };
   }
 
   const title = `${category.name} Jobs & Opportunities in Nigeria | Global Jobs Live`;
 
-  const description =
-    category.description ||
-    `Find ${category.name.toLowerCase()} jobs and opportunities in Nigeria. Explore opportunities in Lagos, Abuja and Port Harcourt on Global Jobs Live.`;
+  const description = category.description;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `https://globaljobslive.com/artisan/${slug}`,
+      canonical: `https://globaljobslive.com/artisan/${category.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://globaljobslive.com/artisan/${slug}`,
+      url: `https://globaljobslive.com/artisan/${category.slug}`,
       siteName: "Global Jobs Live",
       type: "website",
     },
@@ -66,63 +62,17 @@ export async function generateMetadata({ params }: Props) {
 export default async function ArtisanCategoryPage({ params }: Props) {
   const { slug } = await params;
 
-  const category = await prisma.artisanCategory.findUnique({
-    where: {
-      slug,
-      isActive: true,
-    },
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-      description: true,
-      country: true,
-    },
-  });
+  const category = getArtisanCategory(slug);
 
   if (!category) {
     notFound();
   }
 
-  const opportunities = await prisma.artisanOpportunity.findMany({
-    where: {
-      categoryId: category.id,
-      isActive: true,
-    },
-    orderBy: [
-      {
-        createdAt: "desc",
-      },
-      {
-        title: "asc",
-      },
-    ],
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-      companyName: true,
-      description: true,
-      location: true,
-      jobType: true,
-      salary: true,
-    },
-  });
+  const opportunities = category.opportunities;
 
   const pageTitle = `${category.name} Jobs & Opportunities in Nigeria`;
 
-  const pageDescription =
-    category.description ||
-    `Explore ${category.name.toLowerCase()} jobs and opportunities across Lagos, Abuja and Port Harcourt, Nigeria.`;
-
   const canonicalUrl = `https://globaljobslive.com/artisan/${category.slug}`;
-
-  const itemListSchema = opportunities.map((opportunity, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: opportunity.title,
-    url: `https://globaljobslive.com/artisan/${category.slug}/${opportunity.slug}`,
-  }));
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -153,7 +103,7 @@ export default async function ArtisanCategoryPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: pageTitle,
-    description: pageDescription,
+    description: category.description,
     url: canonicalUrl,
     isPartOf: {
       "@type": "WebSite",
@@ -163,13 +113,17 @@ export default async function ArtisanCategoryPage({ params }: Props) {
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: opportunities.length,
-      itemListElement: itemListSchema,
+      itemListElement: opportunities.map((opportunity, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: opportunity.title,
+        url: `https://globaljobslive.com/artisan/${category.slug}/${opportunity.slug}`,
+      })),
     },
   };
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* SEO Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -185,7 +139,6 @@ export default async function ArtisanCategoryPage({ params }: Props) {
       />
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Back */}
         <Link
           href="/"
           className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition hover:text-blue-600"
@@ -194,7 +147,6 @@ export default async function ArtisanCategoryPage({ params }: Props) {
           Back to Global Jobs Live
         </Link>
 
-        {/* Category Header */}
         <header className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <div className="max-w-4xl">
@@ -208,24 +160,19 @@ export default async function ArtisanCategoryPage({ params }: Props) {
               </h1>
 
               <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-600 sm:text-base">
-                {pageDescription}
+                {category.description}
               </p>
 
               <div className="mt-5 flex flex-wrap gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                  <FiMapPin />
-                  Lagos
-                </span>
-
-                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                  <FiMapPin />
-                  Abuja
-                </span>
-
-                <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                  <FiMapPin />
-                  Port Harcourt
-                </span>
+                {["Lagos", "Abuja", "Port Harcourt"].map((location) => (
+                  <span
+                    key={location}
+                    className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700"
+                  >
+                    <FiMapPin />
+                    {location}
+                  </span>
+                ))}
               </div>
             </div>
 
@@ -241,7 +188,6 @@ export default async function ArtisanCategoryPage({ params }: Props) {
           </div>
         </header>
 
-        {/* Opportunities */}
         <section aria-labelledby="available-opportunities">
           <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -263,79 +209,59 @@ export default async function ArtisanCategoryPage({ params }: Props) {
             </span>
           </div>
 
-          {opportunities.length === 0 ? (
-            <div className="rounded-2xl border border-gray-200 bg-white p-10 text-center">
-              <FiBriefcase className="mx-auto mb-3 text-3xl text-gray-400" />
+          <div className="grid gap-4">
+            {opportunities.map((opportunity) => {
+              const opportunityUrl = `/artisan/${category.slug}/${opportunity.slug}`;
 
-              <h3 className="font-semibold text-gray-900">
-                No opportunities available
-              </h3>
+              return (
+                <Link
+                  key={opportunity.id}
+                  href={opportunityUrl}
+                  className="group block"
+                >
+                  <article className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md sm:p-6">
+                    <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">
+                            {opportunity.title}
+                          </h3>
 
-              <p className="mt-2 text-sm text-gray-500">
-                There are currently no active opportunities in this category.
-              </p>
-            </div>
-          ) : (
-            <div className="grid gap-4">
-              {opportunities.map((opportunity) => {
-                const opportunityUrl = `/artisan/${category.slug}/${opportunity.slug}`;
-
-                return (
-                  <Link
-                    key={opportunity.id}
-                    href={opportunityUrl}
-                    className="group block"
-                  >
-                    <article className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md sm:p-6">
-                      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="min-w-0 flex-1">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">
-                              {opportunity.title}
-                            </h3>
-
-                            {opportunity.jobType && (
-                              <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600">
-                                {opportunity.jobType.replace(/_/g, " ")}
-                              </span>
-                            )}
-                          </div>
-
-                          <p className="mt-2 font-medium text-gray-700">
-                            {opportunity.companyName}
-                          </p>
-
-                          <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
-                            {opportunity.description}
-                          </p>
-
-                          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500">
-                            {opportunity.location && (
-                              <span className="inline-flex items-center gap-1.5">
-                                <FiMapPin />
-                                {opportunity.location}, Nigeria
-                              </span>
-                            )}
-
-                            {opportunity.salary && (
-                              <span className="font-medium text-gray-700">
-                                {opportunity.salary}
-                              </span>
-                            )}
-                          </div>
+                          <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600">
+                            {opportunity.jobType.replace(/_/g, " ")}
+                          </span>
                         </div>
 
-                        <div className="flex shrink-0 items-center gap-2 text-sm font-semibold text-blue-600">
-                          View opportunity
-                          <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+                        <p className="mt-2 font-medium text-gray-700">
+                          {opportunity.companyName}
+                        </p>
+
+                        <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
+                          {opportunity.description}
+                        </p>
+
+                        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500">
+                          <span className="inline-flex items-center gap-1.5">
+                            <FiMapPin />
+                            {opportunity.location}, Nigeria
+                          </span>
+
+                          <span className="font-medium text-gray-700">
+                            {opportunity.salary}
+                          </span>
                         </div>
                       </div>
-                    </article>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
+
+                      <div className="flex shrink-0 items-center gap-2 text-sm font-semibold text-blue-600">
+                        View opportunity
+                        <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              );
+            })}
+          </div>
         </section>
       </div>
     </main>
