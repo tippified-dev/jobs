@@ -47,6 +47,7 @@ export type Job = {
   company: JobCompany;
 
   description: string;
+  publishedDaysAgo: number;
 
   category: string;
   categorySlug: string;
@@ -1446,11 +1447,7 @@ const publishedAgeDays = [
   3,
   4,
   5,
-  6,
-  7,
-  8,
-  9,
-  10,
+ 
 ];
 
 function getPublishedDate(index: number) {
@@ -1693,7 +1690,12 @@ function createJobs(): Job[] {
               workMode
             );
 
-          const publishedDate = getPublishedDate(globalIndex)
+         const publishedDaysAgo =
+  publishedAgeDays[
+    globalIndex % publishedAgeDays.length
+  ];
+
+const publishedDate = getPublishedDate(globalIndex);
             
 
           jobs.push({
@@ -1752,6 +1754,7 @@ function createJobs(): Job[] {
 
             publishedAt:
               publishedDate.toISOString(),
+            publishedDaysAgo,
 
             expiresAt: null,
           });

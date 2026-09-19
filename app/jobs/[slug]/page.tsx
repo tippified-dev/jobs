@@ -546,9 +546,9 @@ export default async function JobPage({ params }: PageProps) {
                   <dt className="text-sm text-slate-500">Published</dt>
 
                   <dd className="mt-1 font-medium text-slate-900">
-                    {new Intl.DateTimeFormat("en", {
-                      dateStyle: "medium",
-                    }).format(new Date(job.publishedAt))}
+                    {job.publishedDaysAgo === 1
+                      ? "1 day ago"
+                      : `${job.publishedDaysAgo} days ago`}
                   </dd>
                 </div>
               </dl>
