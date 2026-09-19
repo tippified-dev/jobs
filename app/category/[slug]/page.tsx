@@ -94,7 +94,7 @@ function OpportunityCard({
 }) {
   return (
     <Link
-      href={`/jobs/${opportunity.slug}`}
+      href={`/opportunities/${opportunity.slug}`}
       className="group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
     >
       <div className="flex flex-col gap-5">
@@ -264,7 +264,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           "@type": "ListItem",
           position: index + 1,
           name: opportunity.title,
-          url: `https://globaljobslive.com/jobs/${opportunity.slug}`,
+          url: `https://globaljobslive.com/opportunities/${opportunity.slug}`,
         }),
       ),
     },
