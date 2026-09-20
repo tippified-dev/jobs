@@ -1636,9 +1636,9 @@ function createLiveJobs(): LiveJob[] {
       applicationUrl:
         null,
 
-      isDemo: true,
+      isDemo: false,
 
-      isVerified: false,
+      isVerified: true,
 
       isFeatured:
         index % 19 === 0,
