@@ -27,13 +27,13 @@ const trustPoints = [
     icon: FiBriefcase,
     title: "Thousands Of Opportunities",
     description:
-      "From remote careers and online jobs to side jobs and flexible opportunities, Job4all brings different types of work opportunities together in one place.",
+      "From remote careers and online jobs to side jobs and flexible opportunities, globaljobslive brings different types of work opportunities together in one place.",
   },
   {
     icon: FiUsers,
     title: "Built For Job Seekers",
     description:
-      "Job4all is designed to make discovering opportunities easier, faster and more accessible for people looking to build better careers and earn online.",
+      "globaljobslive is designed to make discovering opportunities easier, faster and more accessible for people looking to build better careers and earn online.",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function AboutUs() {
             className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-bold uppercase tracking-wider text-blue-600"
           >
             <FiCheckCircle size={14} />
-            About Job4all
+            About globaljobslive
           </motion.div>
 
           <motion.h2
@@ -97,11 +97,11 @@ export default function AboutUs() {
             transition={{ duration: 0.6, delay: 0.16 }}
             className="mt-6 text-lg leading-8 text-slate-600"
           >
-            Job4all is a Nigerian job discovery platform built to make finding
-            genuine online, remote and flexible work opportunities easier. We
-            bring opportunities from across Nigeria and around the world into
-            one simple place where job seekers can discover their next
-            opportunity.
+            globaljobslive is a Nigerian job discovery platform built to make
+            finding genuine online, remote and flexible work opportunities
+            easier. We bring opportunities from across Nigeria and around the
+            world into one simple place where job seekers can discover their
+            next opportunity.
           </motion.p>
         </div>
 
@@ -139,11 +139,11 @@ export default function AboutUs() {
                 </p>
 
                 <p>
-                  Job4all was created to make that search easier. We bring
-                  online jobs, remote jobs, side jobs, freelance opportunities
-                  and other flexible work opportunities together so job seekers
-                  can spend less time searching and more time applying for
-                  opportunities that match their skills.
+                  globaljobslive was created to make that search easier. We
+                  bring online jobs, remote jobs, side jobs, freelance
+                  opportunities and other flexible work opportunities together
+                  so job seekers can spend less time searching and more time
+                  applying for opportunities that match their skills.
                 </p>
 
                 <p>
@@ -193,7 +193,7 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Why Job4all */}
+        {/* Why globaljobslive */}
         <div className="mt-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -203,7 +203,7 @@ export default function AboutUs() {
             className="max-w-2xl"
           >
             <span className="text-sm font-bold uppercase tracking-wider text-blue-600">
-              Why Job4all?
+              Why globaljobslive?
             </span>
 
             <h3 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
@@ -212,7 +212,7 @@ export default function AboutUs() {
 
             <p className="mt-4 text-base leading-7 text-slate-600">
               We believe job seekers deserve a better way to discover
-              opportunities online. That is why Job4all is built around
+              opportunities online. That is why globaljobslive is built around
               authenticity, accessibility and a wide variety of opportunities.
             </p>
           </motion.div>
@@ -265,7 +265,7 @@ export default function AboutUs() {
 
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
             Explore online, remote, flexible and side job opportunities
-            available through Job4all.
+            available through globaljobslive.
           </p>
 
           <motion.a
