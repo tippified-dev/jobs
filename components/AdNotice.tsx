@@ -27,7 +27,7 @@ export default function AdNotice() {
 
         <p className="text-xs leading-5 text-slate-500 sm:text-sm">
           <span className="font-semibold text-slate-800">
-            Keeping Jobs4all free.
+            Keeping Global Jobs Live free.
           </span>{" "}
           We display a small number of adverts to support the platform.
         </p>

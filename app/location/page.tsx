@@ -213,7 +213,7 @@ export default function LocationPage() {
             className="text-center text-xs leading-5 text-slate-500 sm:text-sm"
           >
             <span className="font-semibold text-slate-900">
-              Keeping Jobs4all free.
+              Keeping Global jobs live free.
             </span>{" "}
             We display some adverts which help to fund the platform. Please bear
             with us.
