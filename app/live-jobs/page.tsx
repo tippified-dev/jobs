@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import {
   FiArrowRight,
@@ -9,6 +10,8 @@ import {
 
 import LiveJobsDashboard from "@/components/LiveJobsDashboard";
 import { getFreshLiveJobs, getLiveJobCount } from "@/lib/live-job-data";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Live Jobs | Global Jobs Live",
@@ -26,12 +29,25 @@ export const metadata: Metadata = {
   },
 };
 
+function shuffleJobs<T>(jobs: T[]): T[] {
+  const shuffled = [...jobs];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  return shuffled;
+}
+
 export default function LiveJobsPage() {
-  const jobs = getFreshLiveJobs();
+  const jobs = shuffleJobs(getFreshLiveJobs());
   const jobCount = getLiveJobCount();
 
   return (
     <main className="min-h-screen bg-slate-50">
+      <Navbar />
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-slate-200 bg-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.09),transparent_38%)]" />

@@ -17,6 +17,8 @@ import {
   FiWifi,
 } from "react-icons/fi";
 
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import JobApplication from "@/components/JobApplication";
 import { getLiveJobBySlug, liveJobs } from "@/lib/live-job-data";
 
@@ -337,6 +339,7 @@ export default async function LiveJobPage({ params }: PageProps) {
                   </span>
                 </div>
               </div>
+              <Banner320x50 />
 
               {/* Application card */}
               <aside className="lg:pt-2">
@@ -442,6 +445,7 @@ export default async function LiveJobPage({ params }: PageProps) {
                   ))}
                 </ul>
               </section>
+              <NativeBannerAd />
 
               {/* Qualifications */}
               <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">

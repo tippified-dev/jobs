@@ -164,7 +164,7 @@ export default function LiveJobsDashboard({ jobs }: Props) {
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Search jobs, skills, companies or keywords..."
               aria-label="Search live jobs"
-              className="h-13 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-900 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-50"
+              className="h-13 w-full rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-base text-slate-900 outline-none transition focus:border-blue-300 focus:bg-white focus:ring-4 focus:ring-blue-50"
             />
           </div>
 
