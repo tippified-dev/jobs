@@ -23,6 +23,8 @@ const jobLinks = [
 const companyLinks = [
   { label: "About Us", href: "/about" },
   { label: "Post a Job", href: "/post-a-job" },
+  { label: "Ad awareness", href: "/ad-awareness" },
+  { label: "How it works", href: "/how-it-works" },
 ];
 
 const socialLinks = [

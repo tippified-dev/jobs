@@ -72,7 +72,7 @@ export default function TippifiedBanner() {
 
       {/* Brand */}
       <div className="relative z-10 flex shrink-0 items-center gap-1.5">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-purple-500 to-fuchsia-500 shadow-[0_4px_15px_rgba(168,85,247,0.35)]">
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-600">
           <FiHeart size={13} strokeWidth={2.5} className="text-white" />
         </div>
 
@@ -80,7 +80,7 @@ export default function TippifiedBanner() {
           <div className="font-[Pacifico] text-[14px] tracking-tight text-white">
             tippified.
           </div>
-          <div className="mt-0.5 text-[7px] font-medium uppercase tracking-[0.13em] text-purple-300">
+          <div className="mt-0.5 text-[7px] font-medium uppercase tracking-[0.13em] text-blue-300">
             For creators
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function TippifiedBanner() {
           Turn your audience into support.
         </div>
 
-        <div className="mt-1 truncate text-[8px] font-medium text-purple-200/70">
+        <div className="mt-1 truncate text-[8px] font-medium text-blue-200/70">
           Tips • Gifts • Goals • More
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function TippifiedBanner() {
         onClick={(event) => {
           event.stopPropagation();
         }}
-        className="relative z-20 ml-1.5 inline-flex h-7 shrink-0 items-center gap-1 rounded-lg bg-white px-2.5 text-[9px] font-extrabold uppercase tracking-wide text-purple-700 shadow-[0_4px_14px_rgba(255,255,255,0.12)] transition-all duration-200 hover:scale-[1.03] hover:bg-purple-50 active:scale-[0.97]"
+        className="relative z-20 ml-1.5 inline-flex h-7 shrink-0 items-center gap-1 rounded-lg bg-white px-2.5 text-[9px] font-extrabold uppercase tracking-wide text-blue-700 shadow-[0_4px_14px_rgba(255,255,255,0.12)] transition-all duration-200 hover:scale-[1.03] hover:bg-purple-50 active:scale-[0.97]"
       >
         Sign Up
         <FiArrowUpRight size={10} strokeWidth={2.5} />
