@@ -1,4 +1,4 @@
-import Popunder from "@/components/ads/Popunder";
+// import Popunder from "@/components/ads/Popunder";
 import type { Metadata, Viewport } from "next";
 
 import Script from "next/script";
@@ -99,7 +99,7 @@ export default function RootLayout({
   return (
     <html lang="en" className=" antialiased">
       <body className="min-h-screen bg-white font-sans">
-        <Popunder />
+        {/* <Popunder /> */}
 
         {children}
 
