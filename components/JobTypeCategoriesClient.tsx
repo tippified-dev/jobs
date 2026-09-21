@@ -6,39 +6,22 @@ import { useState, type ReactNode } from "react";
 import {
   FiArrowUpRight,
   FiBarChart2,
-  FiBox,
   FiBriefcase,
-  FiCheckCircle,
   FiChevronDown,
   FiClipboard,
-  FiCloud,
   FiCode,
-  FiCpu,
   FiEdit3,
-  FiEye,
   FiFileText,
   FiHeadphones,
-  FiHeart,
   FiImage,
-  FiLayout,
-  FiMail,
-  FiMessageCircle,
-  FiMic,
   FiMonitor,
-  FiPackage,
   FiPenTool,
-  FiPieChart,
   FiSearch,
   FiServer,
-  FiSettings,
   FiShare2,
-  FiShield,
-  FiShoppingBag,
   FiSmartphone,
   FiTrendingUp,
-  FiType,
   FiUser,
-  FiUsers,
 } from "react-icons/fi";
 
 type JobCategory = {
@@ -57,51 +40,33 @@ type Props = {
 
 /*
  * Icons are controlled entirely by the frontend.
- * The database only provides the category slug.
+ * The category data only provides the category slug.
+ *
+ * These slugs must match the 18 categories in
+ * category-opportunity-data.ts.
  */
 const categoryIcons: Record<string, ReactNode> = {
   // Skilled
   "full-stack-developer": <FiCode />,
   "frontend-developer": <FiMonitor />,
   "backend-developer": <FiServer />,
+  "software-engineer": <FiCode />,
+  "mobile-developer": <FiSmartphone />,
   "ui-ux-designer": <FiPenTool />,
-  "graphic-designer": <FiImage />,
-  "digital-marketer": <FiTrendingUp />,
-  "seo-specialist": <FiSearch />,
-  "content-writer": <FiEdit3 />,
-  "software-engineer": <FiCpu />,
   "data-analyst": <FiBarChart2 />,
+  "digital-marketing": <FiTrendingUp />,
+  "seo-specialist": <FiSearch />,
+  "graphic-designer": <FiImage />,
+  "content-writer": <FiEdit3 />,
   "project-manager": <FiClipboard />,
   "social-media-manager": <FiShare2 />,
-  "product-manager": <FiBox />,
-  "devops-engineer": <FiSettings />,
-  "customer-success-manager": <FiHeart />,
-  "business-analyst": <FiPieChart />,
-  "virtual-assistant": <FiUser />,
-  "web-designer": <FiLayout />,
-  "cybersecurity-specialist": <FiShield />,
-  "cloud-engineer": <FiCloud />,
 
-  // Entry-level / Other
+  // Entry-Level & Other
   "data-entry": <FiFileText />,
-  "online-surveys": <FiCheckCircle />,
-  transcription: <FiMic />,
-  "chat-support": <FiMessageCircle />,
+  "virtual-assistant": <FiUser />,
   "customer-support": <FiHeadphones />,
-  "content-moderation": <FiEye />,
-  "product-listing": <FiShoppingBag />,
+  sales: <FiTrendingUp />,
   "online-research": <FiSearch />,
-  "email-support": <FiMail />,
-  "social-media-assistant": <FiShare2 />,
-  "website-testing": <FiMonitor />,
-  "app-testing": <FiSmartphone />,
-  captioning: <FiType />,
-  "online-chat-agent": <FiMessageCircle />,
-  "web-research": <FiSearch />,
-  "order-processing": <FiPackage />,
-  "community-assistant": <FiUsers />,
-  "document-formatting": <FiFileText />,
-  "image-tagging": <FiImage />,
 };
 
 function getCategoryIcon(slug: string) {
@@ -217,7 +182,7 @@ export default function JobTypeCategoriesClient({
               <h3 className="text-xl font-bold text-slate-950 sm:text-2xl">
                 {activeType === "skilled"
                   ? "Skilled remote jobs"
-                  : "Unskilled & entry-level jobs"}
+                  : "Entry-level & online jobs"}
               </h3>
 
               <p className="mt-1 text-sm text-slate-500">
@@ -306,7 +271,7 @@ export default function JobTypeCategoriesClient({
                 className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 <span>
-                  {showAll ? "Show fewer" : `View ${remainingCount} more`}
+                  {`showAll ? "Show fewer" : View ${remainingCount} more`}
                 </span>
 
                 <motion.span
@@ -343,7 +308,7 @@ export default function JobTypeCategoriesClient({
         {/* Browse All Jobs */}
         <div className="mt-7 flex justify-center">
           <Link
-            href="/jobs"
+            href="/online-jobs"
             className="group inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
           >
             Browse all jobs

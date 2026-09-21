@@ -28,22 +28,15 @@ export type OpportunityCompany = {
 export type CategoryOpportunity = {
   id: string;
   slug: string;
-
   title: string;
-
   category: string;
   categorySlug: string;
-
   company: OpportunityCompany;
-
   country: string;
   countrySlug: string;
   countryCode: string;
-
   location: string;
-
   description: string;
-
   jobType:
     | "FULL_TIME"
     | "PART_TIME"
@@ -51,482 +44,288 @@ export type CategoryOpportunity = {
     | "FREELANCE"
     | "TEMPORARY"
     | "INTERNSHIP";
-
-  workMode:
-    | "REMOTE"
-    | "HYBRID"
-    | "ONSITE";
-
+  workMode: "REMOTE" | "HYBRID" | "ONSITE";
   experienceLevel:
     | "NO_EXPERIENCE"
     | "ENTRY_LEVEL"
     | "MID_LEVEL"
     | "SENIOR_LEVEL"
     | "EXECUTIVE";
-
   salaryMin: number;
   salaryMax: number;
   salaryCurrency: string;
   salaryPeriod: "YEAR" | "MONTH" | "HOUR";
-
   skills: string[];
   keywords: string[];
-
   publishedDaysAgo: number;
-
   isVerified: boolean;
   isFeatured: boolean;
   isActive: boolean;
-
   applicationUrl: string | null;
 };
 
-
 /* =========================================================
    CATEGORIES
-========================================================= */
+   ========================================================= */
 
 export const opportunityCategories: OpportunityCategory[] = [
   {
-    id: "frontend-developer",
-    name: "Frontend Developer",
-    slug: "frontend-developer",
-    description:
-      "Frontend developer opportunities for professionals who build responsive websites, web applications and digital interfaces using modern frontend technologies.",
-    keywords: [
-      "frontend developer",
-      "front end developer",
-      "frontend engineer",
-      "react developer",
-      "javascript developer",
-      "typescript developer",
-      "web developer",
-      "ui developer",
-    ],
-  },
-
-  {
-    id: "backend-developer",
-    name: "Backend Developer",
-    slug: "backend-developer",
-    description:
-      "Backend developer opportunities involving APIs, databases, server-side applications, integrations and reliable software infrastructure.",
-    keywords: [
-      "backend developer",
-      "back end developer",
-      "backend engineer",
-      "api developer",
-      "server side developer",
-      "node.js developer",
-      "python developer",
-      "software backend",
-    ],
-  },
-
-  {
-    id: "full-stack-developer",
+    id: "cat-full-stack-developer",
     name: "Full Stack Developer",
     slug: "full-stack-developer",
     description:
-      "Full stack developer opportunities covering frontend interfaces, backend services, APIs, databases and complete web application development.",
+      "Full stack developer opportunities covering frontend, backend, APIs, databases and modern web applications.",
     keywords: [
       "full stack developer",
-      "full-stack developer",
-      "full stack engineer",
-      "web application developer",
-      "software engineer",
-      "react developer",
-      "node.js developer",
+      "full stack jobs",
+      "remote full stack developer",
+      "web developer",
+      "software developer",
     ],
   },
-
   {
-    id: "software-engineer",
+    id: "cat-frontend-developer",
+    name: "Frontend Developer",
+    slug: "frontend-developer",
+    description:
+      "Frontend developer opportunities using modern web technologies to build responsive and interactive digital products.",
+    keywords: [
+      "frontend developer",
+      "front end developer",
+      "frontend jobs",
+      "react developer",
+      "web developer",
+    ],
+  },
+  {
+    id: "cat-backend-developer",
+    name: "Backend Developer",
+    slug: "backend-developer",
+    description:
+      "Backend developer opportunities focused on APIs, databases, servers, authentication and application infrastructure.",
+    keywords: [
+      "backend developer",
+      "back end developer",
+      "backend jobs",
+      "API developer",
+      "server developer",
+    ],
+  },
+  {
+    id: "cat-software-engineer",
     name: "Software Engineer",
     slug: "software-engineer",
     description:
-      "Software engineering opportunities across application development, software architecture, testing, maintenance and technical problem solving.",
+      "Software engineering opportunities involving application development, system design, testing and software architecture.",
     keywords: [
       "software engineer",
-      "software developer",
-      "application developer",
-      "programmer",
-      "software development",
-      "web software",
-      "application engineering",
+      "software engineering jobs",
+      "developer jobs",
+      "remote software engineer",
+      "programming jobs",
     ],
   },
-
   {
-    id: "mobile-developer",
+    id: "cat-mobile-developer",
     name: "Mobile Developer",
     slug: "mobile-developer",
     description:
-      "Mobile development opportunities for professionals building and maintaining Android, iOS and cross-platform mobile applications.",
+      "Mobile development opportunities for building Android, iOS and cross-platform applications.",
     keywords: [
       "mobile developer",
-      "mobile app developer",
+      "mobile development",
       "android developer",
       "ios developer",
       "react native developer",
-      "flutter developer",
-      "mobile engineer",
     ],
   },
-
   {
-    id: "data-entry",
-    name: "Data Entry",
-    slug: "data-entry",
+    id: "cat-ui-ux-designer",
+    name: "UI/UX Designer",
+    slug: "ui-ux-designer",
     description:
-      "Data entry opportunities involving accurate information processing, document handling, database updates, online research and administrative support.",
+      "UI and UX design opportunities focused on user research, interfaces, prototypes and digital product experiences.",
     keywords: [
-      "data entry",
-      "data entry clerk",
-      "data entry specialist",
-      "online data entry",
-      "data processing",
-      "typing jobs",
-      "remote data entry",
+      "ui ux designer",
+      "ux designer",
+      "ui designer",
+      "product designer",
+      "ux jobs",
     ],
   },
-
   {
-    id: "virtual-assistant",
-    name: "Virtual Assistant",
-    slug: "virtual-assistant",
-    description:
-      "Virtual assistant opportunities involving administration, scheduling, customer communication, research, organisation and remote business support.",
-    keywords: [
-      "virtual assistant",
-      "remote assistant",
-      "administrative assistant",
-      "online assistant",
-      "executive assistant",
-      "remote administrative assistant",
-    ],
-  },
-
-  {
-    id: "customer-support",
-    name: "Customer Support",
-    slug: "customer-support",
-    description:
-      "Customer support opportunities helping customers through email, chat, telephone and other digital communication channels.",
-    keywords: [
-      "customer support",
-      "customer service",
-      "customer care",
-      "support agent",
-      "chat support",
-      "email support",
-      "remote customer service",
-    ],
-  },
-
-  {
-    id: "digital-marketing",
-    name: "Digital Marketing",
-    slug: "digital-marketing",
-    description:
-      "Digital marketing opportunities covering online campaigns, search marketing, social media, content promotion, analytics and customer acquisition.",
-    keywords: [
-      "digital marketing",
-      "digital marketer",
-      "online marketing",
-      "marketing specialist",
-      "growth marketing",
-      "social media marketing",
-      "performance marketing",
-    ],
-  },
-
-  {
-    id: "seo-specialist",
-    name: "SEO Specialist",
-    slug: "seo-specialist",
-    description:
-      "SEO opportunities focused on search visibility, keyword research, technical optimisation, content strategy, link development and organic growth.",
-    keywords: [
-      "seo specialist",
-      "seo manager",
-      "search engine optimization",
-      "organic search",
-      "technical seo",
-      "seo analyst",
-      "content seo",
-    ],
-  },
-
-  {
-    id: "graphic-designer",
-    name: "Graphic Designer",
-    slug: "graphic-designer",
-    description:
-      "Graphic design opportunities involving digital graphics, branding, marketing materials, social media assets and visual communication.",
-    keywords: [
-      "graphic designer",
-      "visual designer",
-      "creative designer",
-      "brand designer",
-      "digital designer",
-      "marketing designer",
-    ],
-  },
-
-  {
-    id: "content-writer",
-    name: "Content Writer",
-    slug: "content-writer",
-    description:
-      "Content writing opportunities covering articles, website content, marketing copy, product content, research-based writing and digital publishing.",
-    keywords: [
-      "content writer",
-      "copywriter",
-      "content creator",
-      "seo writer",
-      "technical writer",
-      "blog writer",
-      "freelance writer",
-    ],
-  },
-
-  {
-    id: "social-media-manager",
-    name: "Social Media Manager",
-    slug: "social-media-manager",
-    description:
-      "Social media management opportunities involving content planning, community engagement, campaign management and social growth.",
-    keywords: [
-      "social media manager",
-      "social media specialist",
-      "community manager",
-      "social media marketing",
-      "content manager",
-      "social media coordinator",
-    ],
-  },
-
-  {
-    id: "data-analyst",
+    id: "cat-data-analyst",
     name: "Data Analyst",
     slug: "data-analyst",
     description:
-      "Data analyst opportunities involving business data, reporting, dashboards, research, analytics and data-driven decision making.",
+      "Data analyst opportunities involving reporting, business intelligence, spreadsheets, dashboards and data-driven insights.",
     keywords: [
       "data analyst",
-      "business analyst",
-      "data analytics",
-      "reporting analyst",
+      "data analysis jobs",
       "business intelligence",
-      "data specialist",
+      "reporting analyst",
+      "remote data analyst",
     ],
   },
-
   {
-    id: "project-manager",
+    id: "cat-digital-marketing",
+    name: "Digital Marketing",
+    slug: "digital-marketing",
+    description:
+      "Digital marketing opportunities covering online campaigns, advertising, email marketing, content and audience growth.",
+    keywords: [
+      "digital marketing",
+      "digital marketer",
+      "marketing jobs",
+      "online marketing",
+      "remote marketing jobs",
+    ],
+  },
+  {
+    id: "cat-seo-specialist",
+    name: "SEO Specialist",
+    slug: "seo-specialist",
+    description:
+      "SEO opportunities focused on search visibility, keyword research, technical SEO, content optimization and analytics.",
+    keywords: [
+      "seo specialist",
+      "seo jobs",
+      "search engine optimization",
+      "seo analyst",
+      "remote seo jobs",
+    ],
+  },
+  {
+    id: "cat-graphic-designer",
+    name: "Graphic Designer",
+    slug: "graphic-designer",
+    description:
+      "Graphic design opportunities involving digital graphics, branding, marketing materials and visual communication.",
+    keywords: [
+      "graphic designer",
+      "graphic design jobs",
+      "visual designer",
+      "creative designer",
+      "remote graphic design",
+    ],
+  },
+  {
+    id: "cat-content-writer",
+    name: "Content Writer",
+    slug: "content-writer",
+    description:
+      "Content writing opportunities for blogs, websites, marketing materials, product content and digital publications.",
+    keywords: [
+      "content writer",
+      "writing jobs",
+      "content writing",
+      "blog writer",
+      "remote writing jobs",
+    ],
+  },
+  {
+    id: "cat-project-manager",
     name: "Project Manager",
     slug: "project-manager",
     description:
-      "Project management opportunities involving planning, coordination, delivery, stakeholder communication, resources and project operations.",
+      "Project management opportunities covering planning, coordination, delivery, communication and team management.",
     keywords: [
       "project manager",
+      "project management jobs",
+      "remote project manager",
       "project coordinator",
-      "program manager",
-      "project management",
-      "delivery manager",
-      "operations manager",
+      "program management",
     ],
   },
-
   {
-    id: "sales",
+    id: "cat-social-media-manager",
+    name: "Social Media Manager",
+    slug: "social-media-manager",
+    description:
+      "Social media opportunities involving content planning, community management, engagement and social growth.",
+    keywords: [
+      "social media manager",
+      "social media jobs",
+      "community manager",
+      "social media marketing",
+      "remote social media jobs",
+    ],
+  },
+  {
+    id: "cat-data-entry",
+    name: "Data Entry",
+    slug: "data-entry",
+    description:
+      "Data entry opportunities involving digital records, spreadsheets, databases, document processing and information management.",
+    keywords: [
+      "data entry",
+      "data entry jobs",
+      "online data entry",
+      "remote data entry",
+      "work from home data entry",
+    ],
+  },
+  {
+    id: "cat-virtual-assistant",
+    name: "Virtual Assistant",
+    slug: "virtual-assistant",
+    description:
+      "Virtual assistant opportunities involving administrative support, scheduling, research, communication and organization.",
+    keywords: [
+      "virtual assistant",
+      "virtual assistant jobs",
+      "remote assistant",
+      "online assistant",
+      "work from home assistant",
+    ],
+  },
+  {
+    id: "cat-customer-support",
+    name: "Customer Support",
+    slug: "customer-support",
+    description:
+      "Customer support opportunities involving customer communication, issue resolution, helpdesk services and account assistance.",
+    keywords: [
+      "customer support",
+      "customer service jobs",
+      "support representative",
+      "remote customer support",
+      "online customer service",
+    ],
+  },
+  {
+    id: "cat-sales",
     name: "Sales",
     slug: "sales",
     description:
-      "Sales opportunities covering customer acquisition, account management, business development, lead generation and commercial growth.",
+      "Sales opportunities involving customer acquisition, lead generation, account management and business development.",
     keywords: [
+      "sales jobs",
       "sales representative",
-      "sales executive",
       "business development",
-      "account executive",
-      "sales associate",
-      "inside sales",
+      "remote sales",
+      "sales executive",
     ],
   },
-
   {
-    id: "finance-accounting",
-    name: "Finance & Accounting",
-    slug: "finance-accounting",
+    id: "cat-online-research",
+    name: "Online Research",
+    slug: "online-research",
     description:
-      "Finance and accounting opportunities involving financial records, bookkeeping, reporting, analysis, accounts and business finance operations.",
+      "Online research opportunities involving internet research, information gathering, fact checking and data collection.",
     keywords: [
-      "accountant",
-      "accounting",
-      "bookkeeper",
-      "finance officer",
-      "financial analyst",
-      "accounts assistant",
-      "accounts payable",
-    ],
-  },
-
-  {
-    id: "human-resources",
-    name: "Human Resources",
-    slug: "human-resources",
-    description:
-      "Human resources opportunities covering recruitment, employee support, people operations, talent acquisition and workplace administration.",
-    keywords: [
-      "human resources",
-      "hr specialist",
-      "hr assistant",
-      "recruitment",
-      "talent acquisition",
-      "people operations",
-      "hr coordinator",
-    ],
-  },
-
-  {
-    id: "healthcare",
-    name: "Healthcare",
-    slug: "healthcare",
-    description:
-      "Healthcare opportunities across patient support, healthcare administration, medical services and health-related professional roles.",
-    keywords: [
-      "healthcare",
-      "healthcare assistant",
-      "medical assistant",
-      "patient support",
-      "health services",
-      "medical administration",
-    ],
-  },
-
-  {
-    id: "education",
-    name: "Education",
-    slug: "education",
-    description:
-      "Education opportunities including teaching, tutoring, academic support, online learning and educational administration.",
-    keywords: [
-      "teacher",
-      "tutor",
-      "online tutor",
-      "teaching assistant",
-      "online teacher",
-      "education specialist",
-    ],
-  },
-
-  {
-    id: "construction",
-    name: "Construction",
-    slug: "construction",
-    description:
-      "Construction opportunities across building, site operations, project support, technical construction work and infrastructure services.",
-    keywords: [
-      "construction",
-      "construction worker",
-      "site assistant",
-      "building",
-      "construction technician",
-      "site coordinator",
-    ],
-  },
-
-  {
-    id: "hospitality",
-    name: "Hospitality",
-    slug: "hospitality",
-    description:
-      "Hospitality opportunities across hotels, restaurants, food service, guest relations, front desk operations and hospitality support.",
-    keywords: [
-      "hospitality",
-      "hotel jobs",
-      "restaurant jobs",
-      "waiter",
-      "chef",
-      "hotel receptionist",
-      "guest services",
-    ],
-  },
-
-  {
-    id: "retail",
-    name: "Retail",
-    slug: "retail",
-    description:
-      "Retail opportunities involving stores, customer service, sales, stock management, cashier operations and retail administration.",
-    keywords: [
-      "retail",
-      "retail assistant",
-      "cashier",
-      "store assistant",
-      "retail sales",
-      "shop assistant",
-      "store clerk",
-    ],
-  },
-
-  {
-    id: "logistics",
-    name: "Logistics & Delivery",
-    slug: "logistics",
-    description:
-      "Logistics and delivery opportunities covering transportation, warehouse operations, inventory, dispatch and supply chain support.",
-    keywords: [
-      "logistics",
-      "delivery",
-      "warehouse",
-      "dispatch",
-      "supply chain",
-      "logistics assistant",
-      "delivery driver",
-    ],
-  },
-
-  {
-    id: "cleaning-maintenance",
-    name: "Cleaning & Maintenance",
-    slug: "cleaning-maintenance",
-    description:
-      "Cleaning and maintenance opportunities across facilities, housekeeping, property maintenance and general support services.",
-    keywords: [
-      "cleaning",
-      "cleaner",
-      "housekeeping",
-      "maintenance",
-      "facilities",
-      "maintenance assistant",
-      "housekeeping attendant",
-    ],
-  },
-
-  {
-    id: "skilled-trades",
-    name: "Skilled Trades",
-    slug: "skilled-trades",
-    description:
-      "Skilled trade opportunities for electricians, plumbers, welders, carpenters, technicians, installers and other technical professionals.",
-    keywords: [
-      "skilled trades",
-      "electrician",
-      "plumber",
-      "welder",
-      "carpenter",
-      "technician",
-      "installer",
+      "online research",
+      "online research jobs",
+      "internet research",
+      "research assistant",
+      "remote research jobs",
     ],
   },
 ];
 
-
 /* =========================================================
    COUNTRIES
-========================================================= */
+   ========================================================= */
 
 export const opportunityCountries: OpportunityCountry[] = [
   {
@@ -534,15 +333,15 @@ export const opportunityCountries: OpportunityCountry[] = [
     slug: "usa",
     code: "US",
     currency: "USD",
-    salaryMin: 45000,
-    salaryMax: 150000,
+    salaryMin: 35000,
+    salaryMax: 160000,
   },
   {
     name: "United Kingdom",
     slug: "uk",
     code: "GB",
     currency: "GBP",
-    salaryMin: 28000,
+    salaryMin: 24000,
     salaryMax: 95000,
   },
   {
@@ -550,7 +349,7 @@ export const opportunityCountries: OpportunityCountry[] = [
     slug: "canada",
     code: "CA",
     currency: "CAD",
-    salaryMin: 40000,
+    salaryMin: 35000,
     salaryMax: 130000,
   },
   {
@@ -558,7 +357,7 @@ export const opportunityCountries: OpportunityCountry[] = [
     slug: "australia",
     code: "AU",
     currency: "AUD",
-    salaryMin: 50000,
+    salaryMin: 45000,
     salaryMax: 150000,
   },
   {
@@ -567,7 +366,7 @@ export const opportunityCountries: OpportunityCountry[] = [
     code: "DE",
     currency: "EUR",
     salaryMin: 32000,
-    salaryMax: 100000,
+    salaryMax: 110000,
   },
   {
     name: "France",
@@ -575,7 +374,7 @@ export const opportunityCountries: OpportunityCountry[] = [
     code: "FR",
     currency: "EUR",
     salaryMin: 28000,
-    salaryMax: 85000,
+    salaryMax: 95000,
   },
   {
     name: "Nigeria",
@@ -583,38 +382,38 @@ export const opportunityCountries: OpportunityCountry[] = [
     code: "NG",
     currency: "NGN",
     salaryMin: 1200000,
-    salaryMax: 15000000,
+    salaryMax: 18000000,
   },
   {
     name: "South Africa",
     slug: "south-africa",
     code: "ZA",
     currency: "ZAR",
-    salaryMin: 120000,
-    salaryMax: 900000,
+    salaryMin: 180000,
+    salaryMax: 1200000,
   },
   {
     name: "China",
     slug: "china",
     code: "CN",
     currency: "CNY",
-    salaryMin: 80000,
-    salaryMax: 450000,
+    salaryMin: 60000,
+    salaryMax: 500000,
   },
   {
     name: "India",
     slug: "india",
     code: "IN",
     currency: "INR",
-    salaryMin: 250000,
-    salaryMax: 2500000,
+    salaryMin: 300000,
+    salaryMax: 3000000,
   },
   {
     name: "Japan",
     slug: "japan",
     code: "JP",
     currency: "JPY",
-    salaryMin: 3500000,
+    salaryMin: 3000000,
     salaryMax: 12000000,
   },
   {
@@ -622,8 +421,8 @@ export const opportunityCountries: OpportunityCountry[] = [
     slug: "indonesia",
     code: "ID",
     currency: "IDR",
-    salaryMin: 45000000,
-    salaryMax: 300000000,
+    salaryMin: 36000000,
+    salaryMax: 500000000,
   },
   {
     name: "New Zealand",
@@ -631,7 +430,7 @@ export const opportunityCountries: OpportunityCountry[] = [
     code: "NZ",
     currency: "NZD",
     salaryMin: 45000,
-    salaryMax: 120000,
+    salaryMax: 130000,
   },
   {
     name: "Singapore",
@@ -639,17 +438,17 @@ export const opportunityCountries: OpportunityCountry[] = [
     code: "SG",
     currency: "SGD",
     salaryMin: 30000,
-    salaryMax: 120000,
+    salaryMax: 150000,
   },
 ];
 
-
 /* =========================================================
    COMPANIES
-========================================================= */
-
+   ========================================================= */
 export const opportunityCompanies: OpportunityCompany[] = [
-  /* UNITED STATES */
+  /* =========================================================
+     UNITED STATES
+     ========================================================= */
 
   {
     id: "company-redwood-digital",
@@ -657,69 +456,159 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "redwood-digital",
     country: "United States",
     countrySlug: "usa",
-    industry: "Technology and Digital Services",
+    industry: "Technology",
     description:
-      "Redwood Digital is a technology and digital services organisation serving businesses that need dependable digital products, online platforms and modern technology solutions. Its teams bring together software professionals, digital specialists, analysts and business operators to support products throughout their development and operational lifecycle. The organisation places emphasis on thoughtful engineering, clear communication, reliable delivery and practical solutions that can adapt as customer requirements evolve.",
+      "A digital technology business focused on software products, web platforms and technology services for growing organizations.",
   },
-
   {
     id: "company-harbor-ridge-solutions",
     name: "Harbor Ridge Solutions",
     slug: "harbor-ridge-solutions",
     country: "United States",
     countrySlug: "usa",
-    industry: "Business and Professional Services",
+    industry: "Business Services",
     description:
-      "Harbor Ridge Solutions provides business and professional services to organisations seeking stronger operational processes, customer support and administrative efficiency. Its teams work across a variety of business functions and help clients manage practical requirements through organised workflows and responsive service. The company values accountability, professionalism, analytical thinking and dependable communication, creating an environment where employees can contribute directly to measurable business outcomes.",
+      "A business solutions provider supporting organizations with operational systems, technology services and customer-focused processes.",
   },
-
   {
     id: "company-oak-stone-group",
-    name: "Oak & Stone Group",
-    slug: "oak-and-stone-group",
+    name: "Oak Stone Group",
+    slug: "oak-stone-group",
     country: "United States",
     countrySlug: "usa",
-    industry: "Commercial Services",
+    industry: "Professional Services",
     description:
-      "Oak & Stone Group is a diversified commercial services organisation supporting businesses through professional, operational and customer-focused solutions. Its activities involve teams with different areas of expertise who work together to address client requirements and improve everyday business processes. The organisation encourages ownership, collaboration and continuous improvement while maintaining a strong focus on service quality and long-term professional relationships.",
+      "A professional services organization working with businesses on digital operations, administration and strategic initiatives.",
+  },
+  {
+    id: "company-summit-lane-technologies",
+    name: "Summit Lane Technologies",
+    slug: "summit-lane-technologies",
+    country: "United States",
+    countrySlug: "usa",
+    industry: "Technology",
+    description:
+      "A technology company developing digital tools and infrastructure solutions for modern businesses and distributed teams.",
+  },
+  {
+    id: "company-blue-haven-consulting",
+    name: "Blue Haven Consulting",
+    slug: "blue-haven-consulting",
+    country: "United States",
+    countrySlug: "usa",
+    industry: "Consulting",
+    description:
+      "A consulting organization helping companies improve business processes, digital workflows and organizational performance.",
+  },
+  {
+    id: "company-westfield-digital",
+    name: "Westfield Digital",
+    slug: "westfield-digital",
+    country: "United States",
+    countrySlug: "usa",
+    industry: "Digital Services",
+    description:
+      "A digital services company providing website, marketing, technology and online business solutions.",
+  },
+  {
+    id: "company-lakeview-business-group",
+    name: "Lakeview Business Group",
+    slug: "lakeview-business-group",
+    country: "United States",
+    countrySlug: "usa",
+    industry: "Business Services",
+    description:
+      "A diversified business services organization supporting clients through administrative, operational and customer-facing functions.",
+  },
+  {
+    id: "company-pinecrest-solutions",
+    name: "Pinecrest Solutions",
+    slug: "pinecrest-solutions",
+    country: "United States",
+    countrySlug: "usa",
+    industry: "Technology Services",
+    description:
+      "A technology services firm delivering software support, digital transformation and technical consulting for businesses.",
   },
 
-  /* UNITED KINGDOM */
+  /* =========================================================
+     UNITED KINGDOM
+     ========================================================= */
 
   {
     id: "company-ashford-co",
     name: "Ashford & Co",
-    slug: "ashford-and-co",
+    slug: "ashford-co",
     country: "United Kingdom",
     countrySlug: "uk",
     industry: "Professional Services",
     description:
-      "Ashford & Co is a professional services organisation supporting businesses through a combination of operational, administrative and customer-focused activities. Its teams are structured around dependable service delivery and clear communication, helping clients manage everyday requirements while responding to changing commercial conditions. The company values professionalism, attention to detail, collaboration and the development of people who can take responsibility for meaningful work.",
+      "A UK professional services organization providing business support, digital operations and specialist consulting services.",
   },
-
   {
     id: "company-westbury-solutions",
     name: "Westbury Solutions",
     slug: "westbury-solutions",
     country: "United Kingdom",
     countrySlug: "uk",
-    industry: "Business Solutions",
+    industry: "Technology",
     description:
-      "Westbury Solutions provides business-focused services for organisations looking to improve their operations, customer experience and internal processes. The company combines structured workflows with teams that understand the practical realities of day-to-day business activity. Its working culture places emphasis on reliability, communication, analytical thinking and continuous improvement, while giving employees opportunities to develop expertise across their areas of responsibility.",
+      "A technology solutions provider helping organizations modernize their systems, workflows and digital customer experiences.",
   },
-
   {
     id: "company-bromley-services",
     name: "Bromley Services",
     slug: "bromley-services",
     country: "United Kingdom",
     countrySlug: "uk",
-    industry: "Business and Customer Services",
+    industry: "Business Services",
     description:
-      "Bromley Services supports organisations and customers through a range of professional and operational services. Its teams focus on responsive communication, accurate execution and consistent customer support, helping clients manage practical requirements efficiently. The organisation encourages employees to understand customer needs, work collaboratively and maintain high professional standards while contributing ideas that can improve service delivery.",
+      "A business services organization supporting companies with administration, customer operations and commercial activities.",
+  },
+  {
+    id: "company-camden-digital",
+    name: "Camden Digital",
+    slug: "camden-digital",
+    country: "United Kingdom",
+    countrySlug: "uk",
+    industry: "Digital Services",
+    description:
+      "A digital services business specializing in online platforms, digital communications and technology-enabled customer solutions.",
+  },
+  {
+    id: "company-kingsbridge-consulting",
+    name: "Kingsbridge Consulting",
+    slug: "kingsbridge-consulting",
+    country: "United Kingdom",
+    countrySlug: "uk",
+    industry: "Consulting",
+    description:
+      "A consulting firm assisting organizations with project delivery, business improvement and digital transformation programmes.",
+  },
+  {
+    id: "company-elmwood-business-services",
+    name: "Elmwood Business Services",
+    slug: "elmwood-business-services",
+    country: "United Kingdom",
+    countrySlug: "uk",
+    industry: "Business Services",
+    description:
+      "A business support company providing administrative, customer service and operational solutions to organizations.",
+  },
+  {
+    id: "company-parkstone-technology",
+    name: "Parkstone Technology",
+    slug: "parkstone-technology",
+    country: "United Kingdom",
+    countrySlug: "uk",
+    industry: "Technology",
+    description:
+      "A technology organization working on software, cloud services and digital infrastructure for business clients.",
   },
 
-  /* CANADA */
+  /* =========================================================
+     CANADA
+     ========================================================= */
 
   {
     id: "company-maple-ridge-services",
@@ -727,34 +616,74 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "maple-ridge-services",
     country: "Canada",
     countrySlug: "canada",
-    industry: "Professional Services",
+    industry: "Business Services",
     description:
-      "Maple Ridge Services provides professional and operational support to businesses and customers across Canada. The organisation combines structured business processes with service-focused teams to help clients manage practical requirements efficiently. Its environment encourages reliability, thoughtful communication and responsible decision making, while employees are expected to understand customer requirements and contribute to sustainable improvements in service quality.",
+      "A Canadian services organization supporting companies with customer operations, administration and business support functions.",
   },
-
   {
     id: "company-north-shore-solutions",
     name: "North Shore Solutions",
     slug: "north-shore-solutions",
     country: "Canada",
     countrySlug: "canada",
-    industry: "Business Solutions",
+    industry: "Technology",
     description:
-      "North Shore Solutions delivers business-oriented services for organisations seeking dependable operational and professional support. Its teams combine practical knowledge with organised workflows to address client requirements and improve business processes. The organisation values collaboration, responsiveness and attention to detail, creating a working environment where professionals can solve problems while developing strong relationships with colleagues and customers.",
+      "A technology solutions provider delivering software, digital systems and operational technology services.",
   },
-
   {
     id: "company-cedar-lake-group",
-    name: "Cedar & Lake Group",
-    slug: "cedar-and-lake-group",
+    name: "Cedar Lake Group",
+    slug: "cedar-lake-group",
     country: "Canada",
     countrySlug: "canada",
-    industry: "Commercial Services",
+    industry: "Professional Services",
     description:
-      "Cedar & Lake Group is a commercial services organisation supporting customers and businesses through professional services and operational solutions. The company brings together people with different skills and encourages them to approach assignments with clear objectives and a strong understanding of client requirements. Its culture focuses on quality, accountability, communication and continuous operational improvement.",
+      "A Canadian professional services group working across consulting, business administration and technology-enabled services.",
+  },
+  {
+    id: "company-northern-pacific-digital",
+    name: "Northern Pacific Digital",
+    slug: "northern-pacific-digital",
+    country: "Canada",
+    countrySlug: "canada",
+    industry: "Digital Services",
+    description:
+      "A digital business creating online experiences, marketing solutions and technology services for organizations.",
+  },
+  {
+    id: "company-granite-hill-technologies",
+    name: "Granite Hill Technologies",
+    slug: "granite-hill-technologies",
+    country: "Canada",
+    countrySlug: "canada",
+    industry: "Technology",
+    description:
+      "A technology company focused on application development, infrastructure services and digital business systems.",
+  },
+  {
+    id: "company-aurora-business-solutions",
+    name: "Aurora Business Solutions",
+    slug: "aurora-business-solutions",
+    country: "Canada",
+    countrySlug: "canada",
+    industry: "Business Services",
+    description:
+      "A business solutions provider helping organizations improve productivity, customer operations and internal processes.",
+  },
+  {
+    id: "company-riverbend-consulting",
+    name: "Riverbend Consulting",
+    slug: "riverbend-consulting",
+    country: "Canada",
+    countrySlug: "canada",
+    industry: "Consulting",
+    description:
+      "A consulting business providing project support, operational advice and organizational improvement services.",
   },
 
-  /* AUSTRALIA */
+  /* =========================================================
+     AUSTRALIA
+     ========================================================= */
 
   {
     id: "company-southern-cross-services",
@@ -762,34 +691,74 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "southern-cross-services",
     country: "Australia",
     countrySlug: "australia",
-    industry: "Professional and Business Services",
+    industry: "Business Services",
     description:
-      "Southern Cross Services provides professional and business support solutions for organisations operating across Australia's diverse commercial environment. Its teams help clients manage operational requirements through structured processes, responsive communication and practical service delivery. The organisation values professionalism, accountability and collaboration while encouraging employees to develop their expertise and contribute ideas that improve customer outcomes.",
+      "An Australian services organization providing administrative, customer and operational support to businesses.",
   },
-
   {
     id: "company-coastal-ridge-solutions",
     name: "Coastal Ridge Solutions",
     slug: "coastal-ridge-solutions",
     country: "Australia",
     countrySlug: "australia",
-    industry: "Business Solutions",
+    industry: "Technology",
     description:
-      "Coastal Ridge Solutions works with businesses that require dependable operational, administrative and professional support. The organisation combines experienced teams with organised workflows to address customer requirements and improve everyday business processes. Its working culture is built around communication, reliability and practical problem solving, with employees encouraged to take ownership of their work and contribute to service improvements.",
+      "A technology solutions company helping organizations implement software and digital systems for modern operations.",
   },
-
   {
     id: "company-harbour-street-group",
     name: "Harbour Street Group",
     slug: "harbour-street-group",
     country: "Australia",
     countrySlug: "australia",
-    industry: "Commercial Services",
+    industry: "Professional Services",
     description:
-      "Harbour Street Group provides commercial and professional services to organisations seeking practical support across their day-to-day operations. The company encourages employees to work collaboratively, communicate clearly and understand the wider objectives behind each assignment. Its service model focuses on dependable execution, customer satisfaction and operational efficiency while supporting teams in developing valuable professional capabilities.",
+      "An Australian professional services organization supporting companies with business, project and administrative services.",
+  },
+  {
+    id: "company-eastern-coast-digital",
+    name: "Eastern Coast Digital",
+    slug: "eastern-coast-digital",
+    country: "Australia",
+    countrySlug: "australia",
+    industry: "Digital Services",
+    description:
+      "A digital services company developing online business solutions, websites and technology-enabled customer experiences.",
+  },
+  {
+    id: "company-bluegum-technologies",
+    name: "Bluegum Technologies",
+    slug: "bluegum-technologies",
+    country: "Australia",
+    countrySlug: "australia",
+    industry: "Technology",
+    description:
+      "An Australian technology organization delivering software engineering, infrastructure and digital product services.",
+  },
+  {
+    id: "company-sunrise-business-group",
+    name: "Sunrise Business Group",
+    slug: "sunrise-business-group",
+    country: "Australia",
+    countrySlug: "australia",
+    industry: "Business Services",
+    description:
+      "A business group providing operational support, customer services and commercial assistance to growing companies.",
+  },
+  {
+    id: "company-wattle-park-consulting",
+    name: "Wattle Park Consulting",
+    slug: "wattle-park-consulting",
+    country: "Australia",
+    countrySlug: "australia",
+    industry: "Consulting",
+    description:
+      "A consulting practice helping organizations improve projects, processes and digital business capabilities.",
   },
 
-  /* GERMANY */
+  /* =========================================================
+     GERMANY
+     ========================================================= */
 
   {
     id: "company-rheinblick-solutions",
@@ -797,11 +766,10 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "rheinblick-solutions",
     country: "Germany",
     countrySlug: "germany",
-    industry: "Technology and Business Services",
+    industry: "Technology",
     description:
-      "Rheinblick Solutions provides technology and business services to organisations looking to improve digital operations, internal processes and customer-facing solutions. The company combines structured working practices with specialist expertise and a strong focus on dependable delivery. Teams are encouraged to approach challenges methodically, communicate effectively and develop solutions that provide practical value to clients.",
+      "A German technology business delivering software and digital solutions for organizations across multiple industries.",
   },
-
   {
     id: "company-westfalen-digital",
     name: "Westfalen Digital",
@@ -810,9 +778,8 @@ export const opportunityCompanies: OpportunityCompany[] = [
     countrySlug: "germany",
     industry: "Digital Services",
     description:
-      "Westfalen Digital focuses on digital services and technology-enabled business solutions for organisations adapting to changing customer expectations and modern working practices. Its teams work across digital operations, technology support and online services, combining technical expertise with structured project delivery. The organisation values quality, precision, collaboration and continuous improvement across its professional teams.",
+      "A digital services organization supporting companies with online platforms, technology projects and digital communication.",
   },
-
   {
     id: "company-hanseatic-business-services",
     name: "Hanseatic Business Services",
@@ -821,10 +788,52 @@ export const opportunityCompanies: OpportunityCompany[] = [
     countrySlug: "germany",
     industry: "Business Services",
     description:
-      "Hanseatic Business Services supports organisations through professional, administrative and operational services designed to improve everyday business performance. The company emphasises dependable processes, clear communication and careful attention to client requirements. Its teams work collaboratively to provide practical support while maintaining professional standards and developing efficient approaches to recurring business challenges.",
+      "A German business services company providing operational, administrative and customer-focused support.",
+  },
+  {
+    id: "company-alpine-technology-group",
+    name: "Alpine Technology Group",
+    slug: "alpine-technology-group",
+    country: "Germany",
+    countrySlug: "germany",
+    industry: "Technology",
+    description:
+      "A technology group developing enterprise software, technical infrastructure and digital workplace solutions.",
+  },
+  {
+    id: "company-berlin-bridge-consulting",
+    name: "Berlin Bridge Consulting",
+    slug: "berlin-bridge-consulting",
+    country: "Germany",
+    countrySlug: "germany",
+    industry: "Consulting",
+    description:
+      "A consulting organization assisting businesses with technology adoption, project coordination and process improvement.",
+  },
+  {
+    id: "company-rheinland-business-solutions",
+    name: "Rheinland Business Solutions",
+    slug: "rheinland-business-solutions",
+    country: "Germany",
+    countrySlug: "germany",
+    industry: "Business Services",
+    description:
+      "A business solutions provider supporting organizations through administration, customer operations and digital workflows.",
+  },
+  {
+    id: "company-frankfurt-digital-works",
+    name: "Frankfurt Digital Works",
+    slug: "frankfurt-digital-works",
+    country: "Germany",
+    countrySlug: "germany",
+    industry: "Digital Services",
+    description:
+      "A digital technology business creating web platforms, digital products and online services for commercial clients.",
   },
 
-  /* FRANCE */
+  /* =========================================================
+     FRANCE
+     ========================================================= */
 
   {
     id: "company-maison-riviere",
@@ -834,32 +843,72 @@ export const opportunityCompanies: OpportunityCompany[] = [
     countrySlug: "france",
     industry: "Professional Services",
     description:
-      "Maison Rivière provides professional and commercial services to businesses and customers in France. The organisation combines service expertise with structured operations, focusing on quality, responsiveness and strong professional relationships. Its teams work across a variety of activities and are encouraged to bring initiative, attention to detail and practical problem-solving skills to their responsibilities.",
+      "A French professional services organization supporting companies with business operations, digital projects and specialist services.",
   },
-
   {
     id: "company-bellecour-conseil",
     name: "Bellecour Conseil",
     slug: "bellecour-conseil",
     country: "France",
     countrySlug: "france",
-    industry: "Business Consulting and Services",
+    industry: "Consulting",
     description:
-      "Bellecour Conseil supports organisations through professional services and practical business solutions. Its work is centred on helping clients manage operational requirements, improve processes and respond effectively to changing market conditions. The organisation values analytical thinking, communication, professionalism and collaborative working relationships, while encouraging employees to develop specialised expertise within their roles.",
+      "A French consulting organization focused on business improvement, project support and digital transformation.",
   },
-
   {
     id: "company-montparnasse-services",
     name: "Montparnasse Services",
     slug: "montparnasse-services",
     country: "France",
     countrySlug: "france",
-    industry: "Commercial Services",
+    industry: "Business Services",
     description:
-      "Montparnasse Services delivers customer-focused and professional services to organisations and individuals across France. The company places emphasis on dependable service, organised operations and understanding the specific requirements of its customers. Employees are encouraged to work collaboratively, communicate clearly and contribute to improvements in service quality and operational efficiency.",
+      "A business services company providing administrative, customer support and operational assistance.",
+  },
+  {
+    id: "company-lumiere-digital",
+    name: "Lumiere Digital",
+    slug: "lumiere-digital",
+    country: "France",
+    countrySlug: "france",
+    industry: "Digital Services",
+    description:
+      "A digital services company working on online platforms, digital marketing and technology-enabled customer experiences.",
+  },
+  {
+    id: "company-seine-technology",
+    name: "Seine Technology",
+    slug: "seine-technology",
+    country: "France",
+    countrySlug: "france",
+    industry: "Technology",
+    description:
+      "A French technology company developing software systems, digital products and technical services.",
+  },
+  {
+    id: "company-atlas-business-conseil",
+    name: "Atlas Business Conseil",
+    slug: "atlas-business-conseil",
+    country: "France",
+    countrySlug: "france",
+    industry: "Consulting",
+    description:
+      "A business consultancy helping organizations improve planning, operations and technology adoption.",
+  },
+  {
+    id: "company-rhone-digital-group",
+    name: "Rhone Digital Group",
+    slug: "rhone-digital-group",
+    country: "France",
+    countrySlug: "france",
+    industry: "Digital Services",
+    description:
+      "A French digital group delivering online business services, technology projects and digital communication solutions.",
   },
 
-  /* NIGERIA */
+  /* =========================================================
+     NIGERIA
+     ========================================================= */
 
   {
     id: "company-oakfield-services",
@@ -867,34 +916,74 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "oakfield-services",
     country: "Nigeria",
     countrySlug: "nigeria",
-    industry: "Business and Professional Services",
+    industry: "Business Services",
     description:
-      "Oakfield Services provides professional and operational services to businesses and customers in Nigeria. The organisation supports clients through practical solutions, responsive service and structured business processes designed around everyday commercial needs. Its teams value professionalism, accountability, communication and the ability to deliver reliable results in a fast-changing business environment.",
+      "A Nigerian business services organization supporting companies with administration, customer operations and commercial services.",
   },
-
   {
     id: "company-cedar-point-nigeria",
     name: "Cedar Point Nigeria",
     slug: "cedar-point-nigeria",
     country: "Nigeria",
     countrySlug: "nigeria",
-    industry: "Business Services",
+    industry: "Professional Services",
     description:
-      "Cedar Point Nigeria provides business and customer-focused services to organisations operating across different sectors of the Nigerian economy. The company combines local market understanding with organised service delivery and practical operational support. Its working culture emphasises reliability, teamwork, customer satisfaction and the continuous development of useful professional capabilities.",
+      "A Nigerian professional services organization providing business support and technology-enabled operational services.",
   },
-
   {
     id: "company-mainland-business-solutions",
     name: "Mainland Business Solutions",
     slug: "mainland-business-solutions",
     country: "Nigeria",
     countrySlug: "nigeria",
-    industry: "Business Solutions",
+    industry: "Technology",
     description:
-      "Mainland Business Solutions supports businesses with professional services, administrative assistance and operational solutions designed to make everyday work more efficient. The organisation works with customers and business teams to understand practical requirements and provide dependable support. Its culture encourages professionalism, collaboration, clear communication and a strong commitment to service quality.",
+      "A Nigerian technology and business solutions provider working with organizations on digital systems and operational improvement.",
+  },
+  {
+    id: "company-lagos-digital-works",
+    name: "Lagos Digital Works",
+    slug: "lagos-digital-works",
+    country: "Nigeria",
+    countrySlug: "nigeria",
+    industry: "Digital Services",
+    description:
+      "A digital services organization focused on websites, online platforms, digital marketing and technology solutions.",
+  },
+  {
+    id: "company-greenview-consulting",
+    name: "Greenview Consulting",
+    slug: "greenview-consulting",
+    country: "Nigeria",
+    countrySlug: "nigeria",
+    industry: "Consulting",
+    description:
+      "A Nigerian consulting firm helping businesses improve processes, projects, customer operations and digital capabilities.",
+  },
+  {
+    id: "company-westgate-technology",
+    name: "Westgate Technology",
+    slug: "westgate-technology",
+    country: "Nigeria",
+    countrySlug: "nigeria",
+    industry: "Technology",
+    description:
+      "A Nigerian technology business providing software, digital infrastructure and technology support services.",
+  },
+  {
+    id: "company-lagoon-business-group",
+    name: "Lagoon Business Group",
+    slug: "lagoon-business-group",
+    country: "Nigeria",
+    countrySlug: "nigeria",
+    industry: "Business Services",
+    description:
+      "A business services group supporting companies with administration, customer experience and commercial operations.",
   },
 
-  /* SOUTH AFRICA */
+  /* =========================================================
+     SOUTH AFRICA
+     ========================================================= */
 
   {
     id: "company-cape-ridge-services",
@@ -902,34 +991,74 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "cape-ridge-services",
     country: "South Africa",
     countrySlug: "south-africa",
-    industry: "Professional Services",
+    industry: "Business Services",
     description:
-      "Cape Ridge Services provides professional and operational support to businesses and customers across South Africa. The organisation combines structured processes with service-oriented teams to address everyday commercial requirements. Its approach places emphasis on reliability, communication, accountability and delivering practical solutions that create lasting value for clients.",
+      "A South African services organization providing operational, administrative and customer-focused business support.",
   },
-
   {
     id: "company-highveld-business-solutions",
     name: "Highveld Business Solutions",
     slug: "highveld-business-solutions",
     country: "South Africa",
     countrySlug: "south-africa",
-    industry: "Business Solutions",
+    industry: "Professional Services",
     description:
-      "Highveld Business Solutions works with organisations seeking dependable business, administrative and operational support. The company brings together professionals with different areas of expertise and encourages collaborative problem solving. Its service approach focuses on customer requirements, operational efficiency, consistent communication and the delivery of useful business outcomes.",
+      "A South African business solutions provider supporting organizations with operational and technology services.",
   },
-
   {
     id: "company-golden-mile-services",
     name: "Golden Mile Services",
     slug: "golden-mile-services",
     country: "South Africa",
     countrySlug: "south-africa",
-    industry: "Commercial Services",
+    industry: "Business Services",
     description:
-      "Golden Mile Services provides commercial and customer-focused services designed to support businesses with practical day-to-day requirements. The organisation values professional service, responsive communication and reliable execution. Its teams are encouraged to understand customer expectations, work collaboratively and contribute to improvements in operational quality.",
+      "A South African services company working across customer support, administration and business operations.",
+  },
+  {
+    id: "company-savanna-digital",
+    name: "Savanna Digital",
+    slug: "savanna-digital",
+    country: "South Africa",
+    countrySlug: "south-africa",
+    industry: "Digital Services",
+    description:
+      "A digital services business creating websites, online platforms and marketing solutions for organizations.",
+  },
+  {
+    id: "company-johannesburg-technology-group",
+    name: "Johannesburg Technology Group",
+    slug: "johannesburg-technology-group",
+    country: "South Africa",
+    countrySlug: "south-africa",
+    industry: "Technology",
+    description:
+      "A technology organization providing software development, infrastructure and digital systems for businesses.",
+  },
+  {
+    id: "company-tableview-consulting",
+    name: "Tableview Consulting",
+    slug: "tableview-consulting",
+    country: "South Africa",
+    countrySlug: "south-africa",
+    industry: "Consulting",
+    description:
+      "A consulting practice assisting organizations with business processes, project coordination and technology initiatives.",
+  },
+  {
+    id: "company-karoo-business-services",
+    name: "Karoo Business Services",
+    slug: "karoo-business-services",
+    country: "South Africa",
+    countrySlug: "south-africa",
+    industry: "Business Services",
+    description:
+      "A South African business services company offering administrative, customer and operational support.",
   },
 
-  /* CHINA */
+  /* =========================================================
+     CHINA
+     ========================================================= */
 
   {
     id: "company-shanghai-horizon-services",
@@ -937,34 +1066,74 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "shanghai-horizon-services",
     country: "China",
     countrySlug: "china",
-    industry: "Business and Technology Services",
+    industry: "Business Services",
     description:
-      "Shanghai Horizon Services provides professional and technology-enabled business services for organisations operating in China's dynamic commercial environment. The company supports clients through structured operations, digital services and practical business solutions designed to improve efficiency and customer experience. Its teams work across different professional disciplines and value precision, collaboration, responsiveness and continuous improvement.",
+      "A China-based business services organization providing operational and administrative support to growing companies.",
   },
-
   {
     id: "company-beijing-northbridge-solutions",
     name: "Beijing Northbridge Solutions",
     slug: "beijing-northbridge-solutions",
     country: "China",
     countrySlug: "china",
-    industry: "Technology and Business Solutions",
+    industry: "Technology",
     description:
-      "Beijing Northbridge Solutions works with businesses seeking technology, operational and professional support. The organisation combines specialist knowledge with structured processes to help clients address practical business requirements and develop more efficient ways of working. Its teams are encouraged to approach projects carefully, communicate clearly and contribute solutions that are useful, sustainable and responsive to changing market needs.",
+      "A technology and business solutions provider supporting organizations with software and digital transformation services.",
   },
-
   {
     id: "company-shenzhen-coastal-digital",
     name: "Shenzhen Coastal Digital",
     slug: "shenzhen-coastal-digital",
     country: "China",
     countrySlug: "china",
+    industry: "Technology",
+    description:
+      "A digital technology organization developing online platforms, software systems and digital business services.",
+  },
+  {
+    id: "company-guangzhou-techworks",
+    name: "Guangzhou Techworks",
+    slug: "guangzhou-techworks",
+    country: "China",
+    countrySlug: "china",
+    industry: "Technology",
+    description:
+      "A technology business delivering application development, digital infrastructure and technical support services.",
+  },
+  {
+    id: "company-oriental-business-solutions",
+    name: "Oriental Business Solutions",
+    slug: "oriental-business-solutions",
+    country: "China",
+    countrySlug: "china",
+    industry: "Business Services",
+    description:
+      "A business solutions organization helping companies manage digital workflows, operations and customer-facing services.",
+  },
+  {
+    id: "company-silk-road-digital",
+    name: "Silk Road Digital",
+    slug: "silk-road-digital",
+    country: "China",
+    countrySlug: "china",
     industry: "Digital Services",
     description:
-      "Shenzhen Coastal Digital provides digital and technology services for businesses developing their online operations and customer-facing capabilities. The company brings together technical, creative and operational professionals to support digital products, online services and business processes. Its working environment values innovation, practical execution, teamwork and the ability to turn changing requirements into dependable digital solutions.",
+      "A digital services business focused on online commerce, digital platforms and technology-enabled business growth.",
+  },
+  {
+    id: "company-hangzhou-innovation-group",
+    name: "Hangzhou Innovation Group",
+    slug: "hangzhou-innovation-group",
+    country: "China",
+    countrySlug: "china",
+    industry: "Technology",
+    description:
+      "A technology-focused organization developing digital products and innovative business systems.",
   },
 
-  /* INDIA */
+  /* =========================================================
+     INDIA
+     ========================================================= */
 
   {
     id: "company-banyan-tree-solutions",
@@ -972,11 +1141,10 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "banyan-tree-solutions",
     country: "India",
     countrySlug: "india",
-    industry: "Technology and Professional Services",
+    industry: "Technology",
     description:
-      "Banyan Tree Solutions provides technology and professional services to businesses seeking reliable support across digital operations, administration and customer-focused activities. The organisation combines experienced teams with structured processes to help clients manage their requirements efficiently. Its culture encourages collaboration, continuous learning, professional accountability and the development of practical solutions that support long-term business relationships.",
+      "An Indian technology and business solutions provider delivering software, digital systems and operational services.",
   },
-
   {
     id: "company-crescent-business-services",
     name: "Crescent Business Services",
@@ -985,21 +1153,62 @@ export const opportunityCompanies: OpportunityCompany[] = [
     countrySlug: "india",
     industry: "Business Services",
     description:
-      "Crescent Business Services supports businesses through administrative, professional and operational services tailored to everyday commercial requirements. The company focuses on dependable execution, responsive communication and organised workflows that help clients manage their activities effectively. Its teams are encouraged to combine attention to detail with practical problem solving while maintaining a strong commitment to customer service.",
+      "An Indian business services organization supporting companies through administration, customer service and operational assistance.",
   },
-
   {
     id: "company-blue-lotus-technologies",
     name: "Blue Lotus Technologies",
     slug: "blue-lotus-technologies",
     country: "India",
     countrySlug: "india",
-    industry: "Technology Services",
+    industry: "Technology",
     description:
-      "Blue Lotus Technologies develops and supports technology-focused services for organisations adapting to increasingly digital business environments. Its teams work across software, digital operations and technology support, combining technical capability with a practical understanding of business requirements. The organisation values innovation, quality, collaboration and continuous development while maintaining a strong focus on dependable delivery.",
+      "An Indian technology company developing software products, digital infrastructure and online business systems.",
+  },
+  {
+    id: "company-bengaluru-digital-works",
+    name: "Bengaluru Digital Works",
+    slug: "bengaluru-digital-works",
+    country: "India",
+    countrySlug: "india",
+    industry: "Digital Services",
+    description:
+      "A digital services company working on websites, applications, online marketing and digital customer experiences.",
+  },
+  {
+    id: "company-mumbai-business-group",
+    name: "Mumbai Business Group",
+    slug: "mumbai-business-group",
+    country: "India",
+    countrySlug: "india",
+    industry: "Business Services",
+    description:
+      "A business group providing commercial, administrative and customer-focused services to organizations.",
+  },
+  {
+    id: "company-delhi-technology-partners",
+    name: "Delhi Technology Partners",
+    slug: "delhi-technology-partners",
+    country: "India",
+    countrySlug: "india",
+    industry: "Technology",
+    description:
+      "A technology services company supporting organizations with software engineering and digital infrastructure.",
+  },
+  {
+    id: "company-pioneer-consulting-india",
+    name: "Pioneer Consulting India",
+    slug: "pioneer-consulting-india",
+    country: "India",
+    countrySlug: "india",
+    industry: "Consulting",
+    description:
+      "An Indian consulting organization helping companies improve operations, project execution and technology adoption.",
   },
 
-  /* JAPAN */
+  /* =========================================================
+     JAPAN
+     ========================================================= */
 
   {
     id: "company-hikari-solutions",
@@ -1007,34 +1216,74 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "hikari-solutions",
     country: "Japan",
     countrySlug: "japan",
-    industry: "Technology and Business Services",
+    industry: "Technology",
     description:
-      "Hikari Solutions provides technology and business services for organisations seeking dependable support across digital operations and professional activities. The company places strong emphasis on careful execution, service quality and structured processes. Its teams bring together different areas of expertise and work collaboratively to develop practical solutions while maintaining attention to detail and customer requirements.",
+      "A Japanese technology and business solutions company providing software and digital services.",
   },
-
   {
     id: "company-sakura-business-services",
     name: "Sakura Business Services",
     slug: "sakura-business-services",
     country: "Japan",
     countrySlug: "japan",
-    industry: "Professional Services",
+    industry: "Business Services",
     description:
-      "Sakura Business Services supports businesses through professional, administrative and operational services designed to improve everyday business activities. The organisation values reliability, clear communication and consistent attention to client requirements. Its teams work in a structured environment that encourages cooperation, professional development and continuous improvement in service delivery.",
+      "A Japanese business services organization supporting companies with administration, customer operations and business processes.",
   },
-
   {
     id: "company-mori-digital",
     name: "Mori Digital",
     slug: "mori-digital",
     country: "Japan",
     countrySlug: "japan",
-    industry: "Digital Technology",
+    industry: "Digital Services",
     description:
-      "Mori Digital focuses on digital technology and online business services for organisations developing modern customer experiences and digital operations. The company brings together technical and creative professionals who collaborate on practical digital solutions. Its approach combines careful planning, quality execution and an understanding of the changing expectations of businesses and their customers.",
+      "A Japanese digital services business working on online platforms, digital communication and technology solutions.",
+  },
+  {
+    id: "company-tokyo-innovation-works",
+    name: "Tokyo Innovation Works",
+    slug: "tokyo-innovation-works",
+    country: "Japan",
+    countrySlug: "japan",
+    industry: "Technology",
+    description:
+      "A technology organization developing digital products and business systems for modern enterprises.",
+  },
+  {
+    id: "company-osaka-business-solutions",
+    name: "Osaka Business Solutions",
+    slug: "osaka-business-solutions",
+    country: "Japan",
+    countrySlug: "japan",
+    industry: "Business Services",
+    description:
+      "A Japanese business solutions provider supporting organizations with operational and customer service functions.",
+  },
+  {
+    id: "company-kizuna-consulting",
+    name: "Kizuna Consulting",
+    slug: "kizuna-consulting",
+    country: "Japan",
+    countrySlug: "japan",
+    industry: "Consulting",
+    description:
+      "A consulting organization assisting businesses with planning, project coordination and operational improvement.",
+  },
+  {
+    id: "company-nagoya-digital-group",
+    name: "Nagoya Digital Group",
+    slug: "nagoya-digital-group",
+    country: "Japan",
+    countrySlug: "japan",
+    industry: "Digital Services",
+    description:
+      "A Japanese digital group providing online business solutions, digital products and technology services.",
   },
 
-  /* INDONESIA */
+  /* =========================================================
+     INDONESIA
+     ========================================================= */
 
   {
     id: "company-nusantara-business-services",
@@ -1042,22 +1291,20 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "nusantara-business-services",
     country: "Indonesia",
     countrySlug: "indonesia",
-    industry: "Business and Professional Services",
+    industry: "Business Services",
     description:
-      "Nusantara Business Services provides professional and operational support to organisations working across Indonesia's diverse business environment. The company helps clients manage administrative, customer and business requirements through structured processes and responsive service. Its teams value collaboration, reliability, practical problem solving and the ability to adapt services to changing customer and market needs.",
+      "An Indonesian business services organization supporting companies with administration, operations and customer services.",
   },
-
   {
     id: "company-jakarta-crest-solutions",
     name: "Jakarta Crest Solutions",
     slug: "jakarta-crest-solutions",
     country: "Indonesia",
     countrySlug: "indonesia",
-    industry: "Business Solutions",
+    industry: "Technology",
     description:
-      "Jakarta Crest Solutions works with businesses seeking dependable professional and operational support. The organisation combines service-focused teams with organised workflows to help clients address everyday commercial requirements and improve business processes. Its working culture encourages accountability, teamwork, communication and a continuous focus on delivering useful outcomes for customers.",
+      "An Indonesian technology and business solutions provider delivering software and digital operational services.",
   },
-
   {
     id: "company-garuda-digital",
     name: "Garuda Digital",
@@ -1066,10 +1313,52 @@ export const opportunityCompanies: OpportunityCompany[] = [
     countrySlug: "indonesia",
     industry: "Digital Services",
     description:
-      "Garuda Digital provides digital services and technology-enabled solutions for businesses building stronger online operations. The company brings together professionals across technology, digital content, customer experience and business support. Its teams focus on practical execution, creative problem solving and dependable service while helping clients respond to the opportunities created by an increasingly connected economy.",
+      "An Indonesian digital services company working on online platforms, digital marketing and technology projects.",
+  },
+  {
+    id: "company-bali-digital-works",
+    name: "Bali Digital Works",
+    slug: "bali-digital-works",
+    country: "Indonesia",
+    countrySlug: "indonesia",
+    industry: "Digital Services",
+    description:
+      "A digital services organization providing websites, content, marketing and online business solutions.",
+  },
+  {
+    id: "company-java-technology-group",
+    name: "Java Technology Group",
+    slug: "java-technology-group",
+    country: "Indonesia",
+    countrySlug: "indonesia",
+    industry: "Technology",
+    description:
+      "An Indonesian technology group developing software applications, business systems and digital infrastructure.",
+  },
+  {
+    id: "company-meridian-business-solutions",
+    name: "Meridian Business Solutions",
+    slug: "meridian-business-solutions",
+    country: "Indonesia",
+    countrySlug: "indonesia",
+    industry: "Business Services",
+    description:
+      "A business solutions provider helping organizations improve administrative workflows and customer operations.",
+  },
+  {
+    id: "company-jakarta-harbor-consulting",
+    name: "Jakarta Harbor Consulting",
+    slug: "jakarta-harbor-consulting",
+    country: "Indonesia",
+    countrySlug: "indonesia",
+    industry: "Consulting",
+    description:
+      "An Indonesian consulting organization assisting businesses with projects, processes and digital transformation.",
   },
 
-  /* NEW ZEALAND */
+  /* =========================================================
+     NEW ZEALAND
+     ========================================================= */
 
   {
     id: "company-southern-alps-services",
@@ -1077,34 +1366,74 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "southern-alps-services",
     country: "New Zealand",
     countrySlug: "new-zealand",
-    industry: "Professional Services",
+    industry: "Business Services",
     description:
-      "Southern Alps Services provides professional and operational support to businesses and customers across New Zealand. The organisation focuses on dependable service delivery, practical business assistance and responsive customer support. Its teams work collaboratively and value professionalism, reliability, clear communication and the ability to provide solutions that reflect the individual needs of clients.",
+      "A New Zealand business services organization providing administrative, customer and operational support.",
   },
-
   {
     id: "company-harbour-view-solutions",
     name: "Harbour View Solutions",
     slug: "harbour-view-solutions",
     country: "New Zealand",
     countrySlug: "new-zealand",
-    industry: "Business Solutions",
+    industry: "Technology",
     description:
-      "Harbour View Solutions supports organisations through a range of professional, administrative and business services. The company combines organised processes with customer-focused teams to help clients manage their everyday responsibilities effectively. Its working environment promotes collaboration, accountability, continuous learning and a strong commitment to dependable service.",
+      "A New Zealand technology and business solutions company supporting digital operations and software projects.",
   },
-
   {
     id: "company-kauri-business-group",
     name: "Kauri Business Group",
     slug: "kauri-business-group",
     country: "New Zealand",
     countrySlug: "new-zealand",
-    industry: "Commercial Services",
+    industry: "Professional Services",
     description:
-      "Kauri Business Group provides commercial and professional services to organisations looking for practical support and reliable execution. The company works across several areas of business activity and encourages employees to understand client requirements before developing appropriate solutions. Its culture is centred on professionalism, communication, teamwork and sustainable customer relationships.",
+      "A New Zealand professional services organization working across business support, consulting and project services.",
+  },
+  {
+    id: "company-aotearoa-digital",
+    name: "Aotearoa Digital",
+    slug: "aotearoa-digital",
+    country: "New Zealand",
+    countrySlug: "new-zealand",
+    industry: "Digital Services",
+    description:
+      "A digital services company helping organizations build online platforms, digital campaigns and customer experiences.",
+  },
+  {
+    id: "company-wellington-technology-group",
+    name: "Wellington Technology Group",
+    slug: "wellington-technology-group",
+    country: "New Zealand",
+    countrySlug: "new-zealand",
+    industry: "Technology",
+    description:
+      "A New Zealand technology organization delivering software, infrastructure and digital business systems.",
+  },
+  {
+    id: "company-pacific-business-solutions",
+    name: "Pacific Business Solutions",
+    slug: "pacific-business-solutions",
+    country: "New Zealand",
+    countrySlug: "new-zealand",
+    industry: "Business Services",
+    description:
+      "A business solutions provider supporting organizations with customer operations, administration and business processes.",
+  },
+  {
+    id: "company-southern-harbor-consulting",
+    name: "Southern Harbor Consulting",
+    slug: "southern-harbor-consulting",
+    country: "New Zealand",
+    countrySlug: "new-zealand",
+    industry: "Consulting",
+    description:
+      "A consulting business helping organizations improve projects, processes and technology-enabled operations.",
   },
 
-  /* SINGAPORE */
+  /* =========================================================
+     SINGAPORE
+     ========================================================= */
 
   {
     id: "company-marina-business-services",
@@ -1112,1017 +1441,885 @@ export const opportunityCompanies: OpportunityCompany[] = [
     slug: "marina-business-services",
     country: "Singapore",
     countrySlug: "singapore",
-    industry: "Professional and Business Services",
+    industry: "Business Services",
     description:
-      "Marina Business Services provides professional and operational support to organisations operating in Singapore's highly connected business environment. The company combines structured processes with responsive service to help clients manage administrative, commercial and customer-focused activities. Its teams value efficiency, professionalism, clear communication and the ability to respond effectively to changing business requirements.",
+      "A Singapore business services organization supporting companies with administration, customer operations and commercial services.",
   },
-
   {
     id: "company-orchard-crest-solutions",
     name: "Orchard Crest Solutions",
     slug: "orchard-crest-solutions",
     country: "Singapore",
     countrySlug: "singapore",
-    industry: "Business Solutions",
+    industry: "Technology",
     description:
-      "Orchard Crest Solutions works with businesses seeking dependable professional and operational solutions. The organisation supports clients through structured workflows, specialist services and customer-focused assistance designed to improve everyday business performance. Its working culture encourages collaboration, accountability, careful execution and continuous improvement across its service areas.",
+      "A Singapore technology and business solutions provider working on digital systems and enterprise services.",
   },
-
   {
     id: "company-lion-city-digital",
     name: "Lion City Digital",
     slug: "lion-city-digital",
     country: "Singapore",
     countrySlug: "singapore",
-    industry: "Digital Technology",
+    industry: "Digital Services",
     description:
-      "Lion City Digital provides digital and technology services for organisations developing modern online products, customer experiences and business operations. The company brings together technical, creative and business professionals who work collaboratively to deliver practical digital solutions. Its approach focuses on quality, innovation, reliable execution and an understanding of how technology can improve everyday business activities.",
+      "A Singapore digital technology company developing online products, digital marketing solutions and business platforms.",
   },
-];
-
+  {
+    id: "company-sentosa-technology",
+    name: "Sentosa Technology",
+    slug: "sentosa-technology",
+    country: "Singapore",
+    countrySlug: "singapore",
+    industry: "Technology",
+    description:
+      "A technology company providing software development, cloud systems and digital infrastructure services.",
+  },
+  {
+    id: "company-raffles-business-group",
+    name: "Raffles Business Group",
+    slug: "raffles-business-group",
+    country: "Singapore",
+    countrySlug: "singapore",
+    industry: "Business Services",
+    description:
+      "A Singapore business group providing commercial support, administration and customer-focused services.",
+  },
+  {
+    id: "company-merlion-consulting",
+    name: "Merlion Consulting",
+    slug: "merlion-consulting",
+    country: "Singapore",
+    countrySlug: "singapore",
+    industry: "Consulting",
+    description:
+      "A consulting organization helping companies with business planning, projects, technology adoption and operational improvement.",
+  },
+  {
+    id: "company-changi-digital-works",
+    name: "Changi Digital Works",
+    slug: "changi-digital-works",
+    country: "Singapore",
+    countrySlug: "singapore",
+    industry: "Digital Services",
+    description:
+      "A digital services organization creating online business platforms, content systems and technology-driven customer experiences.",
+  },
+ ];
 
 /* =========================================================
-   JOB TITLES
-========================================================= */
+   TITLES
+   ========================================================= */
 
 const titlesByCategory: Record<string, string[]> = {
+  "full-stack-developer": [
+    "Full Stack Developer",
+    "Junior Full Stack Developer",
+    "Senior Full Stack Developer",
+    "Full Stack Web Developer",
+    "Remote Full Stack Developer",
+  ],
+
   "frontend-developer": [
     "Frontend Developer",
-    "Frontend Engineer",
-    "React Developer",
-    "JavaScript Developer",
-    "UI Developer",
+    "Junior Frontend Developer",
+    "Senior Frontend Developer",
+    "React Frontend Developer",
+    "Frontend Web Developer",
   ],
 
   "backend-developer": [
     "Backend Developer",
-    "Backend Engineer",
-    "API Developer",
-    "Server-Side Developer",
-    "Node.js Developer",
-  ],
-
-  "full-stack-developer": [
-    "Full Stack Developer",
-    "Full Stack Engineer",
-    "Full Stack Software Engineer",
-    "Web Application Developer",
-    "Full Stack Web Developer",
+    "Junior Backend Developer",
+    "Senior Backend Developer",
+    "Backend API Developer",
+    "Remote Backend Developer",
   ],
 
   "software-engineer": [
     "Software Engineer",
+    "Junior Software Engineer",
+    "Senior Software Engineer",
     "Software Developer",
-    "Application Developer",
-    "Software Development Engineer",
-    "Software Engineer II",
+    "Remote Software Engineer",
   ],
 
   "mobile-developer": [
-    "Mobile App Developer",
-    "React Native Developer",
-    "Flutter Developer",
+    "Mobile Developer",
     "Android Developer",
-    "Mobile Software Engineer",
+    "iOS Developer",
+    "React Native Developer",
+    "Mobile Application Developer",
   ],
 
-  "data-entry": [
-    "Data Entry Specialist",
-    "Data Entry Clerk",
-    "Data Processing Assistant",
-    "Online Data Entry Specialist",
-    "Data Entry Operator",
+  "ui-ux-designer": [
+    "UI/UX Designer",
+    "Junior UX Designer",
+    "Senior UX Designer",
+    "Product Designer",
+    "UI Designer",
   ],
 
-  "virtual-assistant": [
-    "Virtual Assistant",
-    "Remote Administrative Assistant",
-    "Executive Virtual Assistant",
-    "Online Virtual Assistant",
-    "Virtual Office Assistant",
-  ],
-
-  "customer-support": [
-    "Customer Support Specialist",
-    "Customer Service Representative",
-    "Customer Experience Associate",
-    "Client Support Representative",
-    "Customer Care Specialist",
+  "data-analyst": [
+    "Data Analyst",
+    "Junior Data Analyst",
+    "Business Data Analyst",
+    "Reporting Analyst",
+    "Data Analysis Specialist",
   ],
 
   "digital-marketing": [
     "Digital Marketing Specialist",
-    "Digital Marketing Coordinator",
-    "Growth Marketing Associate",
-    "Performance Marketing Specialist",
     "Digital Marketing Executive",
+    "Marketing Specialist",
+    "Online Marketing Specialist",
+    "Digital Marketing Coordinator",
   ],
 
   "seo-specialist": [
     "SEO Specialist",
     "SEO Analyst",
+    "SEO Executive",
     "Technical SEO Specialist",
-    "SEO Content Specialist",
-    "Search Marketing Specialist",
+    "Search Optimization Specialist",
   ],
 
   "graphic-designer": [
     "Graphic Designer",
+    "Junior Graphic Designer",
+    "Senior Graphic Designer",
     "Visual Designer",
-    "Brand Designer",
-    "Creative Designer",
-    "Digital Designer",
+    "Digital Graphic Designer",
   ],
 
   "content-writer": [
     "Content Writer",
-    "Copywriter",
-    "Technical Writer",
+    "Blog Writer",
     "SEO Content Writer",
+    "Copywriter",
     "Digital Content Writer",
+  ],
+
+  "project-manager": [
+    "Project Manager",
+    "Junior Project Manager",
+    "Senior Project Manager",
+    "Project Coordinator",
+    "Digital Project Manager",
   ],
 
   "social-media-manager": [
     "Social Media Manager",
     "Social Media Specialist",
-    "Community Manager",
     "Social Media Coordinator",
-    "Social Content Manager",
+    "Community Manager",
+    "Social Media Executive",
   ],
 
-  "data-analyst": [
-    "Data Analyst",
-    "Business Data Analyst",
-    "Reporting Analyst",
-    "Business Intelligence Analyst",
-    "Data Specialist",
+  "data-entry": [
+    "Data Entry Specialist",
+    "Data Entry Clerk",
+    "Remote Data Entry Assistant",
+    "Data Processing Assistant",
+    "Online Data Entry Specialist",
   ],
 
-  "project-manager": [
-    "Project Manager",
-    "Project Coordinator",
-    "Program Coordinator",
-    "Delivery Manager",
-    "Project Operations Manager",
+  "virtual-assistant": [
+    "Virtual Assistant",
+    "Executive Virtual Assistant",
+    "Administrative Virtual Assistant",
+    "Remote Virtual Assistant",
+    "Virtual Administrative Assistant",
+  ],
+
+  "customer-support": [
+    "Customer Support Representative",
+    "Customer Service Representative",
+    "Remote Customer Support Specialist",
+    "Customer Care Specialist",
+    "Support Representative",
   ],
 
   sales: [
     "Sales Representative",
-    "Sales Executive",
+    "Sales Associate",
     "Business Development Representative",
-    "Account Executive",
     "Inside Sales Representative",
+    "Sales Executive",
   ],
 
-  "finance-accounting": [
-    "Accountant",
-    "Accounts Assistant",
-    "Bookkeeper",
-    "Finance Officer",
-    "Financial Analyst",
-  ],
-
-  "human-resources": [
-    "HR Specialist",
-    "Human Resources Officer",
-    "HR Assistant",
-    "Recruitment Specialist",
-    "Talent Acquisition Coordinator",
-  ],
-
-  healthcare: [
-    "Healthcare Assistant",
-    "Medical Administrative Assistant",
-    "Healthcare Coordinator",
-    "Patient Support Specialist",
-    "Health Services Assistant",
-  ],
-
-  education: [
-    "Teacher",
-    "Online Tutor",
-    "Teaching Assistant",
-    "Academic Support Specialist",
-    "Education Coordinator",
-  ],
-
-  construction: [
-    "Construction Worker",
-    "Construction Assistant",
-    "Site Assistant",
-    "Construction Technician",
-    "Building Technician",
-  ],
-
-  hospitality: [
-    "Hotel Receptionist",
-    "Waiter",
-    "Restaurant Server",
-    "Kitchen Assistant",
-    "Hospitality Assistant",
-  ],
-
-  retail: [
-    "Retail Associate",
-    "Cashier",
-    "Store Assistant",
-    "Retail Sales Associate",
-    "Store Clerk",
-  ],
-
-  logistics: [
-    "Logistics Assistant",
-    "Warehouse Assistant",
-    "Delivery Coordinator",
-    "Warehouse Associate",
-    "Logistics Coordinator",
-  ],
-
-  "cleaning-maintenance": [
-    "Cleaner",
-    "Housekeeping Assistant",
-    "Cleaning Technician",
-    "Maintenance Assistant",
-    "Facilities Assistant",
-  ],
-
-  "skilled-trades": [
-    "Electrician",
-    "Plumber",
-    "Welder",
-    "Carpenter",
-    "Maintenance Technician",
+  "online-research": [
+    "Online Research Assistant",
+    "Internet Research Specialist",
+    "Research Assistant",
+    "Online Researcher",
+    "Web Research Specialist",
   ],
 };
 
-
 /* =========================================================
-   CATEGORY SKILLS
-========================================================= */
+   SKILLS
+   ========================================================= */
 
 const skillsByCategory: Record<string, string[]> = {
-  "frontend-developer": [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "HTML",
-    "CSS",
-    "Responsive Design",
-  ],
-
-  "backend-developer": [
-    "APIs",
-    "Node.js",
-    "Python",
-    "Databases",
-    "REST",
-    "Server-side Development",
-  ],
-
   "full-stack-developer": [
     "JavaScript",
     "TypeScript",
     "React",
     "Node.js",
-    "APIs",
+    "REST APIs",
+    "SQL",
+    "Git",
+  ],
+
+  "frontend-developer": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Responsive Design",
+    "Git",
+  ],
+
+  "backend-developer": [
+    "Node.js",
+    "Python",
+    "Java",
+    "REST APIs",
     "Databases",
+    "Authentication",
+    "Git",
   ],
 
   "software-engineer": [
-    "Software Development",
     "Programming",
+    "Software Development",
     "Git",
-    "Testing",
     "APIs",
+    "Testing",
+    "Databases",
     "Problem Solving",
   ],
 
   "mobile-developer": [
-    "React Native",
-    "Flutter",
     "Android",
     "iOS",
+    "React Native",
+    "Flutter",
     "Mobile UI",
-    "API Integration",
+    "APIs",
+    "Git",
   ],
 
-  "data-entry": [
-    "Data Entry",
-    "Microsoft Excel",
-    "Typing",
-    "Data Processing",
-    "Accuracy",
-    "Online Research",
+  "ui-ux-designer": [
+    "Figma",
+    "Wireframing",
+    "Prototyping",
+    "User Research",
+    "UI Design",
+    "UX Design",
+    "Design Systems",
   ],
 
-  "virtual-assistant": [
-    "Administration",
-    "Email Management",
-    "Scheduling",
-    "Online Research",
-    "Customer Support",
-    "Organisation",
-  ],
-
-  "customer-support": [
-    "Customer Service",
-    "Communication",
-    "Email Support",
-    "Chat Support",
-    "Problem Solving",
-    "CRM",
+  "data-analyst": [
+    "Excel",
+    "SQL",
+    "Data Analysis",
+    "Data Visualization",
+    "Reporting",
+    "Dashboards",
+    "Statistics",
   ],
 
   "digital-marketing": [
     "Digital Marketing",
+    "Google Ads",
     "Social Media",
+    "Email Marketing",
     "Content Marketing",
     "Analytics",
     "Campaign Management",
-    "Lead Generation",
   ],
 
   "seo-specialist": [
     "SEO",
     "Keyword Research",
     "Technical SEO",
-    "Content SEO",
-    "Google Search",
+    "Content Optimization",
+    "Google Search Console",
     "Analytics",
+    "Link Building",
   ],
 
   "graphic-designer": [
-    "Graphic Design",
-    "Adobe Creative Suite",
+    "Adobe Photoshop",
+    "Illustrator",
+    "Canva",
     "Branding",
     "Typography",
     "Visual Design",
-    "Digital Design",
+    "Social Media Design",
   ],
 
   "content-writer": [
-    "Content Writing",
-    "Copywriting",
+    "Writing",
+    "Editing",
     "SEO Writing",
     "Research",
-    "Editing",
-    "Digital Content",
+    "Content Creation",
+    "Proofreading",
+    "Communication",
+  ],
+
+  "project-manager": [
+    "Project Management",
+    "Planning",
+    "Agile",
+    "Communication",
+    "Team Coordination",
+    "Documentation",
+    "Problem Solving",
   ],
 
   "social-media-manager": [
     "Social Media",
     "Content Planning",
     "Community Management",
+    "Copywriting",
     "Analytics",
-    "Campaign Management",
     "Content Creation",
+    "Engagement",
   ],
 
-  "data-analyst": [
-    "Data Analysis",
-    "Excel",
-    "SQL",
-    "Reporting",
-    "Data Visualisation",
-    "Business Intelligence",
+  "data-entry": [
+    "Data Entry",
+    "Microsoft Excel",
+    "Google Sheets",
+    "Typing",
+    "Data Processing",
+    "Attention to Detail",
+    "Document Management",
   ],
 
-  "project-manager": [
-    "Project Management",
-    "Planning",
-    "Stakeholder Management",
-    "Agile",
-    "Project Coordination",
-    "Reporting",
+  "virtual-assistant": [
+    "Administrative Support",
+    "Email Management",
+    "Scheduling",
+    "Internet Research",
+    "Google Workspace",
+    "Communication",
+    "Organization",
+  ],
+
+  "customer-support": [
+    "Customer Service",
+    "Communication",
+    "Problem Solving",
+    "Email Support",
+    "Chat Support",
+    "CRM",
+    "Helpdesk",
   ],
 
   sales: [
     "Sales",
     "Lead Generation",
-    "Customer Acquisition",
+    "Customer Relations",
     "Communication",
     "Negotiation",
     "CRM",
+    "Business Development",
   ],
 
-  "finance-accounting": [
-    "Accounting",
-    "Bookkeeping",
-    "Excel",
-    "Financial Reporting",
-    "Accounts Payable",
-    "Accounts Receivable",
-  ],
-
-  "human-resources": [
-    "Recruitment",
-    "Human Resources",
-    "Employee Relations",
-    "Talent Acquisition",
-    "HR Administration",
-    "Communication",
-  ],
-
-  healthcare: [
-    "Patient Support",
-    "Healthcare Administration",
-    "Communication",
-    "Record Management",
-    "Customer Service",
-    "Healthcare Operations",
-  ],
-
-  education: [
-    "Teaching",
-    "Communication",
-    "Lesson Planning",
-    "Student Support",
-    "Online Learning",
-    "Education",
-  ],
-
-  construction: [
-    "Construction",
-    "Site Safety",
-    "Building",
-    "Equipment",
-    "Project Support",
-    "Site Operations",
-  ],
-
-  hospitality: [
-    "Customer Service",
-    "Hospitality",
-    "Guest Relations",
-    "Food Service",
-    "Communication",
-    "Teamwork",
-  ],
-
-  retail: [
-    "Customer Service",
-    "Retail Sales",
-    "Cash Handling",
-    "Inventory",
-    "Stock Management",
-    "Communication",
-  ],
-
-  logistics: [
-    "Logistics",
-    "Warehouse Operations",
-    "Inventory",
-    "Dispatch",
-    "Supply Chain",
-    "Organisation",
-  ],
-
-  "cleaning-maintenance": [
-    "Cleaning",
-    "Facilities",
-    "Maintenance",
-    "Safety",
-    "Property Care",
-    "Equipment",
-  ],
-
-  "skilled-trades": [
-    "Technical Skills",
-    "Safety",
-    "Equipment",
-    "Installation",
-    "Maintenance",
-    "Troubleshooting",
+  "online-research": [
+    "Internet Research",
+    "Data Collection",
+    "Web Research",
+    "Fact Checking",
+    "Google Search",
+    "Data Entry",
+    "Attention to Detail",
   ],
 };
 
-
 /* =========================================================
    LOCATIONS
-========================================================= */
+   ========================================================= */
 
 const locationsByCountry: Record<string, string[]> = {
   usa: [
+    "Remote",
     "New York, NY",
     "Los Angeles, CA",
     "Austin, TX",
     "Chicago, IL",
-    "Remote",
   ],
 
   uk: [
-    "London",
-    "Manchester",
-    "Birmingham",
-    "Leeds",
     "Remote",
+    "London, UK",
+    "Manchester, UK",
+    "Birmingham, UK",
+    "Leeds, UK",
   ],
 
   canada: [
+    "Remote",
     "Toronto, ON",
     "Vancouver, BC",
     "Montreal, QC",
     "Calgary, AB",
-    "Remote",
   ],
 
   australia: [
+    "Remote",
     "Sydney, NSW",
     "Melbourne, VIC",
     "Brisbane, QLD",
     "Perth, WA",
-    "Remote",
   ],
 
   germany: [
-    "Berlin",
-    "Munich",
-    "Hamburg",
-    "Frankfurt",
     "Remote",
+    "Berlin, Germany",
+    "Munich, Germany",
+    "Hamburg, Germany",
+    "Frankfurt, Germany",
   ],
 
   france: [
-    "Paris",
-    "Lyon",
-    "Marseille",
-    "Toulouse",
     "Remote",
+    "Paris, France",
+    "Lyon, France",
+    "Marseille, France",
+    "Bordeaux, France",
   ],
 
   nigeria: [
-    "Lagos",
-    "Abuja",
-    "Port Harcourt",
-    "Ibadan",
     "Remote",
+    "Lagos, Nigeria",
+    "Abuja, Nigeria",
+    "Port Harcourt, Nigeria",
+    "Ibadan, Nigeria",
   ],
 
   "south-africa": [
-    "Johannesburg",
-    "Cape Town",
-    "Durban",
-    "Pretoria",
     "Remote",
+    "Cape Town, South Africa",
+    "Johannesburg, South Africa",
+    "Durban, South Africa",
+    "Pretoria, South Africa",
   ],
 
   china: [
-    "Shanghai",
-    "Beijing",
-    "Shenzhen",
-    "Guangzhou",
     "Remote",
+    "Shanghai, China",
+    "Beijing, China",
+    "Shenzhen, China",
+    "Guangzhou, China",
   ],
 
   india: [
-    "Bengaluru",
-    "Mumbai",
-    "Delhi",
-    "Hyderabad",
     "Remote",
+    "Bengaluru, India",
+    "Mumbai, India",
+    "Delhi, India",
+    "Hyderabad, India",
   ],
 
   japan: [
-    "Tokyo",
-    "Osaka",
-    "Kyoto",
-    "Yokohama",
     "Remote",
+    "Tokyo, Japan",
+    "Osaka, Japan",
+    "Yokohama, Japan",
+    "Nagoya, Japan",
   ],
 
   indonesia: [
-    "Jakarta",
-    "Bandung",
-    "Surabaya",
-    "Bali",
     "Remote",
+    "Jakarta, Indonesia",
+    "Surabaya, Indonesia",
+    "Bandung, Indonesia",
+    "Bali, Indonesia",
   ],
 
   "new-zealand": [
-    "Auckland",
-    "Wellington",
-    "Christchurch",
-    "Hamilton",
     "Remote",
+    "Auckland, New Zealand",
+    "Wellington, New Zealand",
+    "Christchurch, New Zealand",
+    "Hamilton, New Zealand",
   ],
 
   singapore: [
-    "Singapore",
     "Remote",
+    "Singapore",
   ],
 };
 
-
 /* =========================================================
    HELPERS
-========================================================= */
+   ========================================================= */
 
-function slugify(value: string) {
+function slugify(value: string): string {
   return value
     .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/&/g, "and")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
 
-function deterministicCode(
-  categoryIndex: number,
-  companyIndex: number,
-) {
-  const value =
-    (categoryIndex + 19) * 7919 +
-    (companyIndex + 37) * 1543;
-
-  return value.toString(36);
-}
-
-function getCountry(countrySlug: string) {
+function getCountry(countrySlug: string): OpportunityCountry | undefined {
   return opportunityCountries.find(
     (country) => country.slug === countrySlug,
   );
 }
 
-// function getCategory(categorySlug: string) {
-//   return opportunityCategories.find(
-//     (category) => category.slug === categorySlug,
-//   );
-// }
-
-
-/* =========================================================
-   OPPORTUNITY DESCRIPTION
-========================================================= */
-
-function createOpportunityDescription(
-  title: string,
-  category: OpportunityCategory,
-  company: OpportunityCompany,
-  location: string,
-  workMode: CategoryOpportunity["workMode"],
-) {
-  const workText =
-    workMode === "REMOTE"
-      ? `This is a remote opportunity available to eligible candidates who can work effectively from their location.`
-      : workMode === "HYBRID"
-        ? `The position follows a hybrid working arrangement combining remote work with collaboration from the ${location} area.`
-        : `The position is based in ${location} and involves working with the company's relevant teams and operations.`;
-
-  return `${company.name} is looking for a ${title} to join its ${company.industry.toLowerCase()} operations. This opportunity sits within ${category.name.toLowerCase()} and is suited to a professional who can contribute practical skills, communicate effectively and take responsibility for delivering high-quality work. ${workText} The successful candidate will work with colleagues and relevant stakeholders, contribute to day-to-day responsibilities and help support the organisation's wider operational goals. Candidates should be organised, dependable and comfortable working independently while collaborating with others when required.`;
+function getCategory(categorySlug: string): OpportunityCategory | undefined {
+  return opportunityCategories.find(
+    (category) => category.slug === categorySlug,
+  );
 }
 
-
 /* =========================================================
-   GENERATE OPPORTUNITIES
-========================================================= */
+   OPPORTUNITY GENERATOR
+   ========================================================= */
 
 function createOpportunities(): CategoryOpportunity[] {
   const results: CategoryOpportunity[] = [];
 
-  opportunityCategories.forEach(
-    (category, categoryIndex) => {
-      opportunityCompanies.forEach(
-        (company, companyIndex) => {
-          const country = getCountry(company.countrySlug);
+  opportunityCategories.forEach((category, categoryIndex) => {
+    opportunityCompanies.forEach((company, companyIndex) => {
+      const country = getCountry(company.countrySlug);
 
-          if (!country) {
-            return;
-          }
+      if (!country) {
+        return;
+      }
 
-          const titles =
-            titlesByCategory[category.slug] ?? [
-              `${category.name} Specialist`,
-            ];
+      const titles = titlesByCategory[category.slug] ?? [
+        `${category.name} Specialist`,
+      ];
 
-          const skills =
-            skillsByCategory[category.slug] ?? [];
+      const skills = skillsByCategory[category.slug] ?? [];
 
-          const locations =
-            locationsByCountry[company.countrySlug] ?? [
-              "Remote",
-            ];
+      const locations = locationsByCountry[company.countrySlug] ?? [
+        "Remote",
+      ];
 
-          /*
-           * Every company receives one opportunity
-           * for every category.
-           *
-           * 24 categories × 42 companies = 1,008
-           * opportunities.
-           */
+      const title = titles[companyIndex % titles.length];
 
-          const title =
-            titles[
-              companyIndex % titles.length
-            ];
+      const location = locations[companyIndex % locations.length];
 
-          const location =
-            locations[
-              companyIndex % locations.length
-            ];
+      const workMode: CategoryOpportunity["workMode"] =
+        location === "Remote"
+          ? "REMOTE"
+          : companyIndex % 3 === 0
+            ? "HYBRID"
+            : "ONSITE";
 
-          const workMode =
-            location === "Remote"
-              ? "REMOTE"
-              : companyIndex % 3 === 0
-                ? "HYBRID"
-                : "ONSITE";
+      const experienceLevel: CategoryOpportunity["experienceLevel"] =
+        companyIndex % 4 === 0
+          ? "ENTRY_LEVEL"
+          : companyIndex % 4 === 1
+            ? "MID_LEVEL"
+            : companyIndex % 4 === 2
+              ? "SENIOR_LEVEL"
+              : "ENTRY_LEVEL";
 
-          const experienceLevel =
-            companyIndex % 4 === 0
-              ? "ENTRY_LEVEL"
-              : companyIndex % 4 === 1
-                ? "MID_LEVEL"
-                : companyIndex % 4 === 2
-                  ? "SENIOR_LEVEL"
-                  : "ENTRY_LEVEL";
+      const jobType: CategoryOpportunity["jobType"] =
+        companyIndex % 5 === 0
+          ? "PART_TIME"
+          : companyIndex % 7 === 0
+            ? "CONTRACT"
+            : "FULL_TIME";
 
-          const jobType =
-            companyIndex % 5 === 0
-              ? "PART_TIME"
-              : companyIndex % 7 === 0
-                ? "CONTRACT"
-                : "FULL_TIME";
+      const salaryMultiplier =
+        category.slug === "software-engineer" ||
+        category.slug === "full-stack-developer" ||
+        category.slug === "backend-developer" ||
+        category.slug === "frontend-developer"
+          ? 1.25
+          : category.slug === "project-manager" ||
+              category.slug === "data-analyst"
+            ? 1.1
+            : 1;
 
-          const range =
-            country.salaryMax -
-            country.salaryMin;
-
-          const salaryMin =
-            Math.round(
-              country.salaryMin +
-                range *
-                  ((companyIndex % 5) / 10),
-            );
-
-          const salaryMax =
-            Math.round(
-              country.salaryMin +
-                range *
-                  (0.45 +
-                    (companyIndex % 5) / 10),
-            );
-
-          const code = deterministicCode(
-            categoryIndex,
-            companyIndex,
-          );
-
-          const slug =
-            `${slugify(title)}-${company.countrySlug}-${code}`;
-
-          const description =
-            createOpportunityDescription(
-              title,
-              category,
-              company,
-              location,
-              workMode,
-            );
-
-          results.push({
-            id: `opportunity-${category.slug}-${company.slug}`,
-            slug,
-
-            title,
-
-            category: category.name,
-            categorySlug: category.slug,
-
-            company,
-
-            country: country.name,
-            countrySlug: country.slug,
-            countryCode: country.code,
-
-            location,
-
-            description,
-
-            jobType,
-            workMode,
-            experienceLevel,
-
-            salaryMin,
-            salaryMax,
-            salaryCurrency: country.currency,
-            salaryPeriod: "YEAR",
-
-            skills: skills.slice(0, 6),
-
-            keywords: [
-              ...category.keywords,
-              title.toLowerCase(),
-              company.name.toLowerCase(),
-              country.name.toLowerCase(),
-              location.toLowerCase(),
-            ],
-
-            publishedDaysAgo:
-              (companyIndex % 5) + 1,
-
-            /*
-             * These are generated platform opportunities.
-             * They should not be presented as independently
-             * verified vacancies until a real source/application
-             * is connected.
-             */
-            isVerified: false,
-
-            isFeatured:
-              companyIndex % 7 === 0,
-
-            isActive: true,
-
-            applicationUrl: null,
-          });
-        },
+      const salaryMin = Math.round(
+        country.salaryMin * salaryMultiplier,
       );
-    },
-  );
+
+      const salaryMax = Math.round(
+        country.salaryMax * salaryMultiplier,
+      );
+
+      const publishedDaysAgo =
+        ((categoryIndex + companyIndex) % 14) + 1;
+
+      const opportunityCode = `${String(categoryIndex + 1).padStart(
+        2,
+        "0",
+      )}${String(companyIndex + 1).padStart(2, "0")}`;
+
+      const slug = `${slugify(title)}-${company.countrySlug}-${opportunityCode}`;
+
+      const keywords = [
+        category.name.toLowerCase(),
+        `${category.name.toLowerCase()} jobs`,
+        `${category.name.toLowerCase()} jobs in ${country.name}`,
+        company.name.toLowerCase(),
+        workMode === "REMOTE" ? "remote jobs" : location.toLowerCase(),
+        "career opportunities",
+      ];
+
+      const description =
+        `${company.name} is offering an opportunity for a ${title}. ` +
+        `This role is associated with the ${category.name} category and is based in ${location}. ` +
+        `Candidates may work with the company on responsibilities related to ${skills
+          .slice(0, 3)
+          .join(", ")}. ` +
+        `Review the opportunity details and application information before applying.`;
+
+      results.push({
+        id: `opportunity-${category.slug}-${company.slug}`,
+
+        slug,
+
+        title,
+
+        category: category.name,
+
+        categorySlug: category.slug,
+
+        company,
+
+        country: country.name,
+
+        countrySlug: country.slug,
+
+        countryCode: country.code,
+
+        location,
+
+        description,
+
+        jobType,
+
+        workMode,
+
+        experienceLevel,
+
+        salaryMin,
+
+        salaryMax,
+
+        salaryCurrency: country.currency,
+
+        salaryPeriod: "YEAR",
+
+        skills,
+
+        keywords,
+
+        publishedDaysAgo,
+
+        // These generated opportunities are platform-generated records.
+        // They are NOT independently verified vacancies.
+        isVerified: false,
+
+        isFeatured: companyIndex % 7 === 0,
+
+        isActive: true,
+
+        applicationUrl: null,
+      });
+    });
+  });
 
   return results;
 }
 
-export const categoryOpportunities =
-  createOpportunities();
+/* =========================================================
+   ALL GENERATED OPPORTUNITIES
+   ========================================================= */
 
+export const categoryOpportunities: CategoryOpportunity[] =
+  createOpportunities();
 
 /* =========================================================
    LOOKUP FUNCTIONS
-========================================================= */
+   ========================================================= */
 
 export function getOpportunityCategory(
   slug: string,
-) {
-  return opportunityCategories.find(
-    (category) =>
-      category.slug === slug,
-  );
+): OpportunityCategory | undefined {
+  return getCategory(slug);
 }
 
 export function getOpportunityCompany(
   slug: string,
-) {
+): OpportunityCompany | undefined {
   return opportunityCompanies.find(
-    (company) =>
-      company.slug === slug,
+    (company) => company.slug === slug,
   );
 }
 
 export function getOpportunityBySlug(
   slug: string,
-) {
+): CategoryOpportunity | undefined {
   return categoryOpportunities.find(
-    (opportunity) =>
-      opportunity.slug === slug,
+    (opportunity) => opportunity.slug === slug,
   );
 }
 
 export function getOpportunitiesByCategory(
   categorySlug: string,
-) {
+): CategoryOpportunity[] {
   return categoryOpportunities.filter(
-    (opportunity) =>
-      opportunity.categorySlug ===
-      categorySlug,
+    (opportunity) => opportunity.categorySlug === categorySlug,
   );
 }
 
 export function getOpportunitiesByCountry(
   countrySlug: string,
-) {
+): CategoryOpportunity[] {
   return categoryOpportunities.filter(
-    (opportunity) =>
-      opportunity.countrySlug ===
-      countrySlug,
+    (opportunity) => opportunity.countrySlug === countrySlug,
   );
 }
 
 export function getOpportunitiesByCategoryAndCountry(
   categorySlug: string,
   countrySlug: string,
-) {
+): CategoryOpportunity[] {
   return categoryOpportunities.filter(
     (opportunity) =>
-      opportunity.categorySlug ===
-        categorySlug &&
-      opportunity.countrySlug ===
-        countrySlug,
+      opportunity.categorySlug === categorySlug &&
+      opportunity.countrySlug === countrySlug,
   );
 }
 
 export function getCompaniesByCategory(
   categorySlug: string,
-) {
-  const opportunities =
-    getOpportunitiesByCategory(
-      categorySlug,
-    );
-
-  const companies = new Map<
-    string,
-    OpportunityCompany
-  >();
-
-  opportunities.forEach(
-    (opportunity) => {
-      companies.set(
-        opportunity.company.slug,
-        opportunity.company,
-      );
-    },
+): OpportunityCompany[] {
+  const companyIds = new Set(
+    getOpportunitiesByCategory(categorySlug).map(
+      (opportunity) => opportunity.company.id,
+    ),
   );
 
-  return Array.from(
-    companies.values(),
+  return opportunityCompanies.filter((company) =>
+    companyIds.has(company.id),
   );
 }
 
 export function getCompaniesByCountry(
   countrySlug: string,
-) {
+): OpportunityCompany[] {
   return opportunityCompanies.filter(
-    (company) =>
-      company.countrySlug ===
-      countrySlug,
+    (company) => company.countrySlug === countrySlug,
   );
 }
 
 export function getCompanyOpportunities(
   companySlug: string,
-) {
+): CategoryOpportunity[] {
   return categoryOpportunities.filter(
-    (opportunity) =>
-      opportunity.company.slug ===
-      companySlug,
+    (opportunity) => opportunity.company.slug === companySlug,
   );
 }
 
-
 /* =========================================================
    COUNTS
-========================================================= */
+   ========================================================= */
 
-export function getOpportunityCategoryCount() {
+export function getOpportunityCategoryCount(): number {
   return opportunityCategories.length;
 }
 
-export function getOpportunityCompanyCount() {
+export function getOpportunityCompanyCount(): number {
   return opportunityCompanies.length;
 }
 
-export function getOpportunityCount() {
+export function getOpportunityCount(): number {
   return categoryOpportunities.length;
 }
 
-
 /* =========================================================
    VALIDATION
-========================================================= */
+   ========================================================= */
 
-function validateCompanyNames() {
-  const names = new Map<
-    string,
-    string
-  >();
+export function validateCompanyNames(): string[] {
+  const errors: string[] = [];
+
+  const seenSlugs = new Set<string>();
 
   for (const company of opportunityCompanies) {
-    const normalized =
-      company.name
-        .trim()
-        .toLowerCase();
+    if (!company.name.trim()) {
+      errors.push(`Company ${company.id} has an empty name.`);
+    }
 
-    const existing =
-      names.get(normalized);
-
-    if (
-      existing &&
-      existing !== company.countrySlug
-    ) {
-      throw new Error(
-        `Duplicate company name across countries: ${company.name}`,
+    if (seenSlugs.has(company.slug)) {
+      errors.push(
+        `Duplicate company slug detected: ${company.slug}`,
       );
     }
 
-    names.set(
-      normalized,
-      company.countrySlug,
-    );
+    seenSlugs.add(company.slug);
+
+    const country = getCountry(company.countrySlug);
+
+    if (!country) {
+      errors.push(
+        `Company ${company.name} references unknown country: ${company.countrySlug}`,
+      );
+    }
   }
+
+  return errors;
 }
 
-function validateCategories() {
-  const slugs = new Set<string>();
+export function validateCategories(): string[] {
+  const errors: string[] = [];
+
+  const seenSlugs = new Set<string>();
 
   for (const category of opportunityCategories) {
-    if (slugs.has(category.slug)) {
-      throw new Error(
-        `Duplicate opportunity category slug: ${category.slug}`,
+    if (!category.name.trim()) {
+      errors.push(`Category ${category.id} has an empty name.`);
+    }
+
+    if (seenSlugs.has(category.slug)) {
+      errors.push(
+        `Duplicate category slug detected: ${category.slug}`,
       );
     }
 
-    slugs.add(category.slug);
+    seenSlugs.add(category.slug);
+
+    const opportunities = getOpportunitiesByCategory(
+      category.slug,
+    );
+
+    if (opportunities.length === 0) {
+      errors.push(
+        `Category ${category.name} has no generated opportunities.`,
+      );
+    }
   }
+
+  return errors;
 }
 
-validateCompanyNames();
-validateCategories();
+/* =========================================================
+   DATA SUMMARY
+   ========================================================= */
+
+export const opportunityDataSummary = {
+  categories: opportunityCategories.length,
+  companies: opportunityCompanies.length,
+  countries: opportunityCountries.length,
+  opportunities: categoryOpportunities.length,
+};
