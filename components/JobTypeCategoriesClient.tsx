@@ -9,6 +9,7 @@ import {
   FiBox,
   FiBriefcase,
   FiCheckCircle,
+  FiChevronDown,
   FiClipboard,
   FiCloud,
   FiCode,
@@ -115,7 +116,20 @@ export default function JobTypeCategoriesClient({
     "skilled",
   );
 
+  const [showAll, setShowAll] = useState(false);
+
   const jobs = activeType === "skilled" ? skilledJobs : unskilledJobs;
+
+  const initialCount = 6;
+
+  const visibleJobs = showAll ? jobs : jobs.slice(0, initialCount);
+
+  const remainingCount = Math.max(jobs.length - initialCount, 0);
+
+  const handleTypeChange = (type: "skilled" | "unskilled") => {
+    setActiveType(type);
+    setShowAll(false);
+  };
 
   return (
     <section
@@ -149,7 +163,7 @@ export default function JobTypeCategoriesClient({
         <div className="mx-auto mt-6 flex w-full max-w-md rounded-2xl border border-slate-200 bg-slate-50 p-1.5">
           <button
             type="button"
-            onClick={() => setActiveType("skilled")}
+            onClick={() => handleTypeChange("skilled")}
             className={`relative flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition ${
               activeType === "skilled"
                 ? "bg-blue-600 text-white shadow-sm"
@@ -173,7 +187,7 @@ export default function JobTypeCategoriesClient({
 
           <button
             type="button"
-            onClick={() => setActiveType("unskilled")}
+            onClick={() => handleTypeChange("unskilled")}
             className={`relative flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition ${
               activeType === "unskilled"
                 ? "bg-blue-600 text-white shadow-sm"
@@ -218,7 +232,8 @@ export default function JobTypeCategoriesClient({
             </span>
           </div>
 
-          <AnimatePresence mode="wait">
+          {/* Category Grid */}
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={activeType}
               initial={{ opacity: 0, y: 10 }}
@@ -227,14 +242,14 @@ export default function JobTypeCategoriesClient({
               transition={{ duration: 0.2 }}
               className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             >
-              {jobs.map((job, index) => (
+              {visibleJobs.map((job, index) => (
                 <motion.div
                   key={job.id}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.2,
-                    delay: Math.min(index * 0.025, 0.3),
+                    duration: 0.25,
+                    delay: Math.min(index * 0.035, 0.3),
                   }}
                   className="h-full"
                 >
@@ -280,6 +295,34 @@ export default function JobTypeCategoriesClient({
               ))}
             </motion.div>
           </AnimatePresence>
+
+          {/* View More / Show Fewer */}
+          {remainingCount > 0 && (
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowAll((prev) => !prev)}
+                aria-expanded={showAll}
+                className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                <span>
+                  {showAll ? "Show fewer" : `View ${remainingCount} more`}
+                </span>
+
+                <motion.span
+                  animate={{
+                    rotate: showAll ? 180 : 0,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                  }}
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 transition-colors group-hover:bg-blue-100"
+                >
+                  <FiChevronDown className="text-base" />
+                </motion.span>
+              </button>
+            </div>
+          )}
 
           {/* Empty State */}
           {jobs.length === 0 && (
