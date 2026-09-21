@@ -14,6 +14,7 @@ import {
   FiHome,
   FiLayers,
   FiSearch,
+  FiThumbsUp,
   FiTrendingUp,
   FiUsers,
   FiWifi,
@@ -84,7 +85,7 @@ export default function WorkBenefitsPage() {
           </Link>
 
           <Link
-            href="/location"
+            href="/online-jobs"
             className="hidden items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-blue-700 sm:flex"
           >
             Find Jobs
@@ -144,6 +145,14 @@ export default function WorkBenefitsPage() {
               <FiBriefcase size={17} />
               Upload Your CV
             </Link>
+            <a
+              href="https://www.profitableratecpmnetwork.com/mp5q19er1?key=52613312a9be66cab84c510c3b43502a"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-700"
+            >
+              <FiThumbsUp />
+              Fast track application
+            </a>
           </div>
         </div>
       </section>
