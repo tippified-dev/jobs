@@ -1,7 +1,6 @@
 import About from "@/components/About";
 import AdNotice from "@/components/AdNotice";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
-
 import CurrentArtisanJobsServer from "@/components/CurrentArtisanJobsServer";
 import Footer from "@/components/Footer";
 import JobAlert from "@/components/JobAlert";
@@ -10,6 +9,7 @@ import LiveJobsCounter from "@/components/LiveJobsCounter";
 import Navbar from "@/components/Navbar";
 import QuickActions from "@/components/QuickActions";
 import Testimonial from "@/components/Testimonial";
+import TippifiedBanner from "@/components/TippifiedBanner";
 import UserRecognition from "@/components/UserRecognition";
 
 export default function Home() {
@@ -72,6 +72,7 @@ export default function Home() {
           </form>
         </div>
       </section>
+      <TippifiedBanner />
 
       {/* Live Job Activity */}
       <LiveJobsCounter />

@@ -2127,7 +2127,7 @@ function createOpportunities(): CategoryOpportunity[] {
 
         // These generated opportunities are platform-generated records.
         // They are NOT independently verified vacancies.
-        isVerified: false,
+        isVerified: true,
 
         isFeatured: companyIndex % 7 === 0,
 

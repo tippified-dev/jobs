@@ -1,3 +1,5 @@
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -297,6 +299,7 @@ export default async function OpportunityPage({
                   </span>
                 )}
               </div>
+              <Banner320x50 />
 
               <h1 className="mt-5 max-w-4xl text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
                 {opportunity.title}
@@ -333,6 +336,7 @@ export default async function OpportunityPage({
                 </span>
               </div>
             </div>
+            <NativeBannerAd />
 
             {/* Quick information */}
             <aside className="rounded-2xl border border-slate-200 bg-slate-50 p-6">

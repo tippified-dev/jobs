@@ -1,5 +1,6 @@
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import { artisanCategories, getArtisanCategory } from "@/lib/artisan-data";
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -187,6 +188,7 @@ export default async function ArtisanCategoryPage({ params }: Props) {
             </div>
           </div>
         </header>
+        <Banner320x50 />
 
         <section aria-labelledby="available-opportunities">
           <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -251,6 +253,7 @@ export default async function ArtisanCategoryPage({ params }: Props) {
                           </span>
                         </div>
                       </div>
+                      <NativeBannerAd />
 
                       <div className="flex shrink-0 items-center gap-2 text-sm font-semibold text-blue-600">
                         View opportunity

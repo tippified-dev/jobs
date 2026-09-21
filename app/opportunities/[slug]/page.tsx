@@ -1,3 +1,5 @@
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -269,6 +271,7 @@ export default async function OpportunityPage({
           </nav>
         </div>
       </section>
+      <Banner320x50 />
 
       {/* Hero */}
       <section className="border-b border-slate-200 bg-white">
@@ -469,6 +472,7 @@ export default async function OpportunityPage({
               <JobApplication />
             </section>
           </div>
+          <NativeBannerAd />
 
           {/* Sidebar */}
           <aside className="space-y-5 lg:sticky lg:top-6 lg:self-start">
