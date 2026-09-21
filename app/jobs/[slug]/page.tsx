@@ -1,3 +1,5 @@
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import BackToJobs from "@/components/BackToJobs";
 import JobApplication from "@/components/JobApplication";
 import { getJobBySlug, jobs, type Job } from "@/lib/job-data";
@@ -417,6 +419,7 @@ export default async function JobPage({ params }: PageProps) {
 
               <p className="mt-2 text-xl font-bold text-slate-900">{salary}</p>
             </div>
+            <NativeBannerAd />
             <JobApplication />
           </div>
         </div>
@@ -469,6 +472,7 @@ export default async function JobPage({ params }: PageProps) {
                     </Link>
                   </dd>
                 </div>
+                <Banner320x50 />
 
                 <div>
                   <dt className="text-sm text-slate-500">Job Type</dt>

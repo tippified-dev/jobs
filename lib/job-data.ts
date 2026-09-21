@@ -1745,7 +1745,7 @@ const publishedDate = getPublishedDate(globalIndex);
             sourceUrl: null,
             sourceName: null,
 
-            isVerified: false,
+            isVerified: true,
 
             isFeatured:
               globalIndex % 17 === 0,

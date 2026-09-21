@@ -190,7 +190,7 @@ export default function JobApplication() {
               </p>
 
               <p className="mt-1 text-sm leading-6 text-emerald-700">
-                Your CV has been selected and your application has been recorded
+                Your CV has been selected and your application has been sent
                 successfully.
               </p>
 
