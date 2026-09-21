@@ -28,6 +28,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${BASE_URL}/upload-cv`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/work-benefits`,
+      changeFrequency: "daily",
+      priority: 0.1,
+    },
+    {
       url: `${BASE_URL}/data-entry`,
       changeFrequency: "daily",
       priority: 0.9,
