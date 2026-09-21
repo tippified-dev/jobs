@@ -1,3 +1,5 @@
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import {
@@ -61,6 +63,7 @@ export default function LiveJobsPage() {
               </span>
               Live job board
             </div>
+            <Banner320x50 />
 
             <h1 className="mt-6 max-w-4xl text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
               Find your next job.
@@ -105,6 +108,7 @@ export default function LiveJobsPage() {
           </div>
         </div>
       </section>
+      <NativeBannerAd />
 
       {/* Dashboard */}
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
