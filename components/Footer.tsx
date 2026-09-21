@@ -14,10 +14,10 @@ import {
 import SiteLogo from "./SiteLogo";
 
 const jobLinks = [
-  { label: "Find Jobs", href: "/jobs" },
+  { label: "Find Jobs", href: "/location" },
   { label: "Online Jobs", href: "/online-jobs" },
   { label: "Data Entry Jobs", href: "/data-entry" },
-  { label: "Side Jobs", href: "/side-jobs" },
+  { label: "Side Jobs", href: "/online-jobs" },
 ];
 
 const companyLinks = [

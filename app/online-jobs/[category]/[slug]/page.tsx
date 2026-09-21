@@ -1,3 +1,5 @@
+import Banner320x50 from "@/components/ads/Banner320x50";
+import NativeBannerAd from "@/components/ads/NativeBannerAd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -91,8 +93,7 @@ export async function generateMetadata({
 
   const title = `${job.title} at ${job.company.name} | Global Jobs Live`;
 
-  const description = `${job.title} at ${job.company.name} in ${job.country}.  +
-    Remote online job with no CV required. View job details, estimated pay and apply online.`;
+  const description = `${job.title} at ${job.company.name} in ${job.country}. Remote online job with no CV required. View job details, estimated pay and apply online.`;
 
   const url = `https://globaljobslive.com/online-jobs/${job.categorySlug}/${job.slug}`;
 
@@ -120,6 +121,11 @@ export async function generateMetadata({
       siteName: "Global Jobs Live",
       type: "website",
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -145,7 +151,12 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
           "@context": "https://schema.org",
           "@type": "JobPosting",
           title: job.title,
-          description: job.description,
+          description: [
+            job.description,
+            `Responsibilities: ${job.responsibilities.join(". ")}`,
+            `Requirements: ${job.requirements.join(". ")}`,
+            `Benefits: ${job.benefits.join(". ")}`,
+          ].join("\n\n"),
           datePosted: job.publishedAt,
           validThrough: job.validThrough,
           employmentType: "OTHER",
@@ -173,7 +184,7 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
       : null;
 
   return (
-    <main className="min-h-screen bg-white text-black">
+    <main className="min-h-screen bg-white text-slate-900">
       {jobPostingStructuredData && (
         <script
           type="application/ld+json"
@@ -183,102 +194,126 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
         />
       )}
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-black">
-        <div className="absolute inset-0">
-          <div className="absolute left-48 top-48 h-120 w-120 rounded-full bg-blue-600/15 blur-3xl" />
-          <div className="absolute right-40 top-20 h-104 w-104 rounded-full bg-blue-700/10 blur-3xl" />
-        </div>
+      {/* ------------------------------------------------------------------ */}
+      {/* Hero                                                               */}
+      {/* ------------------------------------------------------------------ */}
 
-        <div className="relative mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8">
+      <section className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 pb-14 pt-7 sm:px-6 lg:px-8">
           <Link
             href={`/online-jobs/${job.categorySlug}`}
-            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/80 transition-all hover:border-blue-500/50 hover:bg-blue-600/10 hover:text-white"
+            className="group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-600 shadow-sm transition-all duration-300 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
           >
             <FiArrowLeft className="transition-transform duration-300 group-hover:-translate-x-1" />
             Back to {job.category}
           </Link>
 
-          <div className="max-w-4xl pb-14 pt-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-600/10 px-4 py-2 text-sm font-semibold text-blue-400">
+          <div className="max-w-4xl pt-12">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600">
               <FiBriefcase />
               Online Simple Job
             </div>
 
-            <h1 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-5 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
               {job.title}
             </h1>
 
-            <p className="mt-4 text-lg font-semibold text-blue-400">
+            <p className="mt-4 text-lg font-semibold text-blue-600">
               {job.company.name}
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
               <InfoBadge icon={FiMapPin} text={job.country} />
+
               <InfoBadge icon={FiWifi} text="Remote" />
+
               <InfoBadge icon={FiCheckCircle} text="No CV required" />
+
               <InfoBadge icon={FiClock} text={timeAgo} />
             </div>
           </div>
         </div>
       </section>
+      <Banner320x50 />
 
-      {/* Main content */}
+      {/* ------------------------------------------------------------------ */}
+      {/* Main content                                                       */}
+      {/* ------------------------------------------------------------------ */}
+
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
-          {/* Job details */}
-          <div className="space-y-8">
-            <section className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:p-8">
-              <h2 className="text-2xl font-bold text-black">About this job</h2>
+          {/* ---------------------------------------------------------------- */}
+          {/* Job details                                                       */}
+          {/* ---------------------------------------------------------------- */}
 
-              <p className="mt-5 whitespace-pre-line text-sm leading-7 text-black/65 sm:text-base">
+          <div className="space-y-8">
+            {/* About */}
+            <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">
+                Job overview
+              </p>
+
+              <h2 className="mt-2 text-2xl font-bold text-slate-900">
+                About this job
+              </h2>
+
+              <p className="mt-5 whitespace-pre-line text-sm leading-7 text-slate-600 sm:text-base">
                 {job.description}
               </p>
             </section>
 
+            {/* Responsibilities */}
             <JobListSection
               title="What you will do"
               items={job.responsibilities}
             />
 
+            {/* Requirements */}
             <JobListSection title="Requirements" items={job.requirements} />
 
+            {/* Benefits */}
             <JobListSection title="What you get" items={job.benefits} />
 
-            <section className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:p-8">
-              <h2 className="text-xl font-bold text-black">Skills</h2>
+            {/* Skills */}
+            <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">
+                Job skills
+              </p>
+
+              <h2 className="mt-2 text-xl font-bold text-slate-900">Skills</h2>
 
               <div className="mt-5 flex flex-wrap gap-2">
                 {job.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700"
+                    className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
             </section>
+            <NativeBannerAd />
 
             {/* Company */}
-            <section className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:p-8">
+            <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
               <div className="flex items-start gap-4">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-black text-xl font-bold text-white">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-xl font-bold text-white">
                   {job.company.name.charAt(0).toUpperCase()}
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">
                     Company
                   </p>
 
-                  <h2 className="mt-1 text-xl font-bold text-black">
+                  <h2 className="mt-1 text-xl font-bold text-slate-900">
                     {job.company.name}
                   </h2>
                 </div>
               </div>
 
-              <p className="mt-5 text-sm leading-7 text-black/65">
+              <p className="mt-5 text-sm leading-7 text-slate-600">
                 {job.company.description}
               </p>
             </section>
@@ -291,7 +326,7 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
                     More opportunities
                   </p>
 
-                  <h2 className="mt-1 text-2xl font-bold text-black">
+                  <h2 className="mt-1 text-2xl font-bold text-slate-900">
                     Similar online jobs
                   </h2>
                 </div>
@@ -301,23 +336,24 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
                     <Link
                       key={relatedJob.id}
                       href={`/online-jobs/${relatedJob.categorySlug}/${relatedJob.slug}`}
-                      className="group rounded-2xl border border-blue-100 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg"
+                      className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg"
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-sm font-bold text-white transition-colors duration-300 group-hover:bg-blue-600">
                         {relatedJob.company.name.charAt(0).toUpperCase()}
                       </div>
 
-                      <h3 className="mt-4 line-clamp-2 font-bold text-black transition-colors group-hover:text-blue-600">
+                      <h3 className="mt-4 line-clamp-2 font-bold text-slate-900 transition-colors group-hover:text-blue-600">
                         {relatedJob.title}
                       </h3>
 
-                      <p className="mt-1 truncate text-sm text-black/50">
+                      <p className="mt-1 truncate text-sm text-slate-500">
                         {relatedJob.company.name}
                       </p>
 
-                      <p className="mt-4 text-xs font-medium text-blue-600">
+                      <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-blue-600">
+                        <FiMapPin size={12} />
                         {relatedJob.country}
-                      </p>
+                      </div>
                     </Link>
                   ))}
                 </div>
@@ -325,19 +361,22 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
             )}
           </div>
 
-          {/* Application sidebar */}
+          {/* ---------------------------------------------------------------- */}
+          {/* Application sidebar                                               */}
+          {/* ---------------------------------------------------------------- */}
+
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-3xl border border-blue-100 bg-white p-6 shadow-xl sm:p-7">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl sm:p-7">
               <div className="mb-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">
                   Apply for this job
                 </p>
 
-                <h2 className="mt-2 text-2xl font-bold text-black">
+                <h2 className="mt-2 text-2xl font-bold text-slate-900">
                   Start your application
                 </h2>
 
-                <p className="mt-2 text-sm leading-6 text-black/55">
+                <p className="mt-2 text-sm leading-6 text-slate-600">
                   No CV is required. Fill in your basic details to continue.
                 </p>
               </div>
@@ -347,7 +386,7 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
                   Estimated pay
                 </p>
 
-                <p className="mt-1 text-lg font-bold text-black">{pay}</p>
+                <p className="mt-1 text-lg font-bold text-slate-900">{pay}</p>
               </div>
 
               <OnlineSimpleJobApplication
@@ -358,29 +397,35 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
               />
             </div>
 
-            <div className="mt-5 rounded-3xl border border-blue-100 bg-blue-50/50 p-6">
+            {/* Application information */}
+            <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-6">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white">
                 <FiShield size={20} />
               </div>
 
-              <h3 className="mt-4 font-bold text-black">Simple application</h3>
+              <h3 className="mt-4 font-bold text-slate-900">
+                Simple application
+              </h3>
 
-              <p className="mt-2 text-sm leading-6 text-black/60">
+              <p className="mt-2 text-sm leading-6 text-slate-600">
                 This listing does not require a CV upload. Only your name,
                 country and email address are requested.
               </p>
             </div>
 
-            <div className="mt-5 rounded-3xl border border-blue-100 bg-white p-6">
+            {/* Mobile application */}
+            <div className="mt-5 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3">
-                <FiSmartphone className="text-blue-600" size={20} />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                  <FiSmartphone size={20} />
+                </div>
 
-                <span className="font-semibold text-black">
+                <span className="font-semibold text-slate-900">
                   Apply from your phone
                 </span>
               </div>
 
-              <p className="mt-3 text-sm leading-6 text-black/55">
+              <p className="mt-3 text-sm leading-6 text-slate-600">
                 These simple online jobs are designed to be accessible from a
                 smartphone or computer with an internet connection.
               </p>
@@ -393,7 +438,7 @@ export default async function OnlineSimpleJobPage({ params }: PageProps) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Info Badge                                                                  */
+/* Info Badge                                                                 */
 /* -------------------------------------------------------------------------- */
 
 function InfoBadge({
@@ -404,21 +449,25 @@ function InfoBadge({
   text: string;
 }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">
-      <Icon className="text-blue-400" size={15} />
+    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm">
+      <Icon className="text-blue-600" size={15} />
       {text}
     </div>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/* Job List Section                                                            */
+/* Job List Section                                                           */
 /* -------------------------------------------------------------------------- */
 
 function JobListSection({ title, items }: { title: string; items: string[] }) {
   return (
-    <section className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm sm:p-8">
-      <h2 className="text-xl font-bold text-black">{title}</h2>
+    <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">
+        Job information
+      </p>
+
+      <h2 className="mt-2 text-xl font-bold text-slate-900">{title}</h2>
 
       <ul className="mt-5 space-y-4">
         {items.map((item, index) => (
@@ -427,7 +476,7 @@ function JobListSection({ title, items }: { title: string; items: string[] }) {
               <FiCheckCircle size={12} />
             </span>
 
-            <span className="text-sm leading-6 text-black/65">{item}</span>
+            <span className="text-sm leading-6 text-slate-600">{item}</span>
           </li>
         ))}
       </ul>

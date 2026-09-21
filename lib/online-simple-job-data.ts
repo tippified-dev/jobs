@@ -1154,8 +1154,8 @@ function createJob(
      * isDemo: false
      * isVerified: true
      */
-    isDemo: true,
-    isVerified: false,
+    isDemo: false,
+    isVerified: true,
 
     isFeatured: index % 17 === 0,
 
