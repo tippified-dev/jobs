@@ -147,6 +147,7 @@ export default function WorkBenefitsPage() {
             </Link>
             <a
               href="https://www.profitableratecpmnetwork.com/mp5q19er1?key=52613312a9be66cab84c510c3b43502a"
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-200 transition hover:bg-blue-700"
             >

@@ -253,6 +253,7 @@ export default function Navbar() {
               >
                 <a
                   href="https://www.profitableratecpmnetwork.com/mp5q19er1?key=52613312a9be66cab84c510c3b43502a"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
                 >
