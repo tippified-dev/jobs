@@ -83,11 +83,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-
-  icons: {
-    icon: "/job_logo.PNG",
-    apple: "/job_logo.PNG",
-  },
 };
 
 export const viewport: Viewport = {
