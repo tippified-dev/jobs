@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import {
+  FiActivity,
   FiArrowUpRight,
   FiBarChart2,
   FiBriefcase,
@@ -42,7 +43,7 @@ type Props = {
  * Icons are controlled entirely by the frontend.
  * The category data only provides the category slug.
  *
- * These slugs must match the 18 categories in
+ * These slugs match the 18 categories in
  * category-opportunity-data.ts.
  */
 const categoryIcons: Record<string, ReactNode> = {
@@ -243,11 +244,12 @@ export default function JobTypeCategoriesClient({
                       </p>
                     </div>
 
+                    {/* Category Status */}
                     <div className="mt-auto pt-4">
                       <div className="flex items-center justify-between border-t border-slate-100 pt-3">
-                        <span className="text-xs font-semibold text-blue-600">
-                          {job.jobs.toLocaleString()}{" "}
-                          {job.jobs === 1 ? "job" : "jobs"}
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-600">
+                          <FiActivity size={12} />
+                          Active
                         </span>
 
                         <span className="text-[11px] font-medium text-slate-400">
@@ -271,7 +273,7 @@ export default function JobTypeCategoriesClient({
                 className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all duration-200 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 <span>
-                  {`showAll ? "Show fewer" : View ${remainingCount} more`}
+                  {showAll ? "Show fewer" : `View ${remainingCount} more`}
                 </span>
 
                 <motion.span
