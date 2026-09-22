@@ -1,7 +1,6 @@
 import About from "@/components/About";
 import AdNotice from "@/components/AdNotice";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
-import AdvertUnderstanding from "@/components/AdvertUnderstanding";
 import CurrentArtisanJobsServer from "@/components/CurrentArtisanJobsServer";
 import Footer from "@/components/Footer";
 import JobAlert from "@/components/JobAlert";
@@ -30,8 +29,8 @@ export default function Home() {
           </p>
 
           <h1 className="text-5xl font-bold leading-tight tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
-            Find jobs that suits
-            <span className="text-blue-600"> your lifestyle.</span>
+            Find jobs that fit
+            <span className="text-blue-600"> your life.</span>
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl">
@@ -98,7 +97,6 @@ export default function Home() {
 
       {/* Testimonials */}
       <Testimonial />
-      <AdvertUnderstanding />
 
       {/* Community / Recognition */}
       <UserRecognition />

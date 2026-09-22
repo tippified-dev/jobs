@@ -179,7 +179,7 @@ export default function WelcomePage() {
                 className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-bold text-white shadow-sm transition hover:bg-blue-700"
               >
                 <FiCheck size={17} />
-                Continue to Jobs4all
+                Continue to GJL
               </motion.button>
             </form>
           </motion.div>
