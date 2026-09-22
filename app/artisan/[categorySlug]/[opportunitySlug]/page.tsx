@@ -105,7 +105,6 @@ export default async function ArtisanOpportunityPage({ params }: Props) {
     },
     baseSalary: {
       "@type": "MonetaryAmount",
-      currency: "NGN",
       value: {
         "@type": "QuantitativeValue",
         value: opportunity.salary,
