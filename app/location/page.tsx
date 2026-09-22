@@ -28,10 +28,10 @@ const countries: Country[] = [
   {
     name: "United States",
     code: "US",
-    slug: "united-states",
+    slug: "usa",
     flag: "🇺🇸",
     description: "Remote opportunities",
-    initialJobs: 200,
+    initialJobs: 60,
   },
   {
     name: "Canada",
@@ -39,15 +39,15 @@ const countries: Country[] = [
     slug: "canada",
     flag: "🇨🇦",
     description: "Remote opportunities",
-    initialJobs: 500,
+    initialJobs: 80,
   },
   {
     name: "United Kingdom",
     code: "GB",
-    slug: "united-kingdom",
+    slug: "uk",
     flag: "🇬🇧",
     description: "Remote opportunities",
-    initialJobs: 1000,
+    initialJobs: 100,
   },
   {
     name: "Australia",
@@ -55,7 +55,7 @@ const countries: Country[] = [
     slug: "australia",
     flag: "🇦🇺",
     description: "Remote opportunities",
-    initialJobs: 900,
+    initialJobs: 20,
   },
   {
     name: "New Zealand",
@@ -63,7 +63,7 @@ const countries: Country[] = [
     slug: "new-zealand",
     flag: "🇳🇿",
     description: "Remote opportunities",
-    initialJobs: 700,
+    initialJobs: 70,
   },
   {
     name: "China",
@@ -71,7 +71,7 @@ const countries: Country[] = [
     slug: "china",
     flag: "🇨🇳",
     description: "Remote opportunities",
-    initialJobs: 150,
+    initialJobs: 30,
   },
   {
     name: "Nigeria",
@@ -79,7 +79,7 @@ const countries: Country[] = [
     slug: "nigeria",
     flag: "🇳🇬",
     description: "Remote opportunities",
-    initialJobs: 1800,
+    initialJobs: 50,
   },
 ];
 export default function LocationPage() {
@@ -424,7 +424,7 @@ export default function LocationPage() {
                         "jobs4all_location_redirected",
                         "true",
                       );
-                      router.push(`/jobs/${selectedCountry.slug}`);
+                      router.push(`/country/${selectedCountry.slug}`);
                     }}
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
                   >
