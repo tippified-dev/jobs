@@ -424,7 +424,7 @@ export default function LocationPage() {
                         "jobs4all_location_redirected",
                         "true",
                       );
-                      router.push(`/country/${selectedCountry.slug}`);
+                      router.push(`/country-jobs/${selectedCountry.slug}`);
                     }}
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
                   >
