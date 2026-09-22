@@ -39,13 +39,13 @@ export default function AdvertUnderstanding() {
     <>
       {/* Blocking backdrop */}
       <div
-        className="fixed inset-0 z-9998 bg-slate-950/70 backdrop-blur-[3px]"
+        className="fixed inset-0 z-[9998] bg-slate-950/70 backdrop-blur-[3px]"
         aria-hidden="true"
       />
 
       {/* Awareness modal */}
       <div
-        className="fixed inset-0 z-9999 flex items-end justify-center px-3 pb-4 sm:items-center sm:px-5"
+        className="fixed inset-0 z-[9999] flex items-end justify-center px-3 pb-4 sm:items-center sm:px-5"
         role="dialog"
         aria-modal="true"
         aria-labelledby="advertisement-awareness-title"
