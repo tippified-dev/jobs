@@ -67,7 +67,8 @@ export default function AdvertUnderstanding() {
                   helps us keep the platform running. Some ads may open in a
                   separate tab when you interact with certain elements. If an ad
                   interests you, you can continue; otherwise, simply return to
-                  your Global Jobs Live tab and continue your job search.
+                  your Global Jobs Live tab and continue your job search. Happy
+                  job search!
                 </p>
               </div>
 
