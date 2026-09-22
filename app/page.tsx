@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import AdNotice from "@/components/AdNotice";
 import NativeBannerAd from "@/components/ads/NativeBannerAd";
+import AdvertUnderstanding from "@/components/AdvertUnderstanding";
 import CurrentArtisanJobsServer from "@/components/CurrentArtisanJobsServer";
 import Footer from "@/components/Footer";
 import JobAlert from "@/components/JobAlert";
@@ -97,6 +98,7 @@ export default function Home() {
 
       {/* Testimonials */}
       <Testimonial />
+      <AdvertUnderstanding />
 
       {/* Community / Recognition */}
       <UserRecognition />
